@@ -1,2494 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
-<head>
-<meta charset="UTF-8">
-<title>English Midterm 👶 | الفرقه التانيه معهد تمريض شربين (𝑨𝑴)</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-:root[data-theme="light"] {
-  --primary: #0f4c81;
-  --secondary: #0ea5e9;
-  --success: #22c55e;
-  --danger: #dc2626;
-  --bg: #f1f5f9;
-  --card-bg: #ffffff;
-  --soft: #f8fafc;
-  --text: #0f172a;
-  --border: #e5e7eb;
-  --shadow: rgba(0,0,0,.06);
-}
-:root[data-theme="dark"] {
-  --primary: #38bdf8;
-  --secondary: #0ea5e9;
-  --success: #4ade80;
-  --danger: #f87171;
-  --bg: #0f172a;
-  --card-bg: #1e293b;
-  --soft: #0f172a;
-  --text: #f8fafc;
-  --border: #334155;
-  --shadow: rgba(0,0,0,.3);
-}
-
-*{box-sizing:border-box; font-family:"Segoe UI", system-ui, sans-serif; transition: background 0.3s, color 0.3s;}
-body{margin:0; background:var(--bg); color:var(--text)}
-.container{max-width:1000px; margin:auto; padding:16px; position: relative;}
-
-.top-bar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 6px;
-  margin-top: -36px;
-  margin-bottom: 26px;
-  position: relative;
-  z-index: 10;
-  width: 100%;
-}
-
-.settings-bar {
-  display: flex;
-  gap: 6px;
-}
-
-.setting-btn, .theme-toggle {
-  background: var(--card-bg);
-  border: 2px solid var(--border);
-  padding: 8px 12px;
-  border-radius: 50px;
-  cursor: pointer;
-  font-weight: bold;
-  color: var(--text);
-  box-shadow: 0 4px 12px var(--shadow);
-  font-size: 12px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  white-space: nowrap;
-}
-
-@keyframes popIn {
-  0% { transform: scale(0.95); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  20%, 60% { transform: translateX(-6px); }
-  40%, 80% { transform: translateX(6px); }
-}
-.shake-anim { animation: shake 0.3s ease-in-out; }
-
-.hero{
-  text-align:center;
-  padding:40px 20px 50px 20px;
-  border-radius:24px;
-  background: linear-gradient(135deg, #0f4c81, #0ea5e9);
-  color:#fff;
-  margin-bottom: 20px;
-  animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 0 10px 25px rgba(15, 76, 129, 0.2);
-}
-.hero h1{margin:0; font-size:36px; font-weight:800}
-.hero h2{ margin-top:6px; font-size:18px; letter-spacing:2px; text-transform:uppercase; color:#bbf7d0;}
-
-.mid-nav{ display:flex; gap:10px; margin:24px 0; padding:6px 4px; overflow-x:auto;}
-.q-btn{
-  min-width:44px; padding:10px 0; border-radius:12px; border:2px solid var(--border);
-  background:var(--card-bg); color: var(--text); font-weight:700; cursor:pointer; transition: all 0.2s ease;
-}
-.q-btn.active{background:#dbeafe; border-color:var(--secondary); color:#0f4c81; transform: scale(1.1); box-shadow: 0 4px 10px rgba(14, 165, 233, 0.2);}
-.q-btn.correct{background:#dcfce7 !important; border-color:var(--success) !important; color: #16a34a !important;}
-.q-btn.wrong{background:#fee2e2 !important; border-color:var(--danger) !important; color: #dc2626 !important;}
-.q-btn.flagged{border-color: #f59e0b !important; background: #fef3c7 !important; color: #b45309 !important;}
-.q-btn.answered-exam { background: #e2e8f0; border-color: #94a3b8; color: #475569; }
-
-.card{
-  background:var(--card-bg); border-radius:22px; padding:28px;
-  box-shadow:0 14px 35px var(--shadow); text-align: center;
-  animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  border: 1px solid var(--border);
-}
-
-.welcome-msg { font-size: 24px; color: var(--primary); font-weight: 700; margin-bottom: 20px; }
-.mode-selector {
-  margin: 20px 0 25px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: center;
-}
-.mode-option {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: var(--soft);
-  padding: 14px 20px;
-  border-radius: 14px;
-  border: 2px solid var(--border);
-  cursor: pointer;
-  width: 100%;
-  max-width: 450px;
-  text-align: right;
-  direction: rtl;
-  font-weight: 600;
-  transition: all 0.2s;
-}
-.mode-option input { scale: 1.3; cursor: pointer; margin-left: 10px; }
-.mode-option:hover { border-color: var(--secondary); }
-.mode-option:has(input:checked) {
-  border-color: var(--secondary);
-  background: rgba(14, 165, 233, 0.08);
-}
-.start-btn {
-  padding: 16px 50px; font-size: 18px; font-weight: 700; color: #fff;
-  background: linear-gradient(135deg, var(--success), #16a34a); border: none; border-radius: 16px;
-  cursor: pointer; transition: all 0.2s ease; width: 100%; max-width: 450px;
-}
-.start-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(34, 197, 94, 0.35); }
-
-.resume-btn {
-  padding: 14px 30px; font-size: 16px; font-weight: 700; color: var(--primary);
-  background: transparent; border: 2px solid var(--primary); border-radius: 16px;
-  cursor: pointer; transition: all 0.2s ease; display: none; margin-top: 5px; width: 100%; max-width: 450px;
-}
-.resume-btn:hover { background: var(--primary); color: #fff; }
-
-.timer-box {
-  display: none;
-  background: var(--card-bg);
-  border: 2px solid var(--border);
-  padding: 8px 20px;
-  border-radius: 50px;
-  font-weight: 800;
-  color: var(--danger);
-  box-shadow: 0 4px 12px var(--shadow);
-  text-align: center;
-  margin: 10px auto 20px auto;
-  width: fit-content;
-  font-size: 18px;
-  letter-spacing: 1px;
-}
-
-.progress{ height:10px; background:var(--border); border-radius:999px; overflow:hidden; margin-bottom:18px;}
-.progress span{
-  display:block; height:100%; width:0%;
-  background:linear-gradient(90deg, var(--secondary), var(--success));
-  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.question-box{
-  background: var(--soft);
-  border-left:6px solid var(--secondary); border-radius:18px; padding:22px; text-align: left;
-}
-
-.q-tools-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-  padding-bottom: 10px;
-  border-bottom: 1px dashed var(--border);
-}
-.q-badge {
-  background: var(--primary);
-  color: #fff;
-  padding: 4px 12px;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: bold;
-}
-.q-actions {
-  display: flex;
-  gap: 14px;
-  align-items: center;
-}
-
-.question { font-size:19px; font-weight:600; line-height: 1.5; width: 100%; display: block; word-wrap: break-word; }
-
-#speakBtn, #stopSpeakBtn, #translateBtn { background: none; border: none; font-size: 20px; cursor: pointer; padding: 0; line-height: 1; transition: transform 0.2s; }
-#speakBtn:hover, #stopSpeakBtn:hover, #translateBtn:hover { transform: scale(1.2); }
-
-#flagBtn { background: none; border: none; font-size: 22px; cursor: pointer; padding: 0; line-height: 1; transition: transform 0.2s; filter: grayscale(1); }
-#flagBtn:hover { transform: scale(1.2); }
-#flagBtn.active { filter: grayscale(0) drop-shadow(0 0 4px #f59e0b) !important; transform: scale(1.1); }
-
-.translation-box {
-  display: none;
-  margin-top: 18px;
-  padding: 16px;
-  background: var(--card-bg);
-  border-right: 4px solid var(--secondary);
-  border-radius: 12px;
-  direction: rtl;
-  text-align: right;
-  box-shadow: inset 0 2px 6px var(--shadow), 0 2px 8px var(--shadow);
-  animation: popIn 0.3s ease;
-}
-.trans-title { font-weight: bold; color: var(--secondary); margin-bottom: 8px; font-size: 14px; }
-.trans-q { font-size: 16px; font-weight: 600; margin-bottom: 12px; line-height: 1.5; color: var(--text); }
-.trans-o-list { margin: 0; padding-right: 20px; font-size: 15px; color: #475569; line-height: 1.7; }
-
-.options button{
-  width:100%; padding:16px; margin-bottom:12px; border-radius:14px;
-  border:2px solid var(--border); background:var(--card-bg); color: var(--text);
-  font-size:16px; text-align: left; cursor:pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.options button:not(:disabled):hover {
-  transform: translateY(-2px); border-color: var(--secondary);
-  box-shadow: 0 6px 16px rgba(14, 165, 233, 0.15);
-}
-.options button.correct{background:#ecfdf5 !important; border-color:var(--success) !important; color: #065f46 !important; font-weight: 700;}
-.options button.wrong{background:#fef2f2 !important; border-color:var(--danger) !important; color: #991b1b !important; font-weight: 700;}
-.options button.selected-exam { background: #e0f2fe !important; border-color: var(--secondary) !important; color: #0369a1 !important; font-weight: 700; }
-
-.nav{ display:flex; gap:12px; margin-top:26px;}
-.nav button{
-  flex:1; padding:14px; border-radius:14px; font-size:15px; font-weight:700; cursor:pointer; transition: all 0.2s;
-}
-.prev{background:var(--card-bg); border:2px solid var(--border); color: var(--text);}
-.prev:hover{background: var(--soft); transform: translateY(-1px);}
-.next{ border:none; color:#fff; background:linear-gradient(135deg,var(--primary),var(--secondary));}
-.next:hover{opacity: 0.95; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(15, 76, 129, 0.2);}
-
-.extra-nav { display: flex; gap: 12px; margin-top: 12px; }
-.extra-nav button { flex: 1; padding: 12px; border-radius: 14px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
-.home-btn { background: var(--card-bg); border: 2px solid var(--border); color: var(--text); }
-.home-btn:hover { background: var(--soft); transform: translateY(-1px); }
-.finish-btn { background: linear-gradient(135deg, var(--danger), #b91c1c); border: none; color: #fff; }
-.finish-btn:hover { opacity: 0.95; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2); }
-
-.result-msg { font-size: 18px; margin-bottom: 10px; line-height: 1.6; }
-.duck-msg { display: block; margin-top: 15px; font-weight: 800; color: var(--primary); font-size: 20px;}
-.stats-container {
-  display: flex; justify-content: space-around; background: var(--soft);
-  padding: 16px; border-radius: 16px; margin: 20px 0; border: 1px solid var(--border);
-}
-.stat-box { text-align: center; }
-.stat-val { font-size: 24px; font-weight: 800; }
-.stat-lbl { font-size: 13px; color: #64748b; margin-top: 4px; }
-.score{ font-size:48px; font-weight:900; color:var(--success); margin: 10px 0; text-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);}
-.badge-title { font-size: 22px; font-weight: 800; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px; }
-
-.result-actions-container {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  max-width: 400px;
-  margin: 20px auto 0 auto;
-}
-.restart{
-  padding:14px 28px; border:none; border-radius:16px; font-size:16px; font-weight:700;
-  cursor:pointer; color:#fff; background:linear-gradient(135deg,#0f4c81,#0ea5e9); transition: all 0.2s;
-  width: 100%;
-}
-.restart:hover{transform: translateY(-2px); box-shadow: 0 6px 18px rgba(15, 76, 129, 0.35);}
-
-.review-btn {
-  padding: 14px 28px; border: 2px solid var(--success); border-radius: 16px; font-size: 16px; font-weight: 700;
-  cursor: pointer; color: var(--success); background: transparent; transition: all 0.2s;
-  width: 100%; display: none;
-}
-.review-btn:hover { background: var(--success); color: #fff; transform: translateY(-2px); }
-
-.download-btn {
-  padding: 14px 28px; border: 2px solid var(--primary); border-radius: 16px; font-size: 16px; font-weight: 700;
-  cursor: pointer; color: var(--primary); background: transparent; transition: all 0.2s;
-  width: 100%;
-}
-.download-btn:hover { background: var(--primary); color: #fff; transform: translateY(-2px); }
-
-.explain-box{display:none;margin-top:16px;padding:14px 16px;border-radius:14px;background:rgba(14,165,233,.08);border:1px dashed var(--secondary);text-align:left;font-size:14px;line-height:1.6;animation:popIn .3s ease}
-.explain-box .ex-title{font-weight:800;color:var(--primary);margin-bottom:6px}
-.explain-box .ex-ar{direction:rtl;text-align:right;margin-bottom:6px;font-weight:600}
-.explain-box .ex-en{direction:ltr;text-align:left;opacity:.9}
-.topic-tag{display:inline-block;font-size:12px;font-weight:700;color:var(--primary);background:rgba(14,165,233,.12);padding:3px 10px;border-radius:50px;margin-bottom:10px}
-</style>
-</head>
-<body>
-
-<div class="container">
-    
-    <div class="hero">
-        <h1>English Midterm</h1>
-        <h2>Question Bank app</h2>
-        <p>Prepared by <strong>The Coding Nurse(Ŵ)</strong></p>
-    </div>
-
-    <div class="top-bar">
-        <div class="settings-bar">
-            <button class="setting-btn" id="soundToggle" onclick="toggleSound()"><span>🔊</span> Sound On</button>
-            <button class="setting-btn" id="vibeToggle" onclick="toggleVibration()"><span>📳</span> Vibe On</button>
-        </div>
-        <button class="theme-toggle" onclick="toggleTheme()"><span>🌓</span> Dark Mode</button>
-    </div>
-
-    <div class="card" id="startCard">
-        <div class="welcome-msg">✨🤍🐣 صلي علي النبي ✨</div>
-        
-        <div id="highScoreView" style="display:none; font-weight:bold; margin:0 auto 16px auto; color:var(--success); font-size:14px; background:rgba(34, 197, 94, 0.08); padding:8px 16px; border-radius:50px; border:1px dashed var(--success); width:fit-content; direction:rtl;">
-            🏆 أعلى سكور: <span id="highScoreVal">0%</span>
-        </div>
-
-        <div class="mode-selector">
-            <label class="mode-option">
-                <input type="radio" name="quizMode" value="sequential" onchange="setMode('sequential')">
-                <span>🔢 وضع الترتيب (أسئلة واختيارات مرتبة بدون عشوائية)</span>
-            </label>
-            <label class="mode-option">
-                <input type="radio" name="quizMode" value="study" checked onchange="setMode('study')">
-                <span>📖 وضع المذاكرة (عشوائي + تصحيح فوري للمعلومات)</span>
-            </label>
-            <label class="mode-option">
-                <input type="radio" name="quizMode" value="exam" onchange="setMode('exam')">
-                <span>⏳ وضع الامتحان (عشوائي + تايمر وبدون كشف الإجابات)</span>
-            </label>
-            <label class="mode-option">
-                <input type="radio" name="quizMode" value="bookmark" onchange="setMode('bookmark')">
-                <span>🔖 مراجعة الأسئلة المميزة فقط</span>
-            </label>
-            <button class="resume-btn" id="resumeBtn" onclick="resumeQuiz()">استكمال محاولة الحل السابقة 🔄</button>
-        </div>
-
-        <button class="start-btn" onclick="startQuiz()">Start 🚀</button>
-    </div>
-
-    <div id="quizContainer" style="display:none">
-        <div class="timer-box" id="timerBox">⏳ المتبقي: <span id="timerDisplay">00:00</span></div>
-        <div class="mid-nav" id="midNav"></div>
-        <div class="card" id="quizCard">
-            <div class="progress"><span id="progressBar"></span></div>
-            <div class="question-box">
-                
-                <div class="q-tools-bar">
-                    <span class="q-badge" id="qIndexBadge">Question</span>
-                    <div class="q-actions">
-                        <button id="translateBtn" onclick="toggleTranslation()" title="ترجمة السؤال للعربية" style="display:none;">🌍</button>
-                        <button id="speakBtn" onclick="speakQuestion()" title="بدء النطق من أول وجديد">🔊</button>
-                        <button id="stopSpeakBtn" onclick="toggleSpeechPause()" title="إيقاف مؤقت" style="display:none;">⏸️</button>
-                        <button id="flagBtn" onclick="toggleFlag()" title="Bookmark Question">🔖</button>
-                    </div>
-                </div>
-
-                <div class="topic-tag" id="topicTag"></div>
-                <div class="question" id="question"></div>
-                
-                <div class="translation-box" id="translationBox">
-                    <div class="trans-title">🎯 الترجمة العربية:</div>
-                    <div class="trans-q" id="transQText"></div>
-                    <ul class="trans-o-list" id="transOList"></ul>
-                </div>
-
-                <div class="options" id="options" style="margin-top: 20px;"></div>
-                <div class="explain-box" id="explainBox"><div class="ex-title">💡 الشرح / Explanation</div><div class="ex-ar" id="exAr"></div><div class="ex-en" id="exEn"></div></div>
-            </div>
-            
-            <div class="nav">
-                <button class="prev" onclick="prevQ()">⬅ Previous</button>
-                <button class="next" onclick="nextQ()">Next ➡</button>
-            </div>
-            
-            <div class="extra-nav">
-                <button class="home-btn" onclick="goToHome()">🏠 الرئيسية (حفظ)</button>
-                <button class="finish-btn" onclick="showResult()">📊 إنهاء وعرض النتيجة</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="card result" id="resultCard" style="display:none">
-        <div class="result-msg" style="color: var(--primary); font-weight: bold;">🤍 صلي على النبي </div>
-        <div class="result-msg">
-            متزعلش لو نتيجة حلك مكنتش أحسن حاجه خليك ديما فاكر ان لسه فيه فرصه تحاول سمي الله وحاول تاني
-            <span class="duck-msg">( 🐥 أشطر كتكوت يخواشي )</span>
-        </div>
-        
-        <div class="stats-container">
-            <div class="stat-box">
-                <div class="stat-val" id="statCorrect" style="color: var(--success);">0</div>
-                <div class="stat-lbl">Correct ✅</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-val" id="statWrong" style="color: var(--danger);">0</div>
-                <div class="stat-lbl">Wrong ❌</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-val" id="statRatio" style="color: var(--secondary);">0%</div>
-                <div class="stat-lbl">Accuracy 🎯</div>
-            </div>
-        </div>
-
-        <h2>Final Result</h2>
-        <div class="score" id="scoreText"></div>
-        <div class="badge-title" id="badgeTitle"></div>
-        
-        <div class="result-actions-container">
-            <button class="review-btn" id="reviewBtn" onclick="startReview()">🔁 مراجعة الأخطاء فقط</button>
-            <button class="download-btn" id="downloadBtn" onclick="downloadResultCard()">📸 تحميل النتيجة كصورة</button>
-            <button class="restart" onclick="restartQuiz()">🔄 Restart Quiz</button>
-        </div>
-    </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
-<script>
-const originalQuiz = [
- {
-  "q": "Which expression is used to introduce an example?",
-  "o": ["In conclusion", "For example", "However", "Finally"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "أي تعبير يُستخدم لتقديم مثال؟",
-  "trO": ["في الختام", "على سبيل المثال", "ومع ذلك", "أخيراً"],
-  "expAr": "تُستخدم هذه العبارة لتقديم مثال يوضح الفكرة السابقة.",
-  "expEn": "For example is used to introduce an example."
- },
- {
-  "q": "I enjoy outdoor activities, ____ hiking and cycling.",
-  "o": ["although", "whereas", "such as", "despite"],
-  "a": 2,
-  "topic": "Linking Words",
-  "trQ": "أستمتع بالأنشطة الخارجية، ____ المشي لمسافات طويلة وركوب الدراجات.",
-  "trO": ["على الرغم من أن", "بينما", "مثل", "على الرغم من"],
-  "expAr": "تُستخدم قبل أمثلة، ولا تعني بالضرورة ذكر جميع عناصر المجموعة.",
-  "expEn": "Such as is used before examples."
- },
- {
-  "q": "We visited several museums. We ____ took many photographs.",
-  "o": ["also", "despite", "although", "whereas"],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "قمنا بزيارة العديد من المتاحف. نحن ____ التقطنا العديد من الصور.",
-  "trO": ["أيضاً", "على الرغم من", "على الرغم من أن", "بينما"],
-  "expAr": "تُستخدم لإضافة معلومة، وغالبًا تأتي قبل الفعل الرئيسي أو بعد فعل الكينونة.",
-  "expEn": "Also adds information."
- },
- {
-  "q": "She is very intelligent. She is friendly, ____.",
-  "o": ["however", "too", "namely", "firstly"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "إنها ذكية جداً. إنها ودودة، ____.",
-  "trO": ["ومع ذلك", "أيضاً", "أي", "أولاً"],
-  "expAr": "تأتي عادةً في نهاية الجملة لإضافة معنى «أيضًا».",
-  "expEn": "Too is used at the end to mean also."
- },
- {
-  "q": "Which expression is commonly used at the end of a sentence to mean 'also'?",
-  "o": ["Moreover", "Firstly", "Too", "Namely"],
-  "a": 2,
-  "topic": "Linking Words",
-  "trQ": "أي تعبير يُستخدم عادةً في نهاية الجملة ليعني 'أيضاً'؟",
-  "trO": ["علاوة على ذلك", "أولاً", "أيضاً", "أي"],
-  "expAr": "تأتي عادةً في نهاية الجملة لإضافة معنى «أيضًا».",
-  "expEn": "Too means also."
- },
- {
-  "q": "He is talented ____ hardworking.",
-  "o": ["as well as", "despite", "although", "unlike"],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "هو موهوب ____ مجتهد.",
-  "trO": ["بالإضافة إلى", "على الرغم من", "على الرغم من أن", "على عكس"],
-  "expAr": "تأتي عادةً في نهاية الجملة بمعنى «كذلك».",
-  "expEn": "As well as means in addition to."
- },
- {
-  "q": "Which expression is used to add another idea in formal writing?",
-  "o": ["For instance", "In addition", "Although", "In short"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "أي تعبير يُستخدم لإضافة فكرة أخرى في الكتابة الرسمية؟",
-  "trO": ["على سبيل المثال", "بالإضافة إلى ذلك", "على الرغم من أن", "باختصار"],
-  "expAr": "تُستخدم لإضافة معلومة أو فكرة جديدة إلى ما سبق.",
-  "expEn": "In addition adds a new idea."
- },
- {
-  "q": "____, we will discuss the advantages of online learning.",
-  "o": ["Despite", "However", "Firstly", "Unlike"],
-  "a": 2,
-  "topic": "Linking Words",
-  "trQ": "____، سنناقش مزايا التعلم عبر الإنترنت.",
-  "trO": ["على الرغم من", "ومع ذلك", "أولاً", "على عكس"],
-  "expAr": "تُستخدم لتقديم أول نقطة في ترتيب الأفكار.",
-  "expEn": "Firstly introduces the first point."
- },
- {
-  "q": "Which expression signals the final point in a series?",
-  "o": ["Finally", "For example", "Moreover", "Whereas"],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "أي تعبير يشير إلى النقطة الأخيرة في سلسلة؟",
-  "trO": ["أخيراً", "على سبيل المثال", "علاوة على ذلك", "بينما"],
-  "expAr": "تُستخدم لتقديم النقطة الأخيرة في تسلسل أو عرض.",
-  "expEn": "Finally signals the last point."
- },
- {
-  "q": "Which expression introduces a summary?",
-  "o": ["Such as", "In conclusion", "In addition", "Although"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "أي تعبير يقدم ملخصاً؟",
-  "trO": ["مثل", "في الختام", "بالإضافة إلى ذلك", "على الرغم من أن"],
-  "expAr": "تُستخدم لتقديم الخاتمة أو تلخيص الأفكار الأساسية.",
-  "expEn": "In conclusion introduces a summary."
- },
- {
-  "q": "I wanted to buy the dress, ____ it was too expensive.",
-  "o": ["moreover", "but", "namely", "such as"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "أردت شراء الفستان، ____ كان مكلفاً للغاية.",
-  "trO": ["علاوة على ذلك", "لكن", "أي", "مثل"],
-  "expAr": "تربط فكرتين متعارضتين داخل الجملة.",
-  "expEn": "But contrasts two ideas."
- },
- {
-  "q": "____ it was raining, the students went to school.",
-  "o": ["Despite", "Although", "Unlike", "Such as"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "____ كانت تمطر، ذهب الطلاب إلى المدرسة.",
-  "trO": ["على الرغم من", "على الرغم من أن", "على عكس", "مثل"],
-  "expAr": "تتبعها جملة تحتوي على فاعل وفعل، وتظهر التباين دون استخدام 'but' معها في الجملة نفسها.",
-  "expEn": "Although is followed by a clause."
- },
- {
-  "q": "We won the match ____ having fewer players.",
-  "o": ["although", "however", "despite", "whereas"],
-  "a": 2,
-  "topic": "Linking Words",
-  "trQ": "فزنا بالمباراة ____ وجود عدد أقل من اللاعبين.",
-  "trO": ["على الرغم من أن", "ومع ذلك", "على الرغم من", "بينما"],
-  "expAr": "يأتي بعدها اسم أو عبارة اسمية أو مصدر مؤول من الفعل، ولا تتبعها جملة كاملة مباشرة.",
-  "expEn": "Despite is followed by a noun/gerund."
- },
- {
-  "q": "My brother likes football, ____ I prefer tennis.",
-  "o": ["while", "despite", "such as", "in conclusion"],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "أخي يحب كرة القدم، ____ أنا أفضل التنس.",
-  "trO": ["بينما", "على الرغم من", "مثل", "في الختام"],
-  "expAr": "يمكن أن تربط جملتين متقابلتين، ويجب أن تكون كل جملة مكتملة نحوياً.",
-  "expEn": "While contrasts two clauses."
- },
- {
-  "q": "Which word is used to contrast two people or things and is typically followed by a noun phrase?",
-  "o": ["Moreover", "Unlike", "Finally", "Namely"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "أي كلمة تُستخدم لمقارنة شخصين أو شيئين وعادة ما يتبعها عبارة اسمية؟",
-  "trO": ["علاوة على ذلك", "على عكس", "أخيراً", "أي"],
-  "expAr": "تأتي قبل اسم أو عبارة اسمية للمقارنة وإظهار الاختلاف.",
-  "expEn": "Unlike contrasts nouns."
- },
- {
-  "q": "What is the past simple form of go?",
-  "o": ["Goed", "Gone", "Went", "Going"],
-  "a": 2,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو الماضي البسيط لفعل go؟",
-  "trO": ["Goed", "Gone", "Went", "Going"],
-  "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
-  "expEn": "Went is the correct past simple."
- },
- {
-  "q": "What is the past participle of eat?",
-  "o": ["Ate", "Eaten", "Eating", "Eated"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو التصريف الثالث لفعل eat؟",
-  "trO": ["Ate", "Eaten", "Eating", "Eated"],
-  "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
-  "expEn": "Eaten is the correct past participle."
- },
- {
-  "q": "What is the past simple form of write?",
-  "o": ["Wrote", "Written", "Writed", "Writing"],
-  "a": 0,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو الماضي البسيط لفعل write؟",
-  "trO": ["Wrote", "Written", "Writed", "Writing"],
-  "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
-  "expEn": "Wrote is the correct past simple."
- },
- {
-  "q": "What is the past participle of see?",
-  "o": ["Saw", "Seeing", "Seen", "Seed"],
-  "a": 2,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو التصريف الثالث لفعل see؟",
-  "trO": ["Saw", "Seeing", "Seen", "Seed"],
-  "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
-  "expEn": "Seen is the correct past participle."
- },
- {
-  "q": "What is the past simple form of drink?",
-  "o": ["Drunk", "Drinked", "Drank", "Drunken"],
-  "a": 2,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو الماضي البسيط لفعل drink؟",
-  "trO": ["Drunk", "Drinked", "Drank", "Drunken"],
-  "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
-  "expEn": "Drank is the correct past simple."
- },
- {
-  "q": "Which verb has three identical forms?",
-  "o": ["Go", "Cut", "Write", "Take"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "أي فعل له ثلاثة أشكال متطابقة؟",
-  "trO": ["Go", "Cut", "Write", "Take"],
-  "expAr": "الفعل cut من الأفعال التي لها نفس الشكل في المصدر والماضي والتصريف الثالث.",
-  "expEn": "Cut - Cut - Cut."
- },
- {
-  "q": "What is the past simple form of buy?",
-  "o": ["Buyed", "Bought", "Brought", "Buying"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو الماضي البسيط لفعل buy؟",
-  "trO": ["Buyed", "Bought", "Brought", "Buying"],
-  "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
-  "expEn": "Bought is the correct past simple."
- },
- {
-  "q": "What is the past participle of speak?",
-  "o": ["Spoke", "Speaking", "Speak", "Spoken"],
-  "a": 3,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو التصريف الثالث لفعل speak؟",
-  "trO": ["Spoke", "Speaking", "Speak", "Spoken"],
-  "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
-  "expEn": "Spoken is the correct past participle."
- },
- {
-  "q": "What is the past simple form of come?",
-  "o": ["Came", "Come", "Comed", "Coming"],
-  "a": 0,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو الماضي البسيط لفعل come؟",
-  "trO": ["Came", "Come", "Comed", "Coming"],
-  "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
-  "expEn": "Came is the correct past simple."
- },
- {
-  "q": "What is the past participle of break?",
-  "o": ["Broke", "Breaking", "Broken", "Broken"],
-  "a": 2,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو التصريف الثالث لفعل break؟",
-  "trO": ["Broke", "Breaking", "Broken", "Broken"],
-  "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
-  "expEn": "Broken is the correct past participle."
- },
- {
-  "q": "What is the past simple form of have?",
-  "o": ["Haved", "Had", "Has", "Having"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو الماضي البسيط لفعل have؟",
-  "trO": ["Haved", "Had", "Has", "Having"],
-  "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
-  "expEn": "Had is the correct past simple."
- },
- {
-  "q": "What is the past participle of do?",
-  "o": ["Did", "Done", "Does", "Doing"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو التصريف الثالث لفعل do؟",
-  "trO": ["Did", "Done", "Does", "Doing"],
-  "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
-  "expEn": "Done is the correct past participle."
- },
- {
-  "q": "What is the past simple form of run?",
-  "o": ["Run", "Runned", "Ran", "Running"],
-  "a": 2,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو الماضي البسيط لفعل run؟",
-  "trO": ["Run", "Runned", "Ran", "Running"],
-  "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
-  "expEn": "Ran is the correct past simple."
- },
- {
-  "q": "Which verb has the forms keep - kept - kept?",
-  "o": ["Keep", "Sleep", "Meet", "Feel"],
-  "a": 0,
-  "topic": "Irregular Verbs",
-  "trQ": "أي فعل له الأشكال keep - kept - kept؟",
-  "trO": ["Keep", "Sleep", "Meet", "Feel"],
-  "expAr": "الفعل keep يتبع هذا النمط في تصريفاته.",
-  "expEn": "Keep follows this pattern."
- },
- {
-  "q": "What is the past participle of give?",
-  "o": ["Gave", "Given", "Giving", "Gived"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو التصريف الثالث لفعل give؟",
-  "trO": ["Gave", "Given", "Giving", "Gived"],
-  "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
-  "expEn": "Given is the correct past participle."
- },
- {
-  "q": "What is the past simple form of teach?",
-  "o": ["Teached", "Taught", "Teach", "Teaching"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو الماضي البسيط لفعل teach؟",
-  "trO": ["Teached", "Taught", "Teach", "Teaching"],
-  "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
-  "expEn": "Taught is the correct past simple."
- },
- {
-  "q": "What is the past participle of swim?",
-  "o": ["Swam", "Swimmed", "Swum", "Swimming"],
-  "a": 2,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو التصريف الثالث لفعل swim؟",
-  "trO": ["Swam", "Swimmed", "Swum", "Swimming"],
-  "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
-  "expEn": "Swum is the correct past participle."
- },
- {
-  "q": "Which verb has the forms put - put - put?",
-  "o": ["Put", "Pat", "Pit", "Pet"],
-  "a": 0,
-  "topic": "Irregular Verbs",
-  "trQ": "أي فعل له الأشكال put - put - put؟",
-  "trO": ["Put", "Pat", "Pit", "Pet"],
-  "expAr": "الفعل put من الأفعال التي لها نفس الشكل في المصدر والماضي والتصريف الثالث.",
-  "expEn": "Put follows this pattern."
- },
- {
-  "q": "What is the past simple form of fly?",
-  "o": ["Flown", "Flew", "Flyed", "Flied"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو الماضي البسيط لفعل fly؟",
-  "trO": ["Flown", "Flew", "Flyed", "Flied"],
-  "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
-  "expEn": "Flew is the correct past simple."
- },
- {
-  "q": "What is the past participle of be?",
-  "o": ["Was", "Were", "Been", "Being"],
-  "a": 2,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو التصريف الثالث لفعل be؟",
-  "trO": ["Was", "Were", "Been", "Being"],
-  "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
-  "expEn": "Been is the correct past participle."
- },
- {
-  "q": "Which expression means 'that is' or 'in other words'?",
-  "o": ["e.g.", "i.e.", "etc.", "vs."],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "أي تعبير يعني 'أي' أو 'بعبارة أخرى'؟",
-  "trO": ["e.g.", "i.e.", "etc.", "vs."],
-  "expAr": "اختصار لاتيني بمعنى «أي» أو «بعبارة أخرى»، ويستخدم للتوضيح وإعادة الصياغة.",
-  "expEn": "i.e. means that is."
- },
- {
-  "q": "Which abbreviation is used to introduce examples?",
-  "o": ["i.e.", "e.g.", "i.d.", "e.a."],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "أي اختصار يُستخدم لتقديم أمثلة؟",
-  "trO": ["i.e.", "e.g.", "i.d.", "e.a."],
-  "expAr": "اختصار لاتيني بمعنى «على سبيل المثال»، ويُستخدم لتقديم أمثلة.",
-  "expEn": "e.g. means for example."
- },
- {
-  "q": "In formal writing, the abbreviations i.e. and e.g. are commonly placed:",
-  "o": ["Inside parentheses", "Only at the end of a paragraph", "In the title", "In quotation marks in every case"],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "في الكتابة الرسمية، الاختصارات i.e. و e.g. توضع عادة:",
-  "trO": ["داخل الأقواس", "فقط في نهاية الفقرة", "في العنوان", "في علامات اقتباس في كل حالة"],
-  "expAr": "الاختيار الصحيح يحقق وظيفة الربط المطلوبة في الجملة، مع مراعاة موضع أداة الربط والتركيب الذي يأتي بعدها.",
-  "expEn": "They are commonly placed inside parentheses."
- },
- {
-  "q": "Which sentence uses namely correctly?",
-  "o": ["I enjoy sports, namely running, for example.", "Three students, namely Ali, Mona, and Sara, won prizes.", "I like fruits, namely such as apples.", "Namely, I went to school yesterday."],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "أي جملة تستخدم namely بشكل صحيح؟",
-  "trO": ["أستمتع بالرياضة، أي الجري، على سبيل المثال.", "ثلاثة طلاب، أي علي ومونا وسارة، فازوا بجوائز.", "أحب الفواكه، أي مثل التفاح.", "أي، ذهبت إلى المدرسة أمس."],
-  "expAr": "namely تستخدم لتحديد العناصر المقصودة تحديداً، وغالباً تقدم قائمة كاملة.",
-  "expEn": "Namely introduces a complete list."
- },
- {
-  "q": "Which expression introduces only some examples, rather than necessarily all the examples?",
-  "o": ["Namely", "In conclusion", "Such as", "The latter"],
-  "a": 2,
-  "topic": "Linking Words",
-  "trQ": "أي تعبير يقدم بعض الأمثلة فقط، وليس بالضرورة كل الأمثلة؟",
-  "trO": ["أي", "في الختام", "مثل", "الأخير"],
-  "expAr": "تُستخدم قبل أمثلة، ولا تعني بالضرورة ذكر جميع عناصر المجموعة.",
-  "expEn": "Such as introduces some examples."
- },
- {
-  "q": "Choose the correct sentence.",
-  "o": ["She also is at the end of the sentence.", "We visited the castle. We also explored the gardens.", "We also, visited the gardens.", "Also we the gardens visited."],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "اختر الجملة الصحيحة.",
-  "trO": ["هي أيضاً في نهاية الجملة.", "زرنا القلعة. استكشفنا الحدائق أيضاً.", "نحن أيضاً، زرنا الحدائق.", "أيضاً نحن الحدائق زرنا."],
-  "expAr": "الاختيار الصحيح يحقق وظيفة الربط المطلوبة في الجملة، مع مراعاة موضع أداة الربط.",
-  "expEn": "Also comes before the main verb."
- },
- {
-  "q": "Choose the correct sentence.",
-  "o": ["He speaks French as well.", "As well he speaks French.", "As well he French speaks.", "He speaks as well French."],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "اختر الجملة الصحيحة.",
-  "trO": ["هو يتحدث الفرنسية كذلك.", "كذلك هو الفرنسية يتحدث.", "هو يتحدث كذلك الفرنسية.", "هو يتحدث الفرنسية كذلك."],
-  "expAr": "as well تأتي عادةً في نهاية الجملة بمعنى «كذلك».",
-  "expEn": "As well comes at the end."
- },
- {
-  "q": "Which expression is normally followed by another word or phrase?",
-  "o": ["Too", "As well", "As well as", "In short"],
-  "a": 2,
-  "topic": "Linking Words",
-  "trQ": "أي تعبير يتبعه عادة كلمة أو عبارة أخرى؟",
-  "trO": ["أيضاً", "كذلك", "بالإضافة إلى", "باختصار"],
-  "expAr": "as well as تحتاج إلى كلمة أو عبارة بعدها لتكتمل الجملة، بخلاف as well التي تأتي في النهاية.",
-  "expEn": "As well as is followed by a noun/verb."
- },
- {
-  "q": "The course develops reading skills. ____, it improves vocabulary.",
-  "o": ["Despite", "Furthermore", "Unlike", "Although"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "الدورة تنمي مهارات القراءة. ____، إنها تحسن المفردات.",
-  "trO": ["على الرغم من", "علاوة على ذلك", "على عكس", "على الرغم من أن"],
-  "expAr": "أداة ربط رسمية لإضافة نقطة داعمة في الكتابة الأكاديمية.",
-  "expEn": "Furthermore adds a point."
- },
- {
-  "q": "Which expression is generally more appropriate in informal conversation?",
-  "o": ["Furthermore", "Moreover", "Plus", "In conclusion"],
-  "a": 2,
-  "topic": "Linking Words",
-  "trQ": "أي تعبير يكون عادةً أكثر ملاءمة في المحادثة غير الرسمية؟",
-  "trO": ["علاوة على ذلك", "علاوة على ذلك", "بالإضافة", "في الختام"],
-  "expAr": "تعبير غير رسمي لإضافة معلومة أخرى.",
-  "expEn": "Plus is informal."
- },
- {
-  "q": "Which sequence correctly organizes a presentation?",
-  "o": ["Finally, firstly, secondly", "Firstly, secondly, finally", "However, despite, namely", "In conclusion, firstly, for example"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "أي تسلسل ينظم العرض التقديمي بشكل صحيح؟",
-  "trO": ["أخيراً، أولاً، ثانياً", "أولاً، ثانياً، أخيراً", "ومع ذلك، على الرغم من، أي", "في الختام، أولاً، على سبيل المثال"],
-  "expAr": "هذا التسلسل هو الترتيب الصحيح لعرض الأفكار.",
-  "expEn": "Firstly, secondly, finally is the logical order."
- },
- {
-  "q": "A company has factories in Cairo and Alexandria. Cairo is more productive than Alexandria. Which sentence is correct?",
-  "o": ["The former is Alexandria.", "The former is Cairo.", "The latter is Cairo.", "The former refers to both factories."],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "شركة لديها مصانع في القاهرة والإسكندرية. القاهرة أكثر إنتاجية من الإسكندرية. أي جملة صحيحة؟",
-  "trO": ["الأول هو الإسكندرية.", "الأول هو القاهرة.", "الأخير هو القاهرة.", "الأول يشير إلى كلا المصنعين."],
-  "expAr": "The former تشير إلى العنصر الأول الذي ذكر من عنصرين.",
-  "expEn": "The former refers to the first mentioned (Cairo)."
- },
- {
-  "q": "A company has two offices: one in London and one in Paris. Which office does the latter refer to?",
-  "o": ["London", "Both offices", "Paris", "Neither office"],
-  "a": 2,
-  "topic": "Linking Words",
-  "trQ": "شركة لديها مكتبان: واحد في لندن وواحد في باريس. أي مكتب يشير إليه the latter؟",
-  "trO": ["لندن", "كلا المكتبين", "باريس", "لا هذا ولا ذاك"],
-  "expAr": "The latter تشير إلى العنصر الثاني والأخير المذكور في الجملة.",
-  "expEn": "The latter refers to the second mentioned (Paris)."
- },
- {
-  "q": "Which expression is more informal when summarizing information?",
-  "o": ["In a nutshell", "Furthermore", "In addition", "Namely"],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "أي تعبير هو أقل رسمية عند تلخيص المعلومات؟",
-  "trO": ["باختصار", "علاوة على ذلك", "بالإضافة إلى ذلك", "أي"],
-  "expAr": "تعبير أقل رسمية يُستخدم لتلخيص الفكرة بإيجاز.",
-  "expEn": "In a nutshell is informal."
- },
- {
-  "q": "Choose the sentence that correctly expresses contrast.",
-  "o": ["Although he was tired, he continued working.", "Although he was tired, but he continued working.", "Despite he was tired, he continued working.", "However he was tired, he continued working."],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "اختر الجملة التي تعبر عن التباين بشكل صحيح.",
-  "trO": ["على الرغم من أنه كان متعباً، إلا أنه استمر في العمل.", "على الرغم من أنه كان متعباً، لكنه استمر في العمل.", "على الرغم من أنه كان متعباً، إلا أنه استمر في العمل.", "ومع ذلك كان متعباً، استمر في العمل."],
-  "expAr": "تتبعها جملة تحتوي على فاعل وفعل، ويظهر التباين دون استخدام 'but' معها في الجملة نفسها.",
-  "expEn": "Although + clause. No 'but'."
- },
- {
-  "q": "Which expression is followed by a noun or a gerund?",
-  "o": ["Although", "Even though", "Despite", "Whereas"],
-  "a": 2,
-  "topic": "Linking Words",
-  "trQ": "أي تعبير يتبعه اسم أو مصدر؟",
-  "trO": ["على الرغم من أن", "على الرغم من أن", "على الرغم من", "بينما"],
-  "expAr": "يأتي بعدها اسم أو عبارة اسمية أو مصدر مؤول من الفعل، ولا تتبعها جملة كاملة مباشرة.",
-  "expEn": "Despite + noun/gerund."
- },
- {
-  "q": "Choose the correct sentence.",
-  "o": ["Despite the rain, we went out.", "Despite it was raining, we went out.", "Despite we were tired, we continued.", "Despite he arrived late, he continued."],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "اختر الجملة الصحيحة.",
-  "trO": ["على الرغم من المطر، خرجنا.", "على الرغم من أنها كانت تمطر، خرجنا.", "على الرغم من أننا كنا متعبين، استمرينا.", "على الرغم من أنه وصل متأخراً، استمر."],
-  "expAr": "يأتي بعدها اسم أو عبارة اسمية، ولا تتبعها جملة كاملة مباشرة.",
-  "expEn": "Despite + noun."
- },
- {
-  "q": "Which expression is followed by a subject and a verb?",
-  "o": ["In spite of", "Despite", "Although", "Unlike"],
-  "a": 2,
-  "topic": "Linking Words",
-  "trQ": "أي تعبير يتبعه فاعل وفعل؟",
-  "trO": ["على الرغم من", "على الرغم من", "على الرغم من أن", "على عكس"],
-  "expAr": "تتبعها جملة تحتوي على فاعل وفعل، ويظهر التباين دون استخدام 'but' معها في الجملة نفسها.",
-  "expEn": "Although + subject + verb."
- },
- {
-  "q": "Choose the correct sentence.",
-  "o": ["In spite of he was ill, he attended class.", "In spite of being ill, he attended class.", "In spite he was ill, he attended class.", "In spite of ill, he attended class."],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "اختر الجملة الصحيحة.",
-  "trO": ["على الرغم من أنه كان مريضاً، حضر الفصل.", "على الرغم من كونه مريضاً، حضر الفصل.", "على الرغم من أنه كان مريضاً، حضر الفصل.", "على الرغم من المرض، حضر الفصل."],
-  "expAr": "يأتي بعدها اسم أو مصدر مؤول من الفعل، ويمكن أن تتبعها صفة مع الاسم.",
-  "expEn": "In spite of + gerund/noun."
- },
- {
-  "q": "Which sentence correctly uses despite the fact that?",
-  "o": ["Despite the fact that he was tired, he finished the task.", "Despite the fact that his tiredness, he finished the task.", "Despite the fact that being tired, he finished the task.", "Despite the fact that tired, he finished the task."],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "أي جملة تستخدم despite the fact that بشكل صحيح؟",
-  "trO": ["على الرغم من حقيقة أنه كان متعباً، إلا أنه أنهى المهمة.", "على الرغم من حقيقة تعبه، أنهى المهمة.", "على الرغم من حقيقة كونه متعباً، أنهى المهمة.", "على الرغم من حقيقة متعب، أنهى المهمة."],
-  "expAr": "يتبعها جملة كاملة تحتوي على فاعل وفعل لأنها تعبير وصفي متكامل.",
-  "expEn": "Despite the fact that + clause."
- },
- {
-  "q": "Tom enjoys reading, ____ his sister prefers watching films.",
-  "o": ["despite", "whereas", "such as", "in conclusion"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "توم يستمتع بالقراءة، ____ أخته تفضل مشاهدة الأفلام.",
-  "trO": ["على الرغم من", "بينما", "مثل", "في الختام"],
-  "expAr": "تربط بين فكرتين متقابلتين لإظهار الاختلاف بينهما.",
-  "expEn": "Whereas contrasts clauses."
- },
- {
-  "q": "Which sentence correctly uses unlike?",
-  "o": ["Unlike my brother, I enjoy swimming.", "Unlike I enjoy swimming, my brother does not.", "Unlike my brother enjoys swimming.", "Unlike of my brother, I enjoy swimming."],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "أي جملة تستخدم unlike بشكل صحيح؟",
-  "trO": ["على عكس أخي، أنا أستمتع بالسباحة.", "على عكسي أنا أستمتع بالسباحة، أخي لا يفعل.", "على عكس أخي يستمتع بالسباحة.", "على عكس من أخي، أنا أستمتع بالسباحة."],
-  "expAr": "تأتي قبل اسم أو عبارة اسمية للمقارنة وإظهار الاختلاف.",
-  "expEn": "Unlike + noun."
- },
- {
-  "q": "Which word is more formal than but in this example: “I studied hard. ____ I did not pass the exam.”",
-  "o": ["Too", "However", "Such as", "Namely"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "أي كلمة هي أكثر رسمية من but في هذا المثال: 'درست بجد. ____ لم أنجح في الامتحان.'",
-  "trO": ["أيضاً", "ومع ذلك", "مثل", "أي"],
-  "expAr": "تُستخدم لإظهار التباين بين جملتين، وغالبًا تفصلها علامة ترقيم.",
-  "expEn": "However is formal but."
- },
- {
-  "q": "Which sentence correctly introduces a summary?",
-  "o": ["In summary, the project improved students' writing skills.", "In summary the project, improved students' writing skills.", "In summary to improve, students' writing skills.", "In summary, although the project improved students' writing skills."],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "أي جملة تقدم ملخصاً بشكل صحيح؟",
-  "trO": ["باختصار، المشروع حسن مهارات الكتابة لدى الطلاب.", "باختصار المشروع، حسن مهارات الكتابة لدى الطلاب.", "باختصار لتحسين، مهارات الكتابة لدى الطلاب.", "باختصار، على الرغم من أن المشروع حسن مهارات الكتابة لدى الطلاب."],
-  "expAr": "الاختيار الصحيح يقدم خلاصة أو خاتمة للأفكار السابقة.",
-  "expEn": "Correct punctuation and structure."
- },
- {
-  "q": "Which connector is most appropriate for adding a further point in formal academic writing?",
-  "o": ["Besides, at the end of every sentence", "Moreover,", "Unlike,", "Despite,"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "أي رابط هو الأنسب لإضافة نقطة أخرى في الكتابة الأكاديمية الرسمية؟",
-  "trO": ["بالإضافة إلى، في نهاية كل جملة", "علاوة على ذلك،", "على عكس،", "على الرغم من،"],
-  "expAr": "تُستخدم في الكتابة الرسمية لإضافة نقطة جديدة.",
-  "expEn": "Moreover is formal."
- },
- {
-  "q": "Choose the correct sequence: break - ____ - ____.",
-  "o": ["Breaked - broke", "Broke - broken", "Broke - broke", "Broken - broke"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "اختر التسلسل الصحيح: break - ____ - ____.",
-  "trO": ["Breaked - broke", "Broke - broken", "Broke - broke", "Broken - broke"],
-  "expAr": "هذا الفعل من الأفعال غير المنتظمة؛ لذلك يجب حفظ تسلسل التصريفات كما هو.",
-  "expEn": "Break - broke - broken."
- },
- {
-  "q": "Choose the correct sequence: drive - ____ - ____.",
-  "o": ["Drove - driven", "Driven - drove", "Drived - driven", "Drove - drove"],
-  "a": 0,
-  "topic": "Irregular Verbs",
-  "trQ": "اختر التسلسل الصحيح: drive - ____ - ____.",
-  "trO": ["Drove - driven", "Driven - drove", "Drived - driven", "Drove - drove"],
-  "expAr": "هذا الفعل من الأفعال غير المنتظمة؛ لذلك يجب حفظ تسلسل التصريفات كما هو.",
-  "expEn": "Drive - drove - driven."
- },
- {
-  "q": "What is the past participle of choose?",
-  "o": ["Chose", "Choosed", "Chosen", "Choosing"],
-  "a": 2,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو التصريف الثالث لفعل choose؟",
-  "trO": ["Chose", "Choosed", "Chosen", "Choosing"],
-  "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
-  "expEn": "Chosen is the correct past participle."
- },
- {
-  "q": "What is the past simple form of freeze?",
-  "o": ["Frozen", "Froze", "Freezed", "Freezing"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو الماضي البسيط لفعل freeze؟",
-  "trO": ["Frozen", "Froze", "Freezed", "Freezing"],
-  "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
-  "expEn": "Froze is the correct past simple."
- },
- {
-  "q": "Which sequence is correct?",
-  "o": ["Know - known - knew", "Know - knew - known", "Know - knowed - known", "Know - knew - knew"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "أي تسلسل صحيح؟",
-  "trO": ["Know - known - knew", "Know - knew - known", "Know - knowed - known", "Know - knew - knew"],
-  "expAr": "هذا الفعل من الأفعال غير المنتظمة؛ لذلك يجب حفظ تسلسل التصريفات كما هو.",
-  "expEn": "Know - knew - known."
- },
- {
-  "q": "What is the past participle of throw?",
-  "o": ["Threw", "Throwed", "Thrown", "Throwing"],
-  "a": 2,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو التصريف الثالث لفعل throw؟",
-  "trO": ["Threw", "Throwed", "Thrown", "Throwing"],
-  "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
-  "expEn": "Thrown is the correct past participle."
- },
- {
-  "q": "Which verb follows the pattern sing - sang - sung?",
-  "o": ["Begin - began - begun", "Bring - brought - brought", "Sleep - slept - slept", "Sell - sold - sold"],
-  "a": 0,
-  "topic": "Irregular Verbs",
-  "trQ": "أي فعل يتبع نمط sing - sang - sung؟",
-  "trO": ["Begin - began - begun", "Bring - brought - brought", "Sleep - slept - slept", "Sell - sold - sold"],
-  "expAr": "الفعل begin يتبع نفس النمط الصوتي والتصريفي للفعل sing.",
-  "expEn": "Begin - began - begun follows the i-a-u pattern."
- },
- {
-  "q": "What is the past simple form of catch?",
-  "o": ["Catched", "Caught", "Caught", "Catch"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو الماضي البسيط لفعل catch؟",
-  "trO": ["Catched", "Caught", "Caught", "Catch"],
-  "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
-  "expEn": "Caught is the correct past simple."
- },
- {
-  "q": "What is the past participle of fall?",
-  "o": ["Fell", "Fallen", "Failed", "Falling"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو التصريف الثالث لفعل fall؟",
-  "trO": ["Fell", "Fallen", "Failed", "Falling"],
-  "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
-  "expEn": "Fallen is the correct past participle."
- },
- {
-  "q": "Which group contains verbs with identical past simple and past participle forms?",
-  "o": ["Go, do, see", "Write, take, break", "Buy, teach, bring", "Keep, feel, sell"],
-  "a": 3,
-  "topic": "Irregular Verbs",
-  "trQ": "أي مجموعة تحتوي على أفعال لها نفس الماضي البسيط والتصريف الثالث؟",
-  "trO": ["Go, do, see", "Write, take, break", "Buy, teach, bring", "Keep, feel, sell"],
-  "expAr": "هذه الأفعال لها نفس صيغة الماضي والتصريف الثالث (kept, felt, sold).",
-  "expEn": "Keep (kept-kept), feel (felt-felt), sell (sold-sold)."
- },
- {
-  "q": "The university introduced new online courses. ____, it provided students with digital learning resources.",
-  "o": ["Nevertheless", "In addition", "Despite", "Unlike"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "الجامعة قدمت دورات إلكترونية جديدة. ____، وفرت للطلاب موارد تعليمية رقمية.",
-  "trO": ["مع ذلك", "بالإضافة إلى ذلك", "على الرغم من", "على عكس"],
-  "expAr": "تُستخدم لإضافة معلومة أو فكرة جديدة إلى ما سبق.",
-  "expEn": "In addition adds information."
- },
- {
-  "q": "The experiment was successful. ____, the researchers identified some limitations.",
-  "o": ["However", "For instance", "Namely", "In addition"],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "كانت التجربة ناجحة. ____، حدد الباحثون بعض القيود.",
-  "trO": ["ومع ذلك", "على سبيل المثال", "أي", "بالإضافة إلى ذلك"],
-  "expAr": "تُستخدم لإظهار التباين بين جملتين، وغالبًا تفصلها علامة ترقيم.",
-  "expEn": "However contrasts."
- },
- {
-  "q": "Which sentence correctly uses i.e.?",
-  "o": ["I enjoy outdoor activities (i.e. hiking and cycling, for example).", "The meeting was postponed (i.e. it was moved to a later date).", "I bought some fruit (i.e. apples and oranges as examples).", "She likes sports (i.e. tennis, football and swimming)."],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "أي جملة تستخدم i.e. بشكل صحيح؟",
-  "trO": ["أستمتع بالأنشطة الخارجية (أي المشي وركوب الدراجات، على سبيل المثال).", "تم تأجيل الاجتماع (أي تم نقله إلى تاريخ لاحق).", "اشتريت بعض الفاكهة (أي التفاح والبرتقال كأمثلة).", "إنها تحب الرياضة (أي التنس وكرة القدم والسباحة)."],
-  "expAr": "i.e. تستخدم للتوضيح وإعادة الصياغة، وليس لتقديم أمثلة.",
-  "expEn": "i.e. restates/clarifies."
- },
- {
-  "q": "Which sentence correctly uses e.g.?",
-  "o": ["The deadline was extended (e.g. it was moved to Friday).", "We need to improve one skill (e.g. that is, reading comprehension).", "Several activities develop speaking skills (e.g. role-playing and interviews).", "The results were disappointing (e.g. in other words they were poor)."],
-  "a": 2,
-  "topic": "Linking Words",
-  "trQ": "أي جملة تستخدم e.g. بشكل صحيح؟",
-  "trO": ["تم تمديد الموعد النهائي (على سبيل المثال تم نقله إلى الجمعة).", "نحتاج إلى تحسين مهارة واحدة (على سبيل المثال، أي فهم القراءة).", "العديد من الأنشطة تنمي مهارات التحدث (على سبيل المثال لعب الأدوار والمقابلات).", "كانت النتائج مخيبة للآمال (على سبيل المثال بعبارة أخرى كانت سيئة)."],
-  "expAr": "e.g. تُستخدم لتقديم أمثلة توضيحية.",
-  "expEn": "e.g. introduces examples."
- },
- {
-  "q": "Which sentence best illustrates the difference between namely and such as?",
-  "o": ["Namely introduces all the items referred to, while such as introduces examples.", "Namely and such as are always interchangeable.", "Namely is used only to summarize paragraphs.", "Such as must introduce every item in a sentence."],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "أي جملة توضح بشكل أفضل الفرق بين namely و such as؟",
-  "trO": ["namely تقدم كل العناصر المشار إليها، بينما such as تقدم أمثلة.", "namely و such as قابلان للتبادل دائماً.", "namely تستخدم فقط لتلخيص الفقرات.", "such as يجب أن تقدم كل عنصر في الجملة."],
-  "expAr": "Namely تستخدم لتحديد العناصر المقصودة تحديداً وغالباً تقدم قائمة كاملة، بينما such as تقدم أمثلة فقط.",
-  "expEn": "Namely introduces a complete list, such as introduces examples."
- },
- {
-  "q": "The school offers three foreign languages, ____ French, German, and Spanish.",
-  "o": ["such as", "namely", "although", "whereas"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "المدرسة تقدم ثلاث لغات أجنبية، ____ الفرنسية والألمانية والإسبانية.",
-  "trO": ["مثل", "أي", "على الرغم من أن", "بينما"],
-  "expAr": "تُستخدم لتحديد العناصر المقصودة تحديدًا، وغالبًا تقدم قائمة كاملة.",
-  "expEn": "Namely provides the complete list."
- },
- {
-  "q": "Which sentence uses as well as correctly?",
-  "o": ["She is talented as well.", "She is talented as well as hardworking.", "As well she talented hardworking.", "She as well as talented hardworking."],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "أي جملة تستخدم as well as بشكل صحيح؟",
-  "trO": ["إنها موهوبة أيضاً.", "إنها موهوبة بالإضافة إلى كونها مجتهدة.", "كذلك هي موهوبة مجتهدة.", "هي بالإضافة إلى موهوبة مجتهدة."],
-  "expAr": "as well as تربط بين صفتين أو شيئين في نفس الجملة.",
-  "expEn": "As well as + noun/adj."
- },
- {
-  "q": "Which sentence is most appropriate in formal academic writing?",
-  "o": ["The intervention improved motivation. Plus, students enjoyed it.", "The intervention improved motivation. What's more, students enjoyed it.", "The intervention improved motivation. Furthermore, students demonstrated increased engagement.", "The intervention improved motivation. And stuff like that."],
-  "a": 2,
-  "topic": "Linking Words",
-  "trQ": "أي جملة هي الأنسب في الكتابة الأكاديمية الرسمية؟",
-  "trO": ["التدخل حسن الدافعية. بالإضافة، استمتع الطلاب بذلك.", "التدخل حسن الدافعية. والأكثر من ذلك، استمتع الطلاب بذلك.", "التدخل حسن الدافعية. علاوة على ذلك، أظهر الطلاب تفاعلاً أكبر.", "التدخل حسن الدافعية. وأشياء من هذا القبيل."],
-  "expAr": "Furthermore هي أداة ربط رسمية مناسبة للكتابة الأكاديمية.",
-  "expEn": "Furthermore is formal."
- },
- {
-  "q": "A report discusses two teaching methods: the lecture method first and the discussion method second. The discussion method is more interactive. Which sentence is correct?",
-  "o": ["The former is more interactive.", "The latter is more interactive.", "Both the former and the latter refer only to the lecture method.", "The latter refers to the first method."],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "تقرير يناقش طريقتين للتدريس: طريقة المحاضرة أولاً وطريقة المناقشة ثانياً. طريقة المناقشة أكثر تفاعلية. أي جملة صحيحة؟",
-  "trO": ["الأول أكثر تفاعلية.", "الأخير أكثر تفاعلية.", "كلاهما يشير فقط إلى طريقة المحاضرة.", "الأخير يشير إلى الطريقة الأولى."],
-  "expAr": "The latter تشير إلى العنصر الثاني الذي ذكر من عنصرين.",
-  "expEn": "The latter refers to the discussion method (second)."
- },
- {
-  "q": "Which sentence contains an error in the use of a contrasting linker?",
-  "o": ["Although she was nervous, she gave a good presentation.", "Despite feeling nervous, she gave a good presentation.", "She was nervous. However, she gave a good presentation.", "Despite she felt nervous, she gave a good presentation."],
-  "a": 3,
-  "topic": "Linking Words",
-  "trQ": "أي جملة تحتوي على خطأ في استخدام رابط التباين؟",
-  "trO": ["على الرغم من أنها كانت متوترة، إلا أنها قدمت عرضاً جيداً.", "على الرغم من شعورها بالتوتر، قدمت عرضاً جيداً.", "كانت متوترة. ومع ذلك، قدمت عرضاً جيداً.", "على الرغم من أنها شعرت بالتوتر، قدمت عرضاً جيداً."],
-  "expAr": "Despite لا يتبعها جملة كاملة (فاعل وفعل)، بل يتبعها اسم أو مصدر مؤول.",
-  "expEn": "Despite + clause is incorrect."
- },
- {
-  "q": "____ the students had limited time, they completed the project successfully.",
-  "o": ["Despite", "Although", "In spite of", "Unlike"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "____ كان لدى الطلاب وقت محدود، أكملوا المشروع بنجاح.",
-  "trO": ["على الرغم من", "على الرغم من أن", "على الرغم من", "على عكس"],
-  "expAr": "تتبعها جملة تحتوي على فاعل وفعل، وتظهر التباين.",
-  "expEn": "Although + clause."
- },
- {
-  "q": "____ having limited resources, the research team completed the study.",
-  "o": ["Although", "Even though", "Despite", "Whereas"],
-  "a": 2,
-  "topic": "Linking Words",
-  "trQ": "____ وجود موارد محدودة، أكمل فريق البحث الدراسة.",
-  "trO": ["على الرغم من أن", "على الرغم من أن", "على الرغم من", "بينما"],
-  "expAr": "يأتي بعدها اسم أو عبارة اسمية أو مصدر مؤول من الفعل، ولا تتبعها جملة كاملة مباشرة.",
-  "expEn": "Despite + gerund."
- },
- {
-  "q": "The first group used traditional instruction, ____ the second group used project-based learning.",
-  "o": ["whereas", "despite", "in conclusion", "for example"],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "المجموعة الأولى استخدمت التعليم التقليدي، ____ المجموعة الثانية استخدمت التعلم القائم على المشاريع.",
-  "trO": ["بينما", "على الرغم من", "في الختام", "على سبيل المثال"],
-  "expAr": "تربط بين فكرتين متقابلتين لإظهار الاختلاف بينهما.",
-  "expEn": "Whereas contrasts two clauses."
- },
- {
-  "q": "Which sentence correctly uses while to contrast two ideas?",
-  "o": ["While the first task was easy, the second was more challenging.", "While the first task easy, the second was more challenging.", "While the first task was easy, but the second was more challenging.", "While of the first task was easy, the second was more challenging."],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "أي جملة تستخدم while بشكل صحيح للتباين بين فكرتين؟",
-  "trO": ["بينما كانت المهمة الأولى سهلة، كانت الثانية أكثر تحدياً.", "بينما المهمة الأولى سهلة، كانت الثانية أكثر تحدياً.", "بينما كانت المهمة الأولى سهلة، لكن الثانية كانت أكثر تحدياً.", "بينما من المهمة الأولى كانت سهلة، كانت الثانية أكثر تحدياً."],
-  "expAr": "يمكن أن تربط جملتين متقابلتين، ويجب أن تكون كل جملة مكتملة نحوياً.",
-  "expEn": "While + clause, clause."
- },
- {
-  "q": "Which expression best completes the conclusion of an academic paragraph? “The findings indicate that...”",
-  "o": ["In conclusion", "Unlike", "Despite", "For instance"],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "أي تعبير يكمل خاتمة فقرة أكاديمية بشكل أفضل؟ 'النتائج تشير إلى أن...'",
-  "trO": ["في الختام", "على عكس", "على الرغم من", "على سبيل المثال"],
-  "expAr": "تُستخدم لتقديم الخاتمة أو تلخيص الأفكار الأساسية.",
-  "expEn": "In conclusion introduces a summary/conclusion."
- },
- {
-  "q": "The students have ____ their assignments.",
-  "o": ["wrote", "written", "writing", "write"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "الطلاب ____ واجباتهم.",
-  "trO": ["wrote", "written", "writing", "write"],
-  "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعل المساعد have.",
-  "expEn": "Have + past participle (written)."
- },
- {
-  "q": "She ____ the answer correctly yesterday.",
-  "o": ["known", "knew", "know", "knows"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "هي ____ الإجابة بشكل صحيح أمس.",
-  "trO": ["known", "knew", "know", "knows"],
-  "expAr": "الماضي البسيط للفعل know هو knew، ويستخدم مع ظرف الزمان الماضي yesterday.",
-  "expEn": "Knew is the past simple."
- },
- {
-  "q": "The glass has ____ into several pieces.",
-  "o": ["broke", "break", "broken", "breaking"],
-  "a": 2,
-  "topic": "Irregular Verbs",
-  "trQ": "الزجاج ____ إلى عدة قطع.",
-  "trO": ["broke", "break", "broken", "breaking"],
-  "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعل المساعد has.",
-  "expEn": "Has + past participle (broken)."
- },
- {
-  "q": "They ____ to the museum last weekend.",
-  "o": ["gone", "go", "went", "going"],
-  "a": 2,
-  "topic": "Irregular Verbs",
-  "trQ": "هم ____ إلى المتحف في عطلة نهاية الأسبوع الماضية.",
-  "trO": ["gone", "go", "went", "going"],
-  "expAr": "الماضي البسيط للفعل go هو went، ويستخدم مع ظرف الزمان الماضي last weekend.",
-  "expEn": "Went is the past simple."
- },
- {
-  "q": "He has ____ three books this month.",
-  "o": ["read", "reading", "reads", "red"],
-  "a": 0,
-  "topic": "Irregular Verbs",
-  "trQ": "هو ____ ثلاثة كتب هذا الشهر.",
-  "trO": ["read", "reading", "reads", "red"],
-  "expAr": "التصريف الثالث للفعل read هو read (تُنطق red)، ويستخدم بعد الفعل المساعد has.",
-  "expEn": "Has + past participle (read)."
- },
- {
-  "q": "The teacher ____ the students new vocabulary yesterday.",
-  "o": ["taught", "teach", "teaching", "taught"],
-  "a": 0,
-  "topic": "Irregular Verbs",
-  "trQ": "المعلم ____ الطلاب مفردات جديدة أمس.",
-  "trO": ["taught", "teach", "teaching", "taught"],
-  "expAr": "الماضي البسيط للفعل teach هو taught، ويستخدم مع ظرف الزمان الماضي yesterday.",
-  "expEn": "Taught is the past simple."
- },
- {
-  "q": "I have never ____ such a beautiful place.",
-  "o": ["saw", "see", "seen", "seeing"],
-  "a": 2,
-  "topic": "Irregular Verbs",
-  "trQ": "لم ____ مكاناً جميلاً كهذا من قبل.",
-  "trO": ["saw", "see", "seen", "seeing"],
-  "expAr": "التصريف الثالث للفعل see هو seen، ويستخدم بعد الفعل المساعد have.",
-  "expEn": "Have + past participle (seen)."
- },
- {
-  "q": "The athlete ____ in the competition last year.",
-  "o": ["swim", "swam", "swum", "swimming"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "الرياضي ____ في المسابقة العام الماضي.",
-  "trO": ["swim", "swam", "swum", "swimming"],
-  "expAr": "الماضي البسيط للفعل swim هو swam، ويستخدم مع ظرف الزمان الماضي last year.",
-  "expEn": "Swam is the past simple."
- },
- {
-  "q": "The company has ____ a new policy.",
-  "o": ["make", "made", "making", "maked"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "الشركة ____ سياسة جديدة.",
-  "trO": ["make", "made", "making", "maked"],
-  "expAr": "التصريف الثالث للفعل make هو made، ويستخدم بعد الفعل المساعد has.",
-  "expEn": "Has + past participle (made)."
- },
- {
-  "q": "The child ____ asleep during the film.",
-  "o": ["fallen", "fall", "fell", "falling"],
-  "a": 2,
-  "topic": "Irregular Verbs",
-  "trQ": "الطفل ____ أثناء الفيلم.",
-  "trO": ["fallen", "fall", "fell", "falling"],
-  "expAr": "الماضي البسيط للفعل fall هو fell.",
-  "expEn": "Fell is the past simple."
- },
- {
-  "q": "Which sentence is grammatically correct?",
-  "o": ["She has went home.", "She has gone home.", "She has go home.", "She has going home."],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "أي جملة صحيحة نحوياً؟",
-  "trO": ["ذهبت إلى المنزل.", "ذهبت إلى المنزل.", "ذهبت إلى المنزل.", "ذهبت إلى المنزل."],
-  "expAr": "التصريف الثالث للفعل go هو gone، ويستخدم بعد الفعل المساعد has.",
-  "expEn": "Has + past participle (gone)."
- },
- {
-  "q": "Which sentence uses the past simple and past participle correctly?",
-  "o": ["He has took the book and returned it yesterday.", "He took the book and has returned it.", "He has taken the book and returned it.", "He has taken the book and returned it yesterday."],
-  "a": 2,
-  "topic": "Irregular Verbs",
-  "trQ": "أي جملة تستخدم الماضي البسيط والتصريف الثالث بشكل صحيح؟",
-  "trO": ["أخذ الكتاب وأعاده أمس.", "أخذ الكتاب وأعاده.", "أخذ الكتاب وأعاده.", "أخذ الكتاب وأعاده أمس."],
-  "expAr": "التصريف الثالث للفعل take هو taken، ويستخدم بعد has، بينما returned هي الماضي البسيط أو التصريف الثالث لفعل منتظم.",
-  "expEn": "Has taken (past participle), returned (past simple)."
- },
- {
-  "q": "Which set contains three different vowel sounds in the forms of each verb?",
-  "o": ["Cut - cut - cut", "Keep - kept - kept", "Begin - began - begun", "Buy - bought - bought"],
-  "a": 2,
-  "topic": "Irregular Verbs",
-  "trQ": "أي مجموعة تحتوي على ثلاثة أصوات متحركة مختلفة في أشكال كل فعل؟",
-  "trO": ["Cut - cut - cut", "Keep - kept - kept", "Begin - began - begun", "Buy - bought - bought"],
-  "expAr": "الأفعال الثلاثة (begin, began, begun) تحتوي على ثلاثة أصوات متحركة مختلفة.",
-  "expEn": "Begin (i), began (a), begun (u)."
- },
- {
-  "q": "Which group follows the pattern present - past - past participle, with the past participle ending in -n or -en?",
-  "o": ["Bring - brought - brought", "Sell - sold - sold", "Speak - spoke - spoken", "Feel - felt - felt"],
-  "a": 2,
-  "topic": "Irregular Verbs",
-  "trQ": "أي مجموعة تتبع النمط: مضارع - ماضي - تصريف ثالث، مع انتهاء التصريف الثالث بـ n أو en؟",
-  "trO": ["Bring - brought - brought", "Sell - sold - sold", "Speak - spoke - spoken", "Feel - felt - felt"],
-  "expAr": "التصريف الثالث للفعل speak هو spoken، وينتهي بـ -en.",
-  "expEn": "Spoken ends in -en."
- },
- {
-  "q": "Which sentence contains an irregular verb used incorrectly?",
-  "o": ["They have written a detailed report.", "She went to the library yesterday.", "He has ate his lunch.", "We bought new books last week."],
-  "a": 2,
-  "topic": "Irregular Verbs",
-  "trQ": "أي جملة تحتوي على فعل غير منتظم مستخدم بشكل خاطئ؟",
-  "trO": ["لقد كتبوا تقريراً مفصلاً.", "ذهبت إلى المكتبة أمس.", "لقد أكل غداءه.", "اشترينا كتباً جديدة الأسبوع الماضي."],
-  "expAr": "الصحيح هو 'He has eaten his lunch' لأن eaten هي التصريف الثالث، وليس ate.",
-  "expEn": "Has ate should be has eaten."
- },
- {
-  "q": "We stayed at home ____ it was raining heavily.",
-  "o": ["because of", "because", "owing to", "due to"],
-  "a": 1,
-  "topic": "Reasons",
-  "trQ": "بقينا في المنزل ____ كانت تمطر بغزارة.",
-  "trO": ["بسبب", "لأن", "بسبب", "بسبب"],
-  "expAr": "تُستخدم هذه الأداة قبل جملة تحتوي على فاعل وفعل لتوضيح سبب حدوث الفعل.",
-  "expEn": "Because + clause."
- },
- {
-  "q": "The match was cancelled ____ the heavy rain.",
-  "o": ["because", "since", "because of", "for"],
-  "a": 2,
-  "topic": "Reasons",
-  "trQ": "تم إلغاء المباراة ____ المطر الغزير.",
-  "trO": ["لأن", "بما أن", "بسبب", "لأن"],
-  "expAr": "تأتي هذه العبارة قبل اسم أو عبارة اسمية، وليس قبل جملة كاملة.",
-  "expEn": "Because of + noun."
- },
- {
-  "q": "____ the road was closed, we had to take a detour.",
-  "o": ["Due to", "Owing to", "Since", "Because of"],
-  "a": 2,
-  "topic": "Reasons",
-  "trQ": "____ كان الطريق مغلقاً، اضطررنا إلى أخذ منعطف.",
-  "trO": ["بسبب", "بسبب", "بما أن", "بسبب"],
-  "expAr": "تُستخدم هذه الأداة قبل جملة تحتوي على فاعل وفعل لتوضيح سبب حدوث الفعل.",
-  "expEn": "Since + clause."
- },
- {
-  "q": "The flight was delayed ____ bad weather.",
-  "o": ["because", "due to", "since", "for"],
-  "a": 1,
-  "topic": "Reasons",
-  "trQ": "تأخرت الرحلة ____ سوء الأحوال الجوية.",
-  "trO": ["لأن", "بسبب", "بما أن", "لأن"],
-  "expAr": "تأتي هذه العبارة قبل اسم أو عبارة اسمية، وليس قبل جملة كاملة.",
-  "expEn": "Due to + noun."
- },
- {
-  "q": "The students were absent ____ they were ill.",
-  "o": ["because of", "due to", "owing to", "because"],
-  "a": 3,
-  "topic": "Reasons",
-  "trQ": "كان الطلاب غائبين ____ كانوا مرضى.",
-  "trO": ["بسبب", "بسبب", "بسبب", "لأن"],
-  "expAr": "تُستخدم هذه الأداة قبل جملة تحتوي على فاعل وفعل لتوضيح سبب حدوث الفعل.",
-  "expEn": "Because + clause."
- },
- {
-  "q": "____ the traffic jam, I arrived late for work.",
-  "o": ["Because", "Since", "Owing to", "For"],
-  "a": 2,
-  "topic": "Reasons",
-  "trQ": "____ الازدحام المروري، وصلت متأخراً للعمل.",
-  "trO": ["لأن", "بما أن", "بسبب", "لأن"],
-  "expAr": "تأتي هذه العبارة قبل اسم أو عبارة اسمية، وليس قبل جملة كاملة.",
-  "expEn": "Owing to + noun."
- },
- {
-  "q": "The picnic was cancelled ____ the fact that the weather was bad.",
-  "o": ["because", "because of", "due to", "due to the fact that"],
-  "a": 3,
-  "topic": "Reasons",
-  "trQ": "تم إلغاء النزهة ____ حقيقة أن الطقس كان سيئاً.",
-  "trO": ["لأن", "بسبب", "بسبب", "بسبب حقيقة أن"],
-  "expAr": "العبارة 'due to the fact that' تتبعها جملة كاملة (فاعل وفعل)، وهي الصحيحة هنا.",
-  "expEn": "Due to the fact that + clause."
- },
- {
-  "q": "She couldn't attend the meeting ____ having a cold.",
-  "o": ["because", "because of", "since", "for"],
-  "a": 1,
-  "topic": "Reasons",
-  "trQ": "لم تستطع حضور الاجتماع ____ إصابتها بنزلة برد.",
-  "trO": ["لأن", "بسبب", "بما أن", "لأن"],
-  "expAr": "تأتي هذه العبارة قبل اسم أو عبارة اسمية أو المصدر المؤول من الفعل (having)، وليس قبل جملة كاملة.",
-  "expEn": "Because of + noun/gerund."
- },
- {
-  "q": "We decided to leave early ____ we wanted to avoid traffic.",
-  "o": ["because", "because of", "due to", "owing to"],
-  "a": 0,
-  "topic": "Reasons",
-  "trQ": "قررنا المغادرة مبكراً ____ أردنا تجنب الازدحام المروري.",
-  "trO": ["لأن", "بسبب", "بسبب", "بسبب"],
-  "expAr": "تُستخدم هذه الأداة قبل جملة تحتوي على فاعل وفعل لتوضيح سبب حدوث الفعل.",
-  "expEn": "Because + clause."
- },
- {
-  "q": "____ his hard work, he achieved excellent results.",
-  "o": ["Because", "Since", "Because of", "For"],
-  "a": 2,
-  "topic": "Reasons",
-  "trQ": "____ عمله الجاد، حقق نتائج ممتازة.",
-  "trO": ["لأن", "بما أن", "بسبب", "لأن"],
-  "expAr": "تأتي هذه العبارة قبل اسم أو عبارة اسمية، وليس قبل جملة كاملة.",
-  "expEn": "Because of + noun."
- },
- {
-  "q": "The school was closed ____ the extreme heat.",
-  "o": ["because", "since", "due to", "for"],
-  "a": 2,
-  "topic": "Reasons",
-  "trQ": "أغلقت المدرسة ____ الحرارة الشديدة.",
-  "trO": ["لأن", "بما أن", "بسبب", "لأن"],
-  "expAr": "تأتي هذه العبارة قبل اسم أو عبارة اسمية، وليس قبل جملة كاملة.",
-  "expEn": "Due to + noun."
- },
- {
-  "q": "____ she was feeling tired, she went to bed early.",
-  "o": ["Owing to", "Because of", "Since", "Due to"],
-  "a": 2,
-  "topic": "Reasons",
-  "trQ": "____ كانت تشعر بالتعب، ذهبت إلى الفراش مبكراً.",
-  "trO": ["بسبب", "بسبب", "بما أن", "بسبب"],
-  "expAr": "تُستخدم هذه الأداة قبل جملة تحتوي على فاعل وفعل لتوضيح سبب حدوث الفعل.",
-  "expEn": "Since + clause."
- },
- {
-  "q": "The event was postponed ____ a problem with the venue.",
-  "o": ["because", "owing to", "since", "for"],
-  "a": 1,
-  "topic": "Reasons",
-  "trQ": "تم تأجيل الحدث ____ مشكلة في المكان.",
-  "trO": ["لأن", "بسبب", "بما أن", "لأن"],
-  "expAr": "تأتي هذه العبارة قبل اسم أو عبارة اسمية، وليس قبل جملة كاملة.",
-  "expEn": "Owing to + noun."
- },
- {
-  "q": "He couldn't finish the project on time ____ he was ill.",
-  "o": ["because", "because of", "due to", "owing to"],
-  "a": 0,
-  "topic": "Reasons",
-  "trQ": "لم يستطع إنهاء المشروع في الوقت المحدد ____ كان مريضاً.",
-  "trO": ["لأن", "بسبب", "بسبب", "بسبب"],
-  "expAr": "تُستخدم هذه الأداة قبل جملة تحتوي على فاعل وفعل لتوضيح سبب حدوث الفعل.",
-  "expEn": "Because + clause."
- },
- {
-  "q": "The train was late ____ a technical problem.",
-  "o": ["because", "since", "owing to", "for"],
-  "a": 2,
-  "topic": "Reasons",
-  "trQ": "تأخر القطار ____ مشكلة فنية.",
-  "trO": ["لأن", "بما أن", "بسبب", "لأن"],
-  "expAr": "تأتي هذه العبارة قبل اسم أو عبارة اسمية، وليس قبل جملة كاملة.",
-  "expEn": "Owing to + noun."
- },
- {
-  "q": "____ the fact that she had prepared carefully, she passed the exam easily.",
-  "o": ["Because", "Due to", "Due to the fact that", "Because of"],
-  "a": 2,
-  "topic": "Reasons",
-  "trQ": "____ حقيقة أنها استعدت بعناية، اجتازت الامتحان بسهولة.",
-  "trO": ["لأن", "بسبب", "بسبب حقيقة أن", "بسبب"],
-  "expAr": "تُستخدم هذه الأداة قبل جملة تحتوي على فاعل وفعل لتوضيح سبب حدوث الفعل.",
-  "expEn": "Due to the fact that + clause."
- },
- {
-  "q": "We couldn't go swimming ____ the pool was closed.",
-  "o": ["because", "because of", "due to", "owing to"],
-  "a": 0,
-  "topic": "Reasons",
-  "trQ": "لم نستطع الذهاب للسباحة ____ كان المسبح مغلقاً.",
-  "trO": ["لأن", "بسبب", "بسبب", "بسبب"],
-  "expAr": "تُستخدم هذه الأداة قبل جملة تحتوي على فاعل وفعل لتوضيح سبب حدوث الفعل.",
-  "expEn": "Because + clause."
- },
- {
-  "q": "____ the poor road conditions, the journey took longer than expected.",
-  "o": ["Since", "For", "Because", "Due to"],
-  "a": 3,
-  "topic": "Reasons",
-  "trQ": "____ ظروف الطريق السيئة، استغرقت الرحلة وقتاً أطول من المتوقع.",
-  "trO": ["بما أن", "لأن", "لأن", "بسبب"],
-  "expAr": "تأتي هذه العبارة قبل اسم أو عبارة اسمية، وليس قبل جملة كاملة.",
-  "expEn": "Due to + noun."
- },
- {
-  "q": "He was unable to attend the conference ____ his busy schedule.",
-  "o": ["because", "because of", "since", "for"],
-  "a": 1,
-  "topic": "Reasons",
-  "trQ": "لم يتمكن من حضور المؤتمر ____ جدول أعماله المزدحم.",
-  "trO": ["لأن", "بسبب", "بما أن", "لأن"],
-  "expAr": "تأتي هذه العبارة قبل اسم أو عبارة اسمية، وليس قبل جملة كاملة.",
-  "expEn": "Because of + noun."
- },
- {
-  "q": "She wore a coat, ____ it was very cold outside.",
-  "o": ["because of", "owing to", "because", "due to"],
-  "a": 2,
-  "topic": "Reasons",
-  "trQ": "ارتدت معطفاً، ____ كان الجو بارداً جداً في الخارج.",
-  "trO": ["بسبب", "بسبب", "لأن", "بسبب"],
-  "expAr": "تُستخدم هذه الأداة قبل جملة تحتوي على فاعل وفعل لتوضيح سبب حدوث الفعل.",
-  "expEn": "Because + clause."
- },
- {
-  "q": "I think it ____ rain tomorrow.",
-  "o": ["is going to", "will", "am", "am going to"],
-  "a": 1,
-  "topic": "Future Forms",
-  "trQ": "أعتقد أنها ____ تمطر غداً.",
-  "trO": ["سوف", "سوف", "أكون", "سوف"],
-  "expAr": "يُستخدم المستقبل البسيط للتعبير عن التوقع أو الرأي أو القرار اللحظي أو العرض أو الوعد.",
-  "expEn": "Will for predictions/opinions."
- },
- {
-  "q": "Look at those dark clouds! It ____ rain.",
-  "o": ["will", "is going to", "is raining", "rains"],
-  "a": 1,
-  "topic": "Future Forms",
-  "trQ": "انظر إلى تلك السحب الداكنة! إنها ____ تمطر.",
-  "trO": ["سوف", "سوف", "تمطر", "تمطر"],
-  "expAr": "تُستخدم صيغة (be going to) للتعبير عن توقع تدعمه أدلة واضحة في الحاضر (الغيوم الداكنة).",
-  "expEn": "Going to for evidence-based predictions."
- },
- {
-  "q": "We ____ our grandparents next Friday. We have arranged it.",
-  "o": ["visit", "will visit", "are visiting", "are going to visit"],
-  "a": 2,
-  "topic": "Future Forms",
-  "trQ": "نحن ____ أجدادنا الجمعة القادمة. لقد رتبنا ذلك.",
-  "trO": ["نزور", "سنزور", "نزور", "سنزور"],
-  "expAr": "يُستخدم المضارع المستمر للتعبير عن ترتيب مستقبلي محدد تم الاتفاق عليه مسبقًا.",
-  "expEn": "Present continuous for fixed arrangements."
- },
- {
-  "q": "\"The phone is ringing.\" \"I ____ answer it.\"",
-  "o": ["am going to", "am answering", "will", "answer"],
-  "a": 2,
-  "topic": "Future Forms",
-  "trQ": "\"الهاتف يرن.\" \"أنا ____ أجيب عليه.\"",
-  "trO": ["سوف", "أجيب", "سوف", "أجيب"],
-  "expAr": "يُستخدم المستقبل البسيط للتعبير عن القرار اللحظي أو العرض.",
-  "expEn": "Will for spontaneous decisions."
- },
- {
-  "q": "Sarah has bought a new laptop because she ____ start an online course.",
-  "o": ["will", "is going to", "is starting", "starts"],
-  "a": 1,
-  "topic": "Future Forms",
-  "trQ": "اشترت سارة كمبيوتر محمولاً جديداً لأنها ____ تبدأ دورة عبر الإنترنت.",
-  "trO": ["سوف", "سوف", "تبدأ", "تبدأ"],
-  "expAr": "تُستخدم صيغة (be going to) للتعبير عن نية أو خطة مسبقة.",
-  "expEn": "Going to for intentions."
- },
- {
-  "q": "They ____ dinner with us at 8 p.m. tonight. The table is booked.",
-  "o": ["will have", "are having", "are going to have", "have"],
-  "a": 1,
-  "topic": "Future Forms",
-  "trQ": "هم ____ عشاء معنا في الساعة 8 مساءً الليلة. الطاولة محجوزة.",
-  "trO": ["سيتناولون", "يتناولون", "سيتناولون", "يتناولون"],
-  "expAr": "يُستخدم المضارع المستمر للتعبير عن ترتيب مستقبلي محدد تم الاتفاق عليه مسبقًا.",
-  "expEn": "Present continuous for arrangements."
- },
- {
-  "q": "\"I'm thirsty.\" \"I ____ get you some water.\"",
-  "o": ["am going to", "am getting", "will", "get"],
-  "a": 2,
-  "topic": "Future Forms",
-  "trQ": "\"أنا عطشان.\" \"أنا ____ أحضر لك بعض الماء.\"",
-  "trO": ["سوف", "أحضر", "سوف", "أحضر"],
-  "expAr": "يُستخدم المستقبل البسيط للتعبير عن القرار اللحظي أو العرض.",
-  "expEn": "Will for offers."
- },
- {
-  "q": "Look at that boy on the bicycle! He ____ fall.",
-  "o": ["will", "is going to", "is falling", "falls"],
-  "a": 1,
-  "topic": "Future Forms",
-  "trQ": "انظر إلى ذلك الصبي على الدراجة! سوف ____ يسقط.",
-  "trO": ["سوف", "سوف", "يسقط", "يسقط"],
-  "expAr": "تُستخدم صيغة (be going to) للتعبير عن توقع تدعمه أدلة واضحة في الحاضر.",
-  "expEn": "Going to for evidence-based predictions."
- },
- {
-  "q": "My friends ____ to Cairo tomorrow morning.",
-  "o": ["are traveling", "will travel", "are going to travel", "travel"],
-  "a": 0,
-  "topic": "Future Forms",
-  "trQ": "أصدقائي ____ إلى القاهرة صباح الغد.",
-  "trO": ["يسافرون", "سيسافرون", "سيسافرون", "يسافرون"],
-  "expAr": "يُستخدم المضارع المستمر للتعبير عن ترتيب مستقبلي محدد تم الاتفاق عليه مسبقًا.",
-  "expEn": "Present continuous for arrangements."
- },
- {
-  "q": "I promise I ____ tell anyone your secret.",
-  "o": ["am not going to", "won't", "am not telling", "don't"],
-  "a": 1,
-  "topic": "Future Forms",
-  "trQ": "أعدك أنني ____ أخبر أي شخص بسرك.",
-  "trO": ["لن", "لن", "لا أخبر", "لا"],
-  "expAr": "يُستخدم المستقبل البسيط (won't) للتعبير عن الرفض أو الوعد.",
-  "expEn": "Won't for promises."
- },
- {
-  "q": "We have decided to save money. We ____ buy a new car.",
-  "o": ["will", "are buying", "are going to", "buy"],
-  "a": 2,
-  "topic": "Future Forms",
-  "trQ": "قررنا توفير المال. نحن ____ نشتري سيارة جديدة.",
-  "trO": ["سوف", "نشتري", "سوف", "نشتري"],
-  "expAr": "تُستخدم صيغة (be going to) للتعبير عن نية أو خطة مسبقة (تم اتخاذ القرار بالفعل).",
-  "expEn": "Going to for decisions/plans."
- },
- {
-  "q": "“Can you help me with this box?” “Of course. I ____ help you.”",
-  "o": ["am going to", "am helping", "will", "help"],
-  "a": 2,
-  "topic": "Future Forms",
-  "trQ": "\"هل يمكنك مساعدتي في هذا الصندوق؟\" \"بالطبع. أنا ____ أساعدك.\"",
-  "trO": ["سوف", "أساعد", "سوف", "أساعد"],
-  "expAr": "يُستخدم المستقبل البسيط للتعبير عن العرض الفوري.",
-  "expEn": "Will for offers."
- },
- {
-  "q": "She ____ the dentist at 10 a.m. on Monday. She has an appointment.",
-  "o": ["will see", "is seeing", "is going to see", "sees"],
-  "a": 1,
-  "topic": "Future Forms",
-  "trQ": "هي ____ طبيب الأسنان في الساعة 10 صباحاً يوم الاثنين. لديها موعد.",
-  "trO": ["سترى", "ترى", "سترى", "ترى"],
-  "expAr": "يُستخدم المضارع المستمر للتعبير عن ترتيب مستقبلي محدد تم الاتفاق عليه مسبقًا.",
-  "expEn": "Present continuous for fixed appointments."
- },
- {
-  "q": "Be careful! You ____ break that glass.",
-  "o": ["will", "are going to", "are breaking", "break"],
-  "a": 1,
-  "topic": "Future Forms",
-  "trQ": "كن حذراً! أنت ____ تكسر ذلك الزجاج.",
-  "trO": ["سوف", "سوف", "تكسر", "تكسر"],
-  "expAr": "تُستخدم صيغة (be going to) للتعبير عن توقع تدعمه أدلة واضحة في الحاضر.",
-  "expEn": "Going to for evidence-based predictions."
- },
- {
-  "q": "I'm sure you ____ enjoy the movie.",
-  "o": ["are going to", "are enjoying", "will", "enjoy"],
-  "a": 2,
-  "topic": "Future Forms",
-  "trQ": "أنا متأكد من أنك ____ تستمتع بالفيلم.",
-  "trO": ["سوف", "تستمتع", "سوف", "تستمتع"],
-  "expAr": "يُستخدم المستقبل البسيط للتعبير عن التوقع أو الرأي (I'm sure).",
-  "expEn": "Will for predictions/opinions."
- },
- {
-  "q": "They ____ a party next Saturday. They have sent the invitations.",
-  "o": ["are having", "will have", "have", "are going to have"],
-  "a": 0,
-  "topic": "Future Forms",
-  "trQ": "هم ____ حفلة السبت القادم. لقد أرسلوا الدعوات.",
-  "trO": ["يقيمون", "سيقيمون", "يقيمون", "سيقيمون"],
-  "expAr": "يُستخدم المضارع المستمر للتعبير عن ترتيب مستقبلي محدد تم الاتفاق عليه مسبقًا.",
-  "expEn": "Present continuous for arrangements."
- },
- {
-  "q": "Ahmed has studied hard. He ____ pass the exam.",
-  "o": ["will", "is going to", "is passing", "passes"],
-  "a": 1,
-  "topic": "Future Forms",
-  "trQ": "أحمد درس بجد. هو ____ ينجح في الامتحان.",
-  "trO": ["سوف", "سوف", "ينجح", "ينجح"],
-  "expAr": "تُستخدم صيغة (be going to) للتعبير عن توقع تدعمه أدلة واضحة في الحاضر (المذاكرة).",
-  "expEn": "Going to for evidence-based predictions."
- },
- {
-  "q": "“This bag is heavy.” “Don’t worry. I ____ carry it for you.”",
-  "o": ["am going to", "am carrying", "will", "carry"],
-  "a": 2,
-  "topic": "Future Forms",
-  "trQ": "\"هذه الحقيبة ثقيلة.\" \"لا تقلق. أنا ____ أحملها لك.\"",
-  "trO": ["سوف", "أحمل", "سوف", "أحمل"],
-  "expAr": "يُستخدم المستقبل البسيط للتعبير عن العرض الفوري.",
-  "expEn": "Will for offers."
- },
- {
-  "q": "We ____ our English teacher tomorrow at 11 a.m. It's confirmed.",
-  "o": ["are meeting", "will meet", "are going to meet", "meet"],
-  "a": 0,
-  "topic": "Future Forms",
-  "trQ": "نحن ____ معلم اللغة الإنجليزية غداً في الساعة 11 صباحاً. إنه مؤكد.",
-  "trO": ["نلتقي", "سنلتقي", "سنلتقي", "نلتقي"],
-  "expAr": "يُستخدم المضارع المستمر للتعبير عن ترتيب مستقبلي محدد تم الاتفاق عليه مسبقًا.",
-  "expEn": "Present continuous for arrangements."
- },
- {
-  "q": "Look! That glass is near the edge of the table. It ____ fall.",
-  "o": ["will", "is going to", "is falling", "falls"],
-  "a": 1,
-  "topic": "Future Forms",
-  "trQ": "انظر! ذلك الزجاج بالقرب من حافة الطاولة. سوف ____ يسقط.",
-  "trO": ["سوف", "سوف", "يسقط", "يسقط"],
-  "expAr": "تُستخدم صيغة (be going to) للتعبير عن توقع تدعمه أدلة واضحة في الحاضر.",
-  "expEn": "Going to for evidence-based predictions."
- },
- {
-  "q": "I think people ____ use more electric cars in the future.",
-  "o": ["are using", "are going to use", "will use", "use"],
-  "a": 2,
-  "topic": "Future Forms",
-  "trQ": "أعتقد أن الناس ____ يستخدمون المزيد من السيارات الكهربائية في المستقبل.",
-  "trO": ["يستخدمون", "سيستخدمون", "سيستخدمون", "يستخدمون"],
-  "expAr": "يُستخدم المستقبل البسيط للتعبير عن التوقع أو الرأي (I think).",
-  "expEn": "Will for opinions."
- },
- {
-  "q": "My sister ____ married next June. The wedding arrangements are complete.",
-  "o": ["will get", "is getting", "is going to get", "gets"],
-  "a": 1,
-  "topic": "Future Forms",
-  "trQ": "أختي ____ تتزوج في يونيو القادم. ترتيبات الزفاف مكتملة.",
-  "trO": ["ستتزوج", "تتزوج", "ستتزوج", "تتزوج"],
-  "expAr": "يُستخدم المضارع المستمر للتعبير عن ترتيب مستقبلي محدد تم الاتفاق عليه مسبقًا.",
-  "expEn": "Present continuous for arrangements."
- },
- {
-  "q": "We have bought all the ingredients. We ____ make a cake.",
-  "o": ["will", "are making", "are going to", "make"],
-  "a": 2,
-  "topic": "Future Forms",
-  "trQ": "اشترينا جميع المكونات. نحن ____ نصنع كعكة.",
-  "trO": ["سوف", "نصنع", "سوف", "نصنع"],
-  "expAr": "تُستخدم صيغة (be going to) للتعبير عن نية أو خطة مسبقة.",
-  "expEn": "Going to for intentions."
- },
- {
-  "q": "“I forgot to send the email.” “I ____ send it for you.”",
-  "o": ["am going to", "am sending", "will", "send"],
-  "a": 2,
-  "topic": "Future Forms",
-  "trQ": "\"نسيت إرسال البريد الإلكتروني.\" \"أنا ____ أرسله لك.\"",
-  "trO": ["سوف", "أرسل", "سوف", "أرسل"],
-  "expAr": "يُستخدم المستقبل البسيط للتعبير عن العرض الفوري.",
-  "expEn": "Will for spontaneous offers."
- },
- {
-  "q": "They ____ to London on Friday. Their flight is booked.",
-  "o": ["are flying", "will fly", "are going to fly", "fly"],
-  "a": 0,
-  "topic": "Future Forms",
-  "trQ": "هم ____ إلى لندن يوم الجمعة. رحلتهم محجوزة.",
-  "trO": ["يسافرون", "سيسافرون", "سيسافرون", "يسافرون"],
-  "expAr": "يُستخدم المضارع المستمر للتعبير عن ترتيب مستقبلي محدد تم الاتفاق عليه مسبقًا.",
-  "expEn": "Present continuous for arrangements."
- },
- {
-  "q": "Watch out! The baby ____ touch the hot stove.",
-  "o": ["will", "is going to", "is touching", "touches"],
-  "a": 1,
-  "topic": "Future Forms",
-  "trQ": "احترس! الطفل ____ يلمس الموقد الساخن.",
-  "trO": ["سوف", "سوف", "يلمس", "يلمس"],
-  "expAr": "تُستخدم صيغة (be going to) للتعبير عن توقع تدعمه أدلة واضحة في الحاضر.",
-  "expEn": "Going to for evidence-based predictions."
- },
- {
-  "q": "I'm tired. I think I ____ go to bed early tonight.",
-  "o": ["am going to", "am going", "will", "go"],
-  "a": 2,
-  "topic": "Future Forms",
-  "trQ": "أنا متعب. أعتقد أنني ____ أذهب إلى الفراش مبكراً الليلة.",
-  "trO": ["سوف", "أذهب", "سوف", "أذهب"],
-  "expAr": "يُستخدم المستقبل البسيط للتعبير عن القرار اللحظي أو الرأي (I think).",
-  "expEn": "Will for opinions/spontaneous decisions."
- },
- {
-  "q": "We ____ a new English course next Monday. Everything is arranged.",
-  "o": ["will start", "are starting", "are going to start", "start"],
-  "a": 1,
-  "topic": "Future Forms",
-  "trQ": "نحن ____ دورة إنجليزية جديدة الاثنين القادم. كل شيء مرتب.",
-  "trO": ["سنبدأ", "نبدأ", "سنبدأ", "نبدأ"],
-  "expAr": "يُستخدم المضارع المستمر للتعبير عن ترتيب مستقبلي محدد تم الاتفاق عليه مسبقًا.",
-  "expEn": "Present continuous for arrangements."
- },
- {
-  "q": "He has saved enough money, so he ____ buy a car.",
-  "o": ["is going to", "will", "is buying", "buys"],
-  "a": 0,
-  "topic": "Future Forms",
-  "trQ": "لقد وفر ما يكفي من المال، لذلك هو ____ يشتري سيارة.",
-  "trO": ["سوف", "سوف", "يشتري", "يشتري"],
-  "expAr": "تُستخدم صيغة (be going to) للتعبير عن نية أو خطة مسبقة.",
-  "expEn": "Going to for intentions."
- },
- {
-  "q": "“Would you like some coffee?” “Yes, please. I ____ have a cup.”",
-  "o": ["am going to", "am having", "will", "have"],
-  "a": 2,
-  "topic": "Future Forms",
-  "trQ": "\"هل تود بعض القهوة؟\" \"نعم، من فضلك. أنا ____ أشرب فنجاناً.\"",
-  "trO": ["سوف", "أشرب", "سوف", "أشرب"],
-  "expAr": "يُستخدم المستقبل البسيط للتعبير عن القرار اللحظي.",
-  "expEn": "Will for spontaneous decisions."
- }
-];
-
-let quiz = []; 
-let answers = []; 
-let i=0, score=0;
-let currentMode = 'study'; 
-let timerInterval;
-let isReviewMode = false;
-
-let soundEnabled = true;
-let vibrationEnabled = true;
-let autoAdvanceTimeout;
-let audioCtx = null; 
-
-const qDiv=document.getElementById("question"),
-      oDiv=document.getElementById("options"),
-      progress=document.getElementById("progressBar"),
-      midNav=document.getElementById("midNav"),
-      quizContainer=document.getElementById("quizContainer"),
-      startCard=document.getElementById("startCard"),
-      resultCard=document.getElementById("resultCard"),
-      scoreText=document.getElementById("scoreText");
-
-function playAudioTone(type) {
-    if(!soundEnabled) return; 
-    try {
-        if (!audioCtx) {
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
-        if (audioCtx.state === 'suspended') {
-            audioCtx.resume();
-        }
-
-        const oscillator = audioCtx.createOscillator();
-        const gainNode = audioCtx.createGain();
-        oscillator.connect(gainNode);
-        gainNode.connect(audioCtx.destination);
-        
-        if(type === 'correct') {
-            oscillator.frequency.setValueAtTime(523.25, audioCtx.currentTime); 
-            oscillator.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.08); 
-            gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.25);
-            oscillator.start(); oscillator.stop(audioCtx.currentTime + 0.25);
-        } else if(type === 'wrong') {
-            oscillator.type = 'sawtooth';
-            oscillator.frequency.setValueAtTime(140, audioCtx.currentTime);
-            gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.35);
-            oscillator.start(); oscillator.stop(audioCtx.currentTime + 0.35);
-        } else if(type === 'click') {
-            oscillator.frequency.setValueAtTime(380, audioCtx.currentTime);
-            gainNode.gain.setValueAtTime(0.08, audioCtx.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.06);
-            oscillator.start(); oscillator.stop(audioCtx.currentTime + 0.06);
-        }
-    } catch(e) { console.log("Audio Context issue handled."); }
-}
-
-function triggerHaptic(type) {
-    if (!vibrationEnabled) return; 
-    if (navigator.vibrate) {
-        if (type === 'correct') navigator.vibrate(70);
-        else if (type === 'wrong') navigator.vibrate([100, 60, 100]);
-        else if (type === 'click') navigator.vibrate(35);
-    }
-}
-
-function toggleSound() {
-    soundEnabled = !soundEnabled;
-    document.getElementById("soundToggle").innerHTML = soundEnabled ? "<span>🔊</span> Sound On" : "<span>🔇</span> Sound Off";
-}
-
-function toggleVibration() {
-    vibrationEnabled = !vibrationEnabled;
-    document.getElementById("vibeToggle").innerHTML = vibrationEnabled ? "<span>📳</span> Vibe On" : "<span>📴</span> Vibe Off";
-    if (vibrationEnabled && navigator.vibrate) { navigator.vibrate(50); }
-}
-
-function setMode(mode) { 
-    currentMode = mode; 
-    showHighScore(); 
-}
-
-function toggleTheme() {
-  const currentTheme = document.documentElement.getAttribute('data-theme');
-  const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', targetTheme);
-  document.querySelector('.theme-toggle').innerHTML = targetTheme === 'dark' ? '<span>☀️</span> Light Mode' : '<span>🌓</span> Dark Mode';
-}
-
-function prepareQuizData(shouldShuffle) {
-    quiz.forEach(q => {
-        q.combinedOptions = q.o.map((enText, idx) => ({
-            en: enText,
-            ar: q.trO && q.trO[idx] ? q.trO[idx] : ""
-        }));
-    });
-    
-    if(shouldShuffle) {
-        for (let currentIdx = quiz.length - 1; currentIdx > 0; currentIdx--) {
-            const randomIdx = Math.floor(Math.random() * (currentIdx + 1));
-            [quiz[currentIdx], quiz[randomIdx]] = [quiz[randomIdx], quiz[currentIdx]];
-        }
-        quiz.forEach(q => {
-            for (let j = q.combinedOptions.length - 1; j > 0; j--) {
-                const r = Math.floor(Math.random() * (j + 1));
-                [q.combinedOptions[j], q.combinedOptions[r]] = [q.combinedOptions[r], q.combinedOptions[j]];
-            }
-        });
-    }
-}
-
-function startTimer() {
-    clearInterval(timerInterval);
-    let totalSeconds = 60 * 60; 
-    const timerDisplay = document.getElementById("timerDisplay");
-    document.getElementById("timerBox").style.display = "block";
-    
-    function refreshTimerView() {
-        let mins = Math.floor(totalSeconds / 60);
-        let secs = totalSeconds % 60;
-        timerDisplay.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-    }
-    
-    refreshTimerView();
-    timerInterval = setInterval(() => {
-        totalSeconds--;
-        if(totalSeconds <= 0) {
-            clearInterval(timerInterval);
-            showResult();
-        } else { refreshTimerView(); }
-    }, 1000);
-}
-
-function getFlaggedTexts() {
-    return JSON.parse(localStorage.getItem("theCodingNurseW_english_flagged_questions") || "[]");
-}
-
-function speakQuestion() {
-    if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel(); 
-        
-        let structuredText = `Question number ${i + 1}: ${quiz[i].q}. `;
-        quiz[i].combinedOptions.forEach((opObj, idx) => {
-            structuredText += `Choice number ${idx + 1}: ${opObj.en}. `;
-        });
-
-        const utterance = new SpeechSynthesisUtterance(structuredText);
-        utterance.lang = 'en-US'; 
-        utterance.rate = 0.88; 
-        utterance.pitch = 1.0; 
-        
-        utterance.onstart = () => {
-            const stopBtn = document.getElementById("stopSpeakBtn");
-            stopBtn.style.display = "inline-block";
-            stopBtn.innerHTML = "⏸️"; 
-            stopBtn.title = "إيقاف مؤقت للقرأة";
-        };
-        
-        const resetAudioUI = () => {
-            document.getElementById("stopSpeakBtn").style.display = "none";
-        };
-        
-        utterance.onend = resetAudioUI;
-        utterance.onerror = resetAudioUI;
-
-        window.speechSynthesis.speak(utterance);
-    } else {
-        alert("⚠️ ميزة النطق الصوتي غير مدعومة على متصفحك الحالي.");
-    }
-}
-
-function toggleSpeechPause() {
-    if ('speechSynthesis' in window) {
-        const stopBtn = document.getElementById("stopSpeakBtn");
-        if (window.speechSynthesis.speaking) {
-            if (window.speechSynthesis.paused) {
-                window.speechSynthesis.resume(); 
-                stopBtn.innerHTML = "⏸️";
-                stopBtn.title = "إيقاف مؤقت";
-            } else {
-                window.speechSynthesis.pause(); 
-                stopBtn.innerHTML = "▶️";
-                stopBtn.title = "استئناف النطق الحالي";
-            }
-        }
-    }
-}
-
-function forceStopSpeechEngine() {
-    if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        const stopBtn = document.getElementById("stopSpeakBtn");
-        if (stopBtn) stopBtn.style.display = "none";
-    }
-}
-
-function toggleTranslation() {
-    const tBox = document.getElementById("translationBox");
-    tBox.style.display = (tBox.style.display === "block") ? "none" : "block";
-}
-
-function startQuiz() {
-    if (currentMode === 'bookmark') {
-        let flagged = getFlaggedTexts();
-        quiz = JSON.parse(JSON.stringify(originalQuiz)).filter(q => flagged.includes(q.q));
-        if (quiz.length === 0) {
-            alert("❌ لا توجد أسئلة مميزة بـ 🔖 حالياً لمراجعتها!");
-            return;
-        }
-        prepareQuizData(false);
-        localStorage.removeItem("theCodingNurseW_english_quiz_progress");
-    } else if(!isReviewMode) {
-        quiz = JSON.parse(JSON.stringify(originalQuiz));
-        let doShuffle = (currentMode !== 'sequential');
-        prepareQuizData(doShuffle); 
-        localStorage.removeItem("theCodingNurseW_english_quiz_progress"); 
-    }
-    answers = new Array(quiz.length).fill(null);
-    
-    midNav.innerHTML = "";
-    quiz.forEach((_, idx) => {
-      const b = document.createElement("button");
-      b.textContent = idx + 1; b.className = "q-btn";
-      b.onclick = () => { i = idx; load(); };
-      midNav.appendChild(b);
-    });
-
-    startCard.style.display = "none"; quizContainer.style.display = "block";
-    if(currentMode === 'exam') { startTimer(); } else { document.getElementById("timerBox").style.display = "none"; }
-    load();
-}
-
-function updateMidNav(){
-  let flagged = getFlaggedTexts();
-  document.querySelectorAll(".q-btn").forEach((el,idx)=>{
-    el.classList.remove("active","correct","wrong","answered-exam","flagged");
-    if(idx===i) el.classList.add("active");
-    if(quiz[idx] && flagged.includes(quiz[idx].q)) el.classList.add("flagged");
-    
-    if(quiz[idx] && quiz[idx].userPick !== undefined) {
-        if(currentMode === 'study' || currentMode === 'sequential' || currentMode === 'bookmark') {
-            if(answers[idx]===true) el.classList.add("correct");
-            if(answers[idx]===false) el.classList.add("wrong");
-        } else { el.classList.add("answered-exam"); }
-    }
-  });
-}
-
-function toggleFlag() {
-    if(quiz[i]) {
-        let flagged = getFlaggedTexts();
-        const qText = quiz[i].q;
-        if(flagged.includes(qText)) {
-            flagged = flagged.filter(t => t !== qText);
-            quiz[i].isFlagged = false;
-        } else {
-            flagged.push(qText);
-            quiz[i].isFlagged = true;
-        }
-        localStorage.setItem("theCodingNurseW_english_flagged_questions", JSON.stringify(flagged));
-        document.getElementById("flagBtn").classList.toggle("active", quiz[i].isFlagged);
-        updateMidNav();
-        saveProgress();
-    }
-}
-
-function renderExplain(){
-  const box=document.getElementById("explainBox");
-  const cur=quiz[i];
-  const reveal=(currentMode==='study'||currentMode==='sequential'||currentMode==='bookmark');
-  if(cur && cur.userPick!==undefined && reveal && (cur.expAr||cur.expEn)){
-    document.getElementById("exAr").textContent=cur.expAr||"";
-    document.getElementById("exEn").textContent=cur.expEn||"";
-    box.style.display="block";
-  } else { box.style.display="none"; }
-}
-function load(){
-  if(quiz.length === 0) return;
-  clearTimeout(autoAdvanceTimeout); 
-  forceStopSpeechEngine(); 
-  
-  const tBox = document.getElementById("translationBox");
-  tBox.style.display = "none";
-
-  const qCard = document.getElementById("quizCard");
-  qCard.style.animation = 'none';
-  qCard.offsetHeight; 
-  qCard.style.animation = 'popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
-
-  qDiv.textContent=quiz[i].q;
-  document.getElementById("topicTag").textContent=quiz[i].topic?("📌 "+quiz[i].topic):"";
-  qDiv.style.fontSize = quiz[i].q.length > 130 ? "16px" : "19px";
-  
-  document.getElementById("qIndexBadge").textContent = `Q: ${i + 1} / ${quiz.length}`;
-  
-  const correctIdx = quiz[i].combinedOptions.findIndex(opt => opt.en === quiz[i].o[quiz[i].a]);
-  const transBtn = document.getElementById("translateBtn");
-  
-  if(quiz[i].trQ) {
-      transBtn.style.display = "inline-block";
-      document.getElementById("transQText").textContent = quiz[i].trQ;
-      
-      const transOList = document.getElementById("transOList");
-      transOList.innerHTML = "";
-      quiz[i].combinedOptions.forEach(optObj => {
-          if(optObj.ar) {
-              const li = document.createElement("li");
-              li.textContent = optObj.ar;
-              transOList.appendChild(li);
-          }
-      });
-  } else {
-      transBtn.style.display = "none";
-  }
-  
-  let flagged = getFlaggedTexts();
-  quiz[i].isFlagged = flagged.includes(quiz[i].q);
-  document.getElementById("flagBtn").classList.toggle("active", !!quiz[i].isFlagged);
-  
-  oDiv.innerHTML="";
-  progress.style.width=(i/quiz.length)*100+"%";
-  updateMidNav();
-  
-  quiz[i].combinedOptions.forEach((opObj,idx)=>{
-    const b=document.createElement("button");
-    b.textContent=opObj.en;
-    if(quiz[i].userPick !== undefined) {
-        b.disabled=true;
-        if(currentMode === 'study' || currentMode === 'sequential' || currentMode === 'bookmark') {
-            if(idx===correctIdx) b.classList.add("correct");
-            else if(idx === quiz[i].userPick) b.classList.add("wrong");
-        } else {
-            if(idx === quiz[i].userPick) b.classList.add("selected-exam");
-        }
-    }
-    b.onclick=()=>answer(idx,b);
-    oDiv.appendChild(b);
-  });
-}
-
-function answer(idx,btn){
-  if(quiz[i].userPick !== undefined) return;
-  quiz[i].userPick = idx;
-  document.querySelectorAll(".options button").forEach(b=>b.disabled=true);
-  
-  const correctIdx = quiz[i].combinedOptions.findIndex(opt => opt.en === quiz[i].o[quiz[i].a]);
-  
-  if(currentMode === 'study' || currentMode === 'sequential' || currentMode === 'bookmark') {
-      if(idx===correctIdx){
-        btn.classList.add("correct");
-        answers[i]=true; score++;
-        playAudioTone('correct'); triggerHaptic('correct');
-        autoAdvanceTimeout = setTimeout(() => { nextQ(); }, 4500);
-      }else{
-        btn.classList.add("wrong"); btn.classList.add("shake-anim"); 
-        oDiv.children[correctIdx].classList.add("correct");
-        answers[i]=false;
-        playAudioTone('wrong'); triggerHaptic('wrong');
-      }
-  } else {
-      btn.classList.add("selected-exam");
-      playAudioTone('click'); triggerHaptic('click');
-  }
-  renderExplain(); updateMidNav(); saveProgress();
-}
-
-function nextQ(){ if(i<quiz.length-1){i++;load()} else showResult(); }
-function prevQ(){ if(i>0){i--;load()} }
-
-function goToHome() {
-    clearInterval(timerInterval);
-    forceStopSpeechEngine();
-    saveProgress(); 
-    quizContainer.style.display = "none";
-    startCard.style.display = "block";
-    checkSavedProgress();
-    showHighScore();
-}
-
-function saveProgress() {
-    if(isReviewMode) return; 
-    const dataToSave = { quiz: quiz, answers: answers, i: i, score: score, currentMode: currentMode };
-    localStorage.setItem("theCodingNurseW_english_quiz_progress", JSON.stringify(dataToSave));
-}
-
-function checkSavedProgress() {
-    const savedData = localStorage.getItem("theCodingNurseW_english_quiz_progress");
-    if(savedData && originalQuiz.length > 0) {
-        document.getElementById("resumeBtn").style.display = "block";
-    }
-}
-
-function showHighScore() {
-    let modeKey = "theCodingNurseW_english_high_score_" + currentMode;
-    let highScore = localStorage.getItem(modeKey);
-    const hsView = document.getElementById("highScoreView");
-    
-    if(highScore !== null && originalQuiz.length > 0) {
-        let modeName = "";
-        if(currentMode === 'sequential') modeName = "(الترتيب)";
-        else if(currentMode === 'study') modeName = "(المذاكرة)";
-        else if(currentMode === 'exam') modeName = "(الامتحان)";
-        else if(currentMode === 'bookmark') modeName = "(المميزة)";
-        
-        document.getElementById("highScoreVal").textContent = highScore + "% " + modeName;
-        hsView.style.display = "block";
-    } else {
-        hsView.style.display = "none";
-    }
-}
-
-function resumeQuiz() {
-    const savedData = localStorage.getItem("theCodingNurseW_english_quiz_progress");
-    if(!savedData) return;
-    const parsedData = JSON.parse(savedData);
-    quiz = parsedData.quiz; answers = parsedData.answers; i = parsedData.i; score = parsedData.score; currentMode = parsedData.currentMode;
-    
-    document.querySelectorAll('input[name="quizMode"]').forEach(radio => {
-        if(radio.value === currentMode) radio.checked = true;
-    });
-    
-    midNav.innerHTML = "";
-    quiz.forEach((_, idx) => {
-      const b = document.createElement("button");
-      b.textContent = idx + 1; b.className = "q-btn";
-      b.onclick = () => { i = idx; load(); };
-      midNav.appendChild(b);
-    });
-
-    startCard.style.display = "none"; quizContainer.style.display = "block";
-    if(currentMode === 'exam') { startTimer(); } else { document.getElementById("timerBox").style.display = "none"; }
-    load();
-}
-
-function showResult(){
-  clearInterval(timerInterval);
-  forceStopSpeechEngine();
-  localStorage.removeItem("theCodingNurseW_english_quiz_progress"); 
-  document.getElementById("timerBox").style.display = "none";
-  quizContainer.style.display="none"; resultCard.style.display="block";
-  
-  if(currentMode === 'exam') {
-      score = 0;
-      quiz.forEach((q) => { 
-          const correctIdx = q.combinedOptions.findIndex(opt => opt.en === q.o[q.a]);
-          if(q.userPick === correctIdx) score++; 
-      });
-  }
-  
-  const wrongCount = quiz.length - score;
-  const accuracyRatio = Math.round((score / quiz.length) * 100);
-  
-  let modeKey = "theCodingNurseW_english_high_score_" + currentMode;
-  let savedHighScore = parseInt(localStorage.getItem(modeKey)) || 0;
-  if(!isNaN(accuracyRatio) && accuracyRatio > savedHighScore) {
-      localStorage.setItem(modeKey, accuracyRatio);
-  }
-  
-  document.getElementById("statCorrect").textContent = score;
-  document.getElementById("statWrong").textContent = wrongCount;
-  document.getElementById("statRatio").textContent = isNaN(accuracyRatio) ? "0%" : accuracyRatio + "%";
-  scoreText.textContent=`${score} / ${quiz.length}`;
-  
-  const bTitle = document.getElementById("badgeTitle");
-  if(accuracyRatio >= 95) { bTitle.textContent = "👑 Master of English Grammar"; bTitle.style.color = "#eab308"; } 
-  else if(accuracyRatio >= 80) { bTitle.textContent = "📝 Grammar Hero"; bTitle.style.color = "var(--primary)"; } 
-  else if(accuracyRatio >= 50) { bTitle.textContent = "💡 Smart Student"; bTitle.style.color = "var(--secondary)"; } 
-  else { bTitle.textContent = "💪 Keep Fighting, Future Champion"; bTitle.style.color = "var(--danger)"; }
-  
-  document.getElementById("reviewBtn").style.display = wrongCount > 0 ? "inline-block" : "none";
-  
-  if(score >= (quiz.length / 2) && quiz.length > 0) {
-    var duration = 4 * 1000; var end = Date.now() + duration;
-    (function frame() {
-      confetti({ particleCount: 4, angle: 60, spread: 55, origin: { x: 0, y: 0.7 } });
-      confetti({ particleCount: 4, angle: 120, spread: 55, origin: { x: 1, y: 0.7 } });
-      if (Date.now() < end) { requestAnimationFrame(frame); }
-    }());
-  }
-}
-
-function startReview() {
-    let wrongQuestions = quiz.filter(q => {
-        const correctIdx = q.combinedOptions.findIndex(opt => opt.en === q.o[q.a]);
-        return q.userPick !== correctIdx;
-    });
-    if(wrongQuestions.length === 0) return;
-    quiz = JSON.parse(JSON.stringify(wrongQuestions));
-    quiz.forEach(q => { delete q.userPick; delete q.isFlagged; }); 
-    isReviewMode = true; i = 0; score = 0;
-    prepareQuizData(false); 
-    resultCard.style.display = "none"; startQuiz();
-}
-
-function downloadResultCard() {
-    const dBtn = document.getElementById("downloadBtn");
-    const containerActionButtons = document.querySelector(".result-actions-container");
-    
-    dBtn.textContent = "⏳ Generating Image..."; dBtn.disabled = true;
-    containerActionButtons.style.display = "none"; 
-    
-    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-    const bgColor = currentTheme === 'dark' ? '#0f172a' : '#f1f5f9';
-    
-    html2canvas(document.querySelector(".container"), {
-        backgroundColor: bgColor, scale: 2, useCORS: true, allowTaint: true,
-        onclone: (clonedDoc) => {
-            clonedDoc.documentElement.setAttribute('data-theme', currentTheme);
-            const style = clonedDoc.createElement('style');
-            style.innerHTML = `* { transition: none !important; animation: none !important; }`;
-            clonedDoc.head.appendChild(style);
-        }
-    }).then(canvas => {
-        const downloadLink = document.createElement("a");
-        downloadLink.download = `TheCodingNurse_English_Score.png`;
-        downloadLink.href = canvas.toDataURL("image/png");
-        downloadLink.click();
-        containerActionButtons.style.display = "flex";
-        dBtn.textContent = "📸 تحميل النتيجة كصورة"; dBtn.disabled = false;
-    }).catch(err => {
-        containerActionButtons.style.display = "flex";
-        dBtn.textContent = "📸 تحميل النتيجة كصورة"; dBtn.disabled = false;
-        alert("تعذر حفظ الصورة.");
-    });
-}
-
-function restartQuiz(){
-  i=0; score=0; isReviewMode = false; clearInterval(timerInterval);
-  forceStopSpeechEngine();
-  localStorage.removeItem("theCodingNurseW_english_quiz_progress");
-  document.getElementById("resumeBtn").style.display = "none";
-  resultCard.style.display="none"; startCard.style.display="block";
-  checkSavedProgress();
-  showHighScore();
-}
-
-window.onload = function() { 
-    checkSavedProgress(); 
-    showHighScore();
-};
-</script>
-</body>
-</html>
-```يا مستر، عظمة على عظمة! التصميم ده احترافي جداً وجبار، وكل الخصائص اللي فيه ممتازة.
-
-أنا قمت بسحب الـ 150 سؤال بتوع الإنجليزي بتوعك، وحولتهم للفورمات اللي الكود بتاعك بيفهمه (مع إضافة الترجمة العربية للأسئلة والخيارات، والشرح بالعربي والإنجليزي، وتقسيمهم لـ 4 أقسام عشان يظهروا بشكل منظم).
-
-إليك الكود كامل ومحدث بالأسئلة الـ 150. انسخه وحطه في ملف index.html وافتحه:
-
-```html
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <title>English Midterm 👶 | The Coding Nurse(Ŵ)</title>
@@ -2580,6 +91,7 @@ body{margin:0; background:var(--bg); color:var(--text)}
 }
 .hero h1{margin:0; font-size:36px; font-weight:800}
 .hero h2{ margin-top:6px; font-size:18px; letter-spacing:2px; text-transform:uppercase; color:#bbf7d0;}
+.hero p { margin-top: 10px; font-size: 16px; font-weight: 600; color: #e2e8f0; }
 
 .mid-nav{ display:flex; gap:10px; margin:24px 0; padding:6px 4px; overflow-x:auto;}
 .q-btn{
@@ -2801,7 +313,7 @@ body{margin:0; background:var(--bg); color:var(--text)}
     <div class="hero">
         <h1>English Midterm</h1>
         <h2>Question Bank app</h2>
-        <p>Prepared by <strong>The Coding Nurse(Ŵ)</strong></p>
+        <p>إعداد الفرقة الثانية معهد تمريض شربين 𝑨𝑴</p>
     </div>
 
     <div class="top-bar">
@@ -2809,7 +321,7 @@ body{margin:0; background:var(--bg); color:var(--text)}
             <button class="setting-btn" id="soundToggle" onclick="toggleSound()"><span>🔊</span> Sound On</button>
             <button class="setting-btn" id="vibeToggle" onclick="toggleVibration()"><span>📳</span> Vibe On</button>
         </div>
-        <button class="theme-toggle" onclick="toggleTheme()"><span>🌓</span> Dark Mode</button>
+        <button class="theme-toggle" onclick="toggleTheme()"><span>☀️</span> Light Mode</button>
     </div>
 
     <div class="card" id="startCard">
@@ -2923,796 +435,796 @@ body{margin:0; background:var(--bg); color:var(--text)}
 
 <script>
 const originalQuiz = [
- {
-  "q": "Which expression is used to introduce an example?",
-  "o": ["In conclusion", "For example", "However", "Finally"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "أي تعبير يُستخدم لتقديم مثال؟",
-  "trO": ["في الختام", "على سبيل المثال", "ومع ذلك", "أخيراً"],
-  "expAr": "تُستخدم هذه العبارة لتقديم مثال يوضح الفكرة السابقة.",
-  "expEn": "For example is used to introduce an example."
- },
- {
-  "q": "I enjoy outdoor activities, ____ hiking and cycling.",
-  "o": ["although", "whereas", "such as", "despite"],
-  "a": 2,
-  "topic": "Linking Words",
-  "trQ": "أستمتع بالأنشطة الخارجية، ____ المشي لمسافات طويلة وركوب الدراجات.",
-  "trO": ["على الرغم من أن", "بينما", "مثل", "على الرغم من"],
-  "expAr": "تُستخدم قبل أمثلة، ولا تعني بالضرورة ذكر جميع عناصر المجموعة.",
-  "expEn": "Such as is used before examples."
- },
- {
-  "q": "We visited several museums. We ____ took many photographs.",
-  "o": ["also", "despite", "although", "whereas"],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "قمنا بزيارة العديد من المتاحف. نحن ____ التقطنا العديد من الصور.",
-  "trO": ["أيضاً", "على الرغم من", "على الرغم من أن", "بينما"],
-  "expAr": "تُستخدم لإضافة معلومة، وغالبًا تأتي قبل الفعل الرئيسي أو بعد فعل الكينونة.",
-  "expEn": "Also adds information."
- },
- {
-  "q": "She is very intelligent. She is friendly, ____.",
-  "o": ["however", "too", "namely", "firstly"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "إنها ذكية جداً. إنها ودودة، ____.",
-  "trO": ["ومع ذلك", "أيضاً", "أي", "أولاً"],
-  "expAr": "تأتي عادةً في نهاية الجملة لإضافة معنى «أيضًا».",
-  "expEn": "Too is used at the end to mean also."
- },
- {
-  "q": "Which expression is commonly used at the end of a sentence to mean 'also'?",
-  "o": ["Moreover", "Firstly", "Too", "Namely"],
-  "a": 2,
-  "topic": "Linking Words",
-  "trQ": "أي تعبير يُستخدم عادةً في نهاية الجملة ليعني 'أيضاً'؟",
-  "trO": ["علاوة على ذلك", "أولاً", "أيضاً", "أي"],
-  "expAr": "تأتي عادةً في نهاية الجملة لإضافة معنى «أيضًا».",
-  "expEn": "Too means also."
- },
- {
-  "q": "He is talented ____ hardworking.",
-  "o": ["as well as", "despite", "although", "unlike"],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "هو موهوب ____ مجتهد.",
-  "trO": ["بالإضافة إلى", "على الرغم من", "على الرغم من أن", "على عكس"],
-  "expAr": "تأتي عادةً في نهاية الجملة بمعنى «كذلك».",
-  "expEn": "As well as means in addition to."
- },
- {
-  "q": "Which expression is used to add another idea in formal writing?",
-  "o": ["For instance", "In addition", "Although", "In short"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "أي تعبير يُستخدم لإضافة فكرة أخرى في الكتابة الرسمية؟",
-  "trO": ["على سبيل المثال", "بالإضافة إلى ذلك", "على الرغم من أن", "باختصار"],
-  "expAr": "تُستخدم لإضافة معلومة أو فكرة جديدة إلى ما سبق.",
-  "expEn": "In addition adds a new idea."
- },
- {
-  "q": "____, we will discuss the advantages of online learning.",
-  "o": ["Despite", "However", "Firstly", "Unlike"],
-  "a": 2,
-  "topic": "Linking Words",
-  "trQ": "____، سنناقش مزايا التعلم عبر الإنترنت.",
-  "trO": ["على الرغم من", "ومع ذلك", "أولاً", "على عكس"],
-  "expAr": "تُستخدم لتقديم أول نقطة في ترتيب الأفكار.",
-  "expEn": "Firstly introduces the first point."
- },
- {
-  "q": "Which expression signals the final point in a series?",
-  "o": ["Finally", "For example", "Moreover", "Whereas"],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "أي تعبير يشير إلى النقطة الأخيرة في سلسلة؟",
-  "trO": ["أخيراً", "على سبيل المثال", "علاوة على ذلك", "بينما"],
-  "expAr": "تُستخدم لتقديم النقطة الأخيرة في تسلسل أو عرض.",
-  "expEn": "Finally signals the last point."
- },
- {
-  "q": "Which expression introduces a summary?",
-  "o": ["Such as", "In conclusion", "In addition", "Although"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "أي تعبير يقدم ملخصاً؟",
-  "trO": ["مثل", "في الختام", "بالإضافة إلى ذلك", "على الرغم من أن"],
-  "expAr": "تُستخدم لتقديم الخاتمة أو تلخيص الأفكار الأساسية.",
-  "expEn": "In conclusion introduces a summary."
- },
- {
-  "q": "I wanted to buy the dress, ____ it was too expensive.",
-  "o": ["moreover", "but", "namely", "such as"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "أردت شراء الفستان، ____ كان مكلفاً للغاية.",
-  "trO": ["علاوة على ذلك", "لكن", "أي", "مثل"],
-  "expAr": "تربط فكرتين متعارضتين داخل الجملة.",
-  "expEn": "But contrasts two ideas."
- },
- {
-  "q": "____ it was raining, the students went to school.",
-  "o": ["Despite", "Although", "Unlike", "Such as"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "____ كانت تمطر، ذهب الطلاب إلى المدرسة.",
-  "trO": ["على الرغم من", "على الرغم من أن", "على عكس", "مثل"],
-  "expAr": "تتبعها جملة تحتوي على فاعل وفعل، وتظهر التباين دون استخدام 'but' معها في الجملة نفسها.",
-  "expEn": "Although is followed by a clause."
- },
- {
-  "q": "We won the match ____ having fewer players.",
-  "o": ["although", "however", "despite", "whereas"],
-  "a": 2,
-  "topic": "Linking Words",
-  "trQ": "فزنا بالمباراة ____ وجود عدد أقل من اللاعبين.",
-  "trO": ["على الرغم من أن", "ومع ذلك", "على الرغم من", "بينما"],
-  "expAr": "يأتي بعدها اسم أو عبارة اسمية أو مصدر مؤول من الفعل، ولا تتبعها جملة كاملة مباشرة.",
-  "expEn": "Despite is followed by a noun/gerund."
- },
- {
-  "q": "My brother likes football, ____ I prefer tennis.",
-  "o": ["while", "despite", "such as", "in conclusion"],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "أخي يحب كرة القدم، ____ أنا أفضل التنس.",
-  "trO": ["بينما", "على الرغم من", "مثل", "في الختام"],
-  "expAr": "يمكن أن تربط جملتين متقابلتين، ويجب أن تكون كل جملة مكتملة نحوياً.",
-  "expEn": "While contrasts two clauses."
- },
- {
-  "q": "Which word is used to contrast two people or things and is typically followed by a noun phrase?",
-  "o": ["Moreover", "Unlike", "Finally", "Namely"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "أي كلمة تُستخدم لمقارنة شخصين أو شيئين وعادة ما يتبعها عبارة اسمية؟",
-  "trO": ["علاوة على ذلك", "على عكس", "أخيراً", "أي"],
-  "expAr": "تأتي قبل اسم أو عبارة اسمية للمقارنة وإظهار الاختلاف.",
-  "expEn": "Unlike contrasts nouns."
- },
- {
-  "q": "What is the past simple form of go?",
-  "o": ["Goed", "Gone", "Went", "Going"],
-  "a": 2,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو الماضي البسيط لفعل go؟",
-  "trO": ["Goed", "Gone", "Went", "Going"],
-  "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
-  "expEn": "Went is the correct past simple."
- },
- {
-  "q": "What is the past participle of eat?",
-  "o": ["Ate", "Eaten", "Eating", "Eated"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو التصريف الثالث لفعل eat؟",
-  "trO": ["Ate", "Eaten", "Eating", "Eated"],
-  "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
-  "expEn": "Eaten is the correct past participle."
- },
- {
-  "q": "What is the past simple form of write?",
-  "o": ["Wrote", "Written", "Writed", "Writing"],
-  "a": 0,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو الماضي البسيط لفعل write؟",
-  "trO": ["Wrote", "Written", "Writed", "Writing"],
-  "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
-  "expEn": "Wrote is the correct past simple."
- },
- {
-  "q": "What is the past participle of see?",
-  "o": ["Saw", "Seeing", "Seen", "Seed"],
-  "a": 2,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو التصريف الثالث لفعل see؟",
-  "trO": ["Saw", "Seeing", "Seen", "Seed"],
-  "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
-  "expEn": "Seen is the correct past participle."
- },
- {
-  "q": "What is the past simple form of drink?",
-  "o": ["Drunk", "Drinked", "Drank", "Drunken"],
-  "a": 2,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو الماضي البسيط لفعل drink؟",
-  "trO": ["Drunk", "Drinked", "Drank", "Drunken"],
-  "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
-  "expEn": "Drank is the correct past simple."
- },
- {
-  "q": "Which verb has three identical forms?",
-  "o": ["Go", "Cut", "Write", "Take"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "أي فعل له ثلاثة أشكال متطابقة؟",
-  "trO": ["Go", "Cut", "Write", "Take"],
-  "expAr": "الفعل cut من الأفعال التي لها نفس الشكل في المصدر والماضي والتصريف الثالث.",
-  "expEn": "Cut - Cut - Cut."
- },
- {
-  "q": "What is the past simple form of buy?",
-  "o": ["Buyed", "Bought", "Brought", "Buying"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو الماضي البسيط لفعل buy؟",
-  "trO": ["Buyed", "Bought", "Brought", "Buying"],
-  "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
-  "expEn": "Bought is the correct past simple."
- },
- {
-  "q": "What is the past participle of speak?",
-  "o": ["Spoke", "Speaking", "Speak", "Spoken"],
-  "a": 3,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو التصريف الثالث لفعل speak؟",
-  "trO": ["Spoke", "Speaking", "Speak", "Spoken"],
-  "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
-  "expEn": "Spoken is the correct past participle."
- },
- {
-  "q": "What is the past simple form of come?",
-  "o": ["Came", "Come", "Comed", "Coming"],
-  "a": 0,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو الماضي البسيط لفعل come؟",
-  "trO": ["Came", "Come", "Comed", "Coming"],
-  "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
-  "expEn": "Came is the correct past simple."
- },
- {
-  "q": "What is the past participle of break?",
-  "o": ["Broke", "Breaking", "Broken", "Broken"],
-  "a": 2,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو التصريف الثالث لفعل break؟",
-  "trO": ["Broke", "Breaking", "Broken", "Broken"],
-  "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
-  "expEn": "Broken is the correct past participle."
- },
- {
-  "q": "What is the past simple form of have?",
-  "o": ["Haved", "Had", "Has", "Having"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو الماضي البسيط لفعل have؟",
-  "trO": ["Haved", "Had", "Has", "Having"],
-  "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
-  "expEn": "Had is the correct past simple."
- },
- {
-  "q": "What is the past participle of do?",
-  "o": ["Did", "Done", "Does", "Doing"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو التصريف الثالث لفعل do؟",
-  "trO": ["Did", "Done", "Does", "Doing"],
-  "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
-  "expEn": "Done is the correct past participle."
- },
- {
-  "q": "What is the past simple form of run?",
-  "o": ["Run", "Runned", "Ran", "Running"],
-  "a": 2,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو الماضي البسيط لفعل run؟",
-  "trO": ["Run", "Runned", "Ran", "Running"],
-  "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
-  "expEn": "Ran is the correct past simple."
- },
- {
-  "q": "Which verb has the forms keep - kept - kept?",
-  "o": ["Keep", "Sleep", "Meet", "Feel"],
-  "a": 0,
-  "topic": "Irregular Verbs",
-  "trQ": "أي فعل له الأشكال keep - kept - kept؟",
-  "trO": ["Keep", "Sleep", "Meet", "Feel"],
-  "expAr": "الفعل keep يتبع هذا النمط في تصريفاته.",
-  "expEn": "Keep follows this pattern."
- },
- {
-  "q": "What is the past participle of give?",
-  "o": ["Gave", "Given", "Giving", "Gived"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو التصريف الثالث لفعل give؟",
-  "trO": ["Gave", "Given", "Giving", "Gived"],
-  "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
-  "expEn": "Given is the correct past participle."
- },
- {
-  "q": "What is the past simple form of teach?",
-  "o": ["Teached", "Taught", "Teach", "Teaching"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو الماضي البسيط لفعل teach؟",
-  "trO": ["Teached", "Taught", "Teach", "Teaching"],
-  "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
-  "expEn": "Taught is the correct past simple."
- },
- {
-  "q": "What is the past participle of swim?",
-  "o": ["Swam", "Swimmed", "Swum", "Swimming"],
-  "a": 2,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو التصريف الثالث لفعل swim؟",
-  "trO": ["Swam", "Swimmed", "Swum", "Swimming"],
-  "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
-  "expEn": "Swum is the correct past participle."
- },
- {
-  "q": "Which verb has the forms put - put - put?",
-  "o": ["Put", "Pat", "Pit", "Pet"],
-  "a": 0,
-  "topic": "Irregular Verbs",
-  "trQ": "أي فعل له الأشكال put - put - put؟",
-  "trO": ["Put", "Pat", "Pit", "Pet"],
-  "expAr": "الفعل put من الأفعال التي لها نفس الشكل في المصدر والماضي والتصريف الثالث.",
-  "expEn": "Put follows this pattern."
- },
- {
-  "q": "What is the past simple form of fly?",
-  "o": ["Flown", "Flew", "Flyed", "Flied"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو الماضي البسيط لفعل fly؟",
-  "trO": ["Flown", "Flew", "Flyed", "Flied"],
-  "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
-  "expEn": "Flew is the correct past simple."
- },
- {
-  "q": "What is the past participle of be?",
-  "o": ["Was", "Were", "Been", "Being"],
-  "a": 2,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو التصريف الثالث لفعل be؟",
-  "trO": ["Was", "Were", "Been", "Being"],
-  "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
-  "expEn": "Been is the correct past participle."
- },
- {
-  "q": "Which expression means 'that is' or 'in other words'?",
-  "o": ["e.g.", "i.e.", "etc.", "vs."],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "أي تعبير يعني 'أي' أو 'بعبارة أخرى'؟",
-  "trO": ["e.g.", "i.e.", "etc.", "vs."],
-  "expAr": "اختصار لاتيني بمعنى «أي» أو «بعبارة أخرى»، ويستخدم للتوضيح وإعادة الصياغة.",
-  "expEn": "i.e. means that is."
- },
- {
-  "q": "Which abbreviation is used to introduce examples?",
-  "o": ["i.e.", "e.g.", "i.d.", "e.a."],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "أي اختصار يُستخدم لتقديم أمثلة؟",
-  "trO": ["i.e.", "e.g.", "i.d.", "e.a."],
-  "expAr": "اختصار لاتيني بمعنى «على سبيل المثال»، ويُستخدم لتقديم أمثلة.",
-  "expEn": "e.g. means for example."
- },
- {
-  "q": "In formal writing, the abbreviations i.e. and e.g. are commonly placed:",
-  "o": ["Inside parentheses", "Only at the end of a paragraph", "In the title", "In quotation marks in every case"],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "في الكتابة الرسمية، الاختصارات i.e. و e.g. توضع عادة:",
-  "trO": ["داخل الأقواس", "فقط في نهاية الفقرة", "في العنوان", "في علامات اقتباس في كل حالة"],
-  "expAr": "الاختيار الصحيح يحقق وظيفة الربط المطلوبة في الجملة، مع مراعاة موضع أداة الربط والتركيب الذي يأتي بعدها.",
-  "expEn": "They are commonly placed inside parentheses."
- },
- {
-  "q": "Which sentence uses namely correctly?",
-  "o": ["I enjoy sports, namely running, for example.", "Three students, namely Ali, Mona, and Sara, won prizes.", "I like fruits, namely such as apples.", "Namely, I went to school yesterday."],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "أي جملة تستخدم namely بشكل صحيح؟",
-  "trO": ["أستمتع بالرياضة، أي الجري، على سبيل المثال.", "ثلاثة طلاب، أي علي ومونا وسارة، فازوا بجوائز.", "أحب الفواكه، أي مثل التفاح.", "أي، ذهبت إلى المدرسة أمس."],
-  "expAr": "namely تستخدم لتحديد العناصر المقصودة تحديداً، وغالباً تقدم قائمة كاملة.",
-  "expEn": "Namely introduces a complete list."
- },
- {
-  "q": "Which expression introduces only some examples, rather than necessarily all the examples?",
-  "o": ["Namely", "In conclusion", "Such as", "The latter"],
-  "a": 2,
-  "topic": "Linking Words",
-  "trQ": "أي تعبير يقدم بعض الأمثلة فقط، وليس بالضرورة كل الأمثلة؟",
-  "trO": ["أي", "في الختام", "مثل", "الأخير"],
-  "expAr": "تُستخدم قبل أمثلة، ولا تعني بالضرورة ذكر جميع عناصر المجموعة.",
-  "expEn": "Such as introduces some examples."
- },
- {
-  "q": "Choose the correct sentence.",
-  "o": ["She also is at the end of the sentence.", "We visited the castle. We also explored the gardens.", "We also, visited the gardens.", "Also we the gardens visited."],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "اختر الجملة الصحيحة.",
-  "trO": ["هي أيضاً في نهاية الجملة.", "زرنا القلعة. استكشفنا الحدائق أيضاً.", "نحن أيضاً، زرنا الحدائق.", "أيضاً نحن الحدائق زرنا."],
-  "expAr": "الاختيار الصحيح يحقق وظيفة الربط المطلوبة في الجملة، مع مراعاة موضع أداة الربط.",
-  "expEn": "Also comes before the main verb."
- },
- {
-  "q": "Choose the correct sentence.",
-  "o": ["He speaks French as well.", "As well he speaks French.", "As well he French speaks.", "He speaks as well French."],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "اختر الجملة الصحيحة.",
-  "trO": ["هو يتحدث الفرنسية كذلك.", "كذلك هو الفرنسية يتحدث.", "هو يتحدث كذلك الفرنسية.", "هو يتحدث الفرنسية كذلك."],
-  "expAr": "as well تأتي عادةً في نهاية الجملة بمعنى «كذلك».",
-  "expEn": "As well comes at the end."
- },
- {
-  "q": "Which expression is normally followed by another word or phrase?",
-  "o": ["Too", "As well", "As well as", "In short"],
-  "a": 2,
-  "topic": "Linking Words",
-  "trQ": "أي تعبير يتبعه عادة كلمة أو عبارة أخرى؟",
-  "trO": ["أيضاً", "كذلك", "بالإضافة إلى", "باختصار"],
-  "expAr": "as well as تحتاج إلى كلمة أو عبارة بعدها لتكتمل الجملة، بخلاف as well التي تأتي في النهاية.",
-  "expEn": "As well as is followed by a noun/verb."
- },
- {
-  "q": "The course develops reading skills. ____, it improves vocabulary.",
-  "o": ["Despite", "Furthermore", "Unlike", "Although"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "الدورة تنمي مهارات القراءة. ____، إنها تحسن المفردات.",
-  "trO": ["على الرغم من", "علاوة على ذلك", "على عكس", "على الرغم من أن"],
-  "expAr": "أداة ربط رسمية لإضافة نقطة داعمة في الكتابة الأكاديمية.",
-  "expEn": "Furthermore adds a point."
- },
- {
-  "q": "Which expression is generally more appropriate in informal conversation?",
-  "o": ["Furthermore", "Moreover", "Plus", "In conclusion"],
-  "a": 2,
-  "topic": "Linking Words",
-  "trQ": "أي تعبير يكون عادةً أكثر ملاءمة في المحادثة غير الرسمية؟",
-  "trO": ["علاوة على ذلك", "علاوة على ذلك", "بالإضافة", "في الختام"],
-  "expAr": "تعبير غير رسمي لإضافة معلومة أخرى.",
-  "expEn": "Plus is informal."
- },
- {
-  "q": "Which sequence correctly organizes a presentation?",
-  "o": ["Finally, firstly, secondly", "Firstly, secondly, finally", "However, despite, namely", "In conclusion, firstly, for example"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "أي تسلسل ينظم العرض التقديمي بشكل صحيح؟",
-  "trO": ["أخيراً، أولاً، ثانياً", "أولاً، ثانياً، أخيراً", "ومع ذلك، على الرغم من، أي", "في الختام، أولاً، على سبيل المثال"],
-  "expAr": "هذا التسلسل هو الترتيب الصحيح لعرض الأفكار.",
-  "expEn": "Firstly, secondly, finally is the logical order."
- },
- {
-  "q": "A company has factories in Cairo and Alexandria. Cairo is more productive than Alexandria. Which sentence is correct?",
-  "o": ["The former is Alexandria.", "The former is Cairo.", "The latter is Cairo.", "The former refers to both factories."],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "شركة لديها مصانع في القاهرة والإسكندرية. القاهرة أكثر إنتاجية من الإسكندرية. أي جملة صحيحة؟",
-  "trO": ["الأول هو الإسكندرية.", "الأول هو القاهرة.", "الأخير هو القاهرة.", "الأول يشير إلى كلا المصنعين."],
-  "expAr": "The former تشير إلى العنصر الأول الذي ذكر من عنصرين.",
-  "expEn": "The former refers to the first mentioned (Cairo)."
- },
- {
-  "q": "A company has two offices: one in London and one in Paris. Which office does the latter refer to?",
-  "o": ["London", "Both offices", "Paris", "Neither office"],
-  "a": 2,
-  "topic": "Linking Words",
-  "trQ": "شركة لديها مكتبان: واحد في لندن وواحد في باريس. أي مكتب يشير إليه the latter؟",
-  "trO": ["لندن", "كلا المكتبين", "باريس", "لا هذا ولا ذاك"],
-  "expAr": "The latter تشير إلى العنصر الثاني والأخير المذكور في الجملة.",
-  "expEn": "The latter refers to the second mentioned (Paris)."
- },
- {
-  "q": "Which expression is more informal when summarizing information?",
-  "o": ["In a nutshell", "Furthermore", "In addition", "Namely"],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "أي تعبير هو أقل رسمية عند تلخيص المعلومات؟",
-  "trO": ["باختصار", "علاوة على ذلك", "بالإضافة إلى ذلك", "أي"],
-  "expAr": "تعبير أقل رسمية يُستخدم لتلخيص الفكرة بإيجاز.",
-  "expEn": "In a nutshell is informal."
- },
- {
-  "q": "Choose the sentence that correctly expresses contrast.",
-  "o": ["Although he was tired, he continued working.", "Although he was tired, but he continued working.", "Despite he was tired, he continued working.", "However he was tired, he continued working."],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "اختر الجملة التي تعبر عن التباين بشكل صحيح.",
-  "trO": ["على الرغم من أنه كان متعباً، إلا أنه استمر في العمل.", "على الرغم من أنه كان متعباً، لكنه استمر في العمل.", "على الرغم من أنه كان متعباً، إلا أنه استمر في العمل.", "ومع ذلك كان متعباً، استمر في العمل."],
-  "expAr": "تتبعها جملة تحتوي على فاعل وفعل، ويظهر التباين دون استخدام 'but' معها في الجملة نفسها.",
-  "expEn": "Although + clause. No 'but'."
- },
- {
-  "q": "Which expression is followed by a noun or a gerund?",
-  "o": ["Although", "Even though", "Despite", "Whereas"],
-  "a": 2,
-  "topic": "Linking Words",
-  "trQ": "أي تعبير يتبعه اسم أو مصدر؟",
-  "trO": ["على الرغم من أن", "على الرغم من أن", "على الرغم من", "بينما"],
-  "expAr": "يأتي بعدها اسم أو عبارة اسمية أو مصدر مؤول من الفعل، ولا تتبعها جملة كاملة مباشرة.",
-  "expEn": "Despite + noun/gerund."
- },
- {
-  "q": "Choose the correct sentence.",
-  "o": ["Despite the rain, we went out.", "Despite it was raining, we went out.", "Despite we were tired, we continued.", "Despite he arrived late, he continued."],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "اختر الجملة الصحيحة.",
-  "trO": ["على الرغم من المطر، خرجنا.", "على الرغم من أنها كانت تمطر، خرجنا.", "على الرغم من أننا كنا متعبين، استمرينا.", "على الرغم من أنه وصل متأخراً، استمر."],
-  "expAr": "يأتي بعدها اسم أو عبارة اسمية، ولا تتبعها جملة كاملة مباشرة.",
-  "expEn": "Despite + noun."
- },
- {
-  "q": "Which expression is followed by a subject and a verb?",
-  "o": ["In spite of", "Despite", "Although", "Unlike"],
-  "a": 2,
-  "topic": "Linking Words",
-  "trQ": "أي تعبير يتبعه فاعل وفعل؟",
-  "trO": ["على الرغم من", "على الرغم من", "على الرغم من أن", "على عكس"],
-  "expAr": "تتبعها جملة تحتوي على فاعل وفعل، ويظهر التباين دون استخدام 'but' معها في الجملة نفسها.",
-  "expEn": "Although + subject + verb."
- },
- {
-  "q": "Choose the correct sentence.",
-  "o": ["In spite of he was ill, he attended class.", "In spite of being ill, he attended class.", "In spite he was ill, he attended class.", "In spite of ill, he attended class."],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "اختر الجملة الصحيحة.",
-  "trO": ["على الرغم من أنه كان مريضاً، حضر الفصل.", "على الرغم من كونه مريضاً، حضر الفصل.", "على الرغم من أنه كان مريضاً، حضر الفصل.", "على الرغم من المرض، حضر الفصل."],
-  "expAr": "يأتي بعدها اسم أو مصدر مؤول من الفعل، ويمكن أن تتبعها صفة مع الاسم.",
-  "expEn": "In spite of + gerund/noun."
- },
- {
-  "q": "Which sentence correctly uses despite the fact that?",
-  "o": ["Despite the fact that he was tired, he finished the task.", "Despite the fact that his tiredness, he finished the task.", "Despite the fact that being tired, he finished the task.", "Despite the fact that tired, he finished the task."],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "أي جملة تستخدم despite the fact that بشكل صحيح؟",
-  "trO": ["على الرغم من حقيقة أنه كان متعباً، إلا أنه أنهى المهمة.", "على الرغم من حقيقة تعبه، أنهى المهمة.", "على الرغم من حقيقة كونه متعباً، أنهى المهمة.", "على الرغم من حقيقة متعب، أنهى المهمة."],
-  "expAr": "يتبعها جملة كاملة تحتوي على فاعل وفعل لأنها تعبير وصفي متكامل.",
-  "expEn": "Despite the fact that + clause."
- },
- {
-  "q": "Tom enjoys reading, ____ his sister prefers watching films.",
-  "o": ["despite", "whereas", "such as", "in conclusion"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "توم يستمتع بالقراءة، ____ أخته تفضل مشاهدة الأفلام.",
-  "trO": ["على الرغم من", "بينما", "مثل", "في الختام"],
-  "expAr": "تربط بين فكرتين متقابلتين لإظهار الاختلاف بينهما.",
-  "expEn": "Whereas contrasts clauses."
- },
- {
-  "q": "Which sentence correctly uses unlike?",
-  "o": ["Unlike my brother, I enjoy swimming.", "Unlike I enjoy swimming, my brother does not.", "Unlike my brother enjoys swimming.", "Unlike of my brother, I enjoy swimming."],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "أي جملة تستخدم unlike بشكل صحيح؟",
-  "trO": ["على عكس أخي، أنا أستمتع بالسباحة.", "على عكسي أنا أستمتع بالسباحة، أخي لا يفعل.", "على عكس أخي يستمتع بالسباحة.", "على عكس من أخي، أنا أستمتع بالسباحة."],
-  "expAr": "تأتي قبل اسم أو عبارة اسمية للمقارنة وإظهار الاختلاف.",
-  "expEn": "Unlike + noun."
- },
- {
-  "q": "Which word is more formal than but in this example: “I studied hard. ____ I did not pass the exam.”",
-  "o": ["Too", "However", "Such as", "Namely"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "أي كلمة هي أكثر رسمية من but في هذا المثال: 'درست بجد. ____ لم أنجح في الامتحان.'",
-  "trO": ["أيضاً", "ومع ذلك", "مثل", "أي"],
-  "expAr": "تُستخدم لإظهار التباين بين جملتين، وغالبًا تفصلها علامة ترقيم.",
-  "expEn": "However is formal but."
- },
- {
-  "q": "Which sentence correctly introduces a summary?",
-  "o": ["In summary, the project improved students' writing skills.", "In summary the project, improved students' writing skills.", "In summary to improve, students' writing skills.", "In summary, although the project improved students' writing skills."],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "أي جملة تقدم ملخصاً بشكل صحيح؟",
-  "trO": ["باختصار، المشروع حسن مهارات الكتابة لدى الطلاب.", "باختصار المشروع، حسن مهارات الكتابة لدى الطلاب.", "باختصار لتحسين، مهارات الكتابة لدى الطلاب.", "باختصار، على الرغم من أن المشروع حسن مهارات الكتابة لدى الطلاب."],
-  "expAr": "الاختيار الصحيح يقدم خلاصة أو خاتمة للأفكار السابقة.",
-  "expEn": "Correct punctuation and structure."
- },
- {
-  "q": "Which connector is most appropriate for adding a further point in formal academic writing?",
-  "o": ["Besides, at the end of every sentence", "Moreover,", "Unlike,", "Despite,"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "أي رابط هو الأنسب لإضافة نقطة أخرى في الكتابة الأكاديمية الرسمية؟",
-  "trO": ["بالإضافة إلى، في نهاية كل جملة", "علاوة على ذلك،", "على عكس،", "على الرغم من،"],
-  "expAr": "تُستخدم في الكتابة الرسمية لإضافة نقطة جديدة.",
-  "expEn": "Moreover is formal."
- },
- {
-  "q": "Choose the correct sequence: break - ____ - ____.",
-  "o": ["Breaked - broke", "Broke - broken", "Broke - broke", "Broken - broke"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "اختر التسلسل الصحيح: break - ____ - ____.",
-  "trO": ["Breaked - broke", "Broke - broken", "Broke - broke", "Broken - broke"],
-  "expAr": "هذا الفعل من الأفعال غير المنتظمة؛ لذلك يجب حفظ تسلسل التصريفات كما هو.",
-  "expEn": "Break - broke - broken."
- },
- {
-  "q": "Choose the correct sequence: drive - ____ - ____.",
-  "o": ["Drove - driven", "Driven - drove", "Drived - driven", "Drove - drove"],
-  "a": 0,
-  "topic": "Irregular Verbs",
-  "trQ": "اختر التسلسل الصحيح: drive - ____ - ____.",
-  "trO": ["Drove - driven", "Driven - drove", "Drived - driven", "Drove - drove"],
-  "expAr": "هذا الفعل من الأفعال غير المنتظمة؛ لذلك يجب حفظ تسلسل التصريفات كما هو.",
-  "expEn": "Drive - drove - driven."
- },
- {
-  "q": "What is the past participle of choose?",
-  "o": ["Chose", "Choosed", "Chosen", "Choosing"],
-  "a": 2,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو التصريف الثالث لفعل choose؟",
-  "trO": ["Chose", "Choosed", "Chosen", "Choosing"],
-  "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
-  "expEn": "Chosen is the correct past participle."
- },
- {
-  "q": "What is the past simple form of freeze?",
-  "o": ["Frozen", "Froze", "Freezed", "Freezing"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو الماضي البسيط لفعل freeze؟",
-  "trO": ["Frozen", "Froze", "Freezed", "Freezing"],
-  "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
-  "expEn": "Froze is the correct past simple."
- },
- {
-  "q": "Which sequence is correct?",
-  "o": ["Know - known - knew", "Know - knew - known", "Know - knowed - known", "Know - knew - knew"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "أي تسلسل صحيح؟",
-  "trO": ["Know - known - knew", "Know - knew - known", "Know - knowed - known", "Know - knew - knew"],
-  "expAr": "هذا الفعل من الأفعال غير المنتظمة؛ لذلك يجب حفظ تسلسل التصريفات كما هو.",
-  "expEn": "Know - knew - known."
- },
- {
-  "q": "What is the past participle of throw?",
-  "o": ["Threw", "Throwed", "Thrown", "Throwing"],
-  "a": 2,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو التصريف الثالث لفعل throw؟",
-  "trO": ["Threw", "Throwed", "Thrown", "Throwing"],
-  "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
-  "expEn": "Thrown is the correct past participle."
- },
- {
-  "q": "Which verb follows the pattern sing - sang - sung?",
-  "o": ["Begin - began - begun", "Bring - brought - brought", "Sleep - slept - slept", "Sell - sold - sold"],
-  "a": 0,
-  "topic": "Irregular Verbs",
-  "trQ": "أي فعل يتبع نمط sing - sang - sung؟",
-  "trO": ["Begin - began - begun", "Bring - brought - brought", "Sleep - slept - slept", "Sell - sold - sold"],
-  "expAr": "الفعل begin يتبع نفس النمط الصوتي والتصريفي للفعل sing.",
-  "expEn": "Begin - began - begun follows the i-a-u pattern."
- },
- {
-  "q": "What is the past simple form of catch?",
-  "o": ["Catched", "Caught", "Caught", "Catch"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو الماضي البسيط لفعل catch؟",
-  "trO": ["Catched", "Caught", "Caught", "Catch"],
-  "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
-  "expEn": "Caught is the correct past simple."
- },
- {
-  "q": "What is the past participle of fall?",
-  "o": ["Fell", "Fallen", "Failed", "Falling"],
-  "a": 1,
-  "topic": "Irregular Verbs",
-  "trQ": "ما هو التصريف الثالث لفعل fall؟",
-  "trO": ["Fell", "Fallen", "Failed", "Falling"],
-  "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
-  "expEn": "Fallen is the correct past participle."
- },
- {
-  "q": "Which group contains verbs with identical past simple and past participle forms?",
-  "o": ["Go, do, see", "Write, take, break", "Buy, teach, bring", "Keep, feel, sell"],
-  "a": 3,
-  "topic": "Irregular Verbs",
-  "trQ": "أي مجموعة تحتوي على أفعال لها نفس الماضي البسيط والتصريف الثالث؟",
-  "trO": ["Go, do, see", "Write, take, break", "Buy, teach, bring", "Keep, feel, sell"],
-  "expAr": "هذه الأفعال لها نفس صيغة الماضي والتصريف الثالث (kept, felt, sold).",
-  "expEn": "Keep (kept-kept), feel (felt-felt), sell (sold-sold)."
- },
- {
-"q": "The university introduced new online courses. ____, it provided students with digital learning resources.",
-  "o": ["Nevertheless", "In addition", "Despite", "Unlike"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "الجامعة قدمت دورات إلكترونية جديدة. ____، وفرت للطلاب موارد تعليمية رقمية.",
-  "trO": ["مع ذلك", "بالإضافة إلى ذلك", "على الرغم من", "على عكس"],
-  "expAr": "تُستخدم لإضافة معلومة أو فكرة جديدة إلى ما سبق.",
-  "expEn": "In addition adds information."
- },
- {
-  "q": "The experiment was successful. ____, the researchers identified some limitations.",
-  "o": ["However", "For instance", "Namely", "In addition"],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "كانت التجربة ناجحة. ____، حدد الباحثون بعض القيود.",
-  "trO": ["ومع ذلك", "على سبيل المثال", "أي", "بالإضافة إلى ذلك"],
-  "expAr": "تُستخدم لإظهار التباين بين جملتين، وغالبًا تفصلها علامة ترقيم.",
-  "expEn": "However contrasts."
- },
- {
-  "q": "Which sentence correctly uses i.e.?",
-  "o": ["I enjoy outdoor activities (i.e. hiking and cycling, for example).", "The meeting was postponed (i.e. it was moved to a later date).", "I bought some fruit (i.e. apples and oranges as examples).", "She likes sports (i.e. tennis, football and swimming)."],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "أي جملة تستخدم i.e. بشكل صحيح؟",
-  "trO": ["أستمتع بالأنشطة الخارجية (أي المشي وركوب الدراجات، على سبيل المثال).", "تم تأجيل الاجتماع (أي تم نقله إلى تاريخ لاحق).", "اشتريت بعض الفاكهة (أي التفاح والبرتقال كأمثلة).", "إنها تحب الرياضة (أي التنس وكرة القدم والسباحة)."],
-  "expAr": "i.e. تستخدم للتوضيح وإعادة الصياغة، وليس لتقديم أمثلة.",
-  "expEn": "i.e. restates/clarifies."
- },
- {
-  "q": "Which sentence correctly uses e.g.?",
-  "o": ["The deadline was extended (e.g. it was moved to Friday).", "We need to improve one skill (e.g. that is, reading comprehension).", "Several activities develop speaking skills (e.g. role-playing and interviews).", "The results were disappointing (e.g. in other words they were poor)."],
-  "a": 2,
-  "topic": "Linking Words",
-  "trQ": "أي جملة تستخدم e.g. بشكل صحيح؟",
-  "trO": ["تم تمديد الموعد النهائي (على سبيل المثال تم نقله إلى الجمعة).", "نحتاج إلى تحسين مهارة واحدة (على سبيل المثال، أي فهم القراءة).", "العديد من الأنشطة تنمي مهارات التحدث (على سبيل المثال لعب الأدوار والمقابلات).", "كانت النتائج مخيبة للآمال (على سبيل المثال بعبارة أخرى كانت سيئة)."],
-  "expAr": "e.g. تُستخدم لتقديم أمثلة توضيحية.",
-  "expEn": "e.g. introduces examples."
- },
- {
-  "q": "Which sentence best illustrates the difference between namely and such as?",
-  "o": ["Namely introduces all the items referred to, while such as introduces examples.", "Namely and such as are always interchangeable.", "Namely is used only to summarize paragraphs.", "Such as must introduce every item in a sentence."],
-  "a": 0,
-  "topic": "Linking Words",
-  "trQ": "أي جملة توضح بشكل أفضل الفرق بين namely و such as؟",
-  "trO": ["namely تقدم كل العناصر المشار إليها، بينما such as تقدم أمثلة.", "namely و such as قابلان للتبادل دائماً.", "namely تستخدم فقط لتلخيص الفقرات.", "such as يجب أن تقدم كل عنصر في الجملة."],
-  "expAr": "Namely تستخدم لتحديد العناصر المقصودة تحديداً وغالباً تقدم قائمة كاملة، بينما such as تقدم أمثلة فقط.",
-  "expEn": "Namely introduces a complete list, such as introduces examples."
- },
- {
-  "q": "The school offers three foreign languages, ____ French, German, and Spanish.",
-  "o": ["such as", "namely", "although", "whereas"],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "المدرسة تقدم ثلاث لغات أجنبية، ____ الفرنسية والألمانية والإسبانية.",
-  "trO": ["مثل", "أي", "على الرغم من أن", "بينما"],
-  "expAr": "تُستخدم لتحديد العناصر المقصودة تحديدًا، وغالبًا تقدم قائمة كاملة.",
-  "expEn": "Namely provides the complete list."
- },
- {
-  "q": "Which sentence uses as well as correctly?",
-  "o": ["She is talented as well.", "She is talented as well as hardworking.", "As well she talented hardworking.", "She as well as talented hardworking."],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "أي جملة تستخدم as well as بشكل صحيح؟",
-  "trO": ["إنها موهوبة أيضاً.", "إنها موهوبة بالإضافة إلى كونها مجتهدة.", "كذلك هي موهوبة مجتهدة.", "هي بالإضافة إلى موهوبة مجتهدة."],
-  "expAr": "as well as تربط بين صفتين أو شيئين في نفس الجملة.",
-  "expEn": "As well as + noun/adj."
- },
- {
-  "q": "Which sentence is most appropriate in formal academic writing?",
-  "o": ["The intervention improved motivation. Plus, students enjoyed it.", "The intervention improved motivation. What's more, students enjoyed it.", "The intervention improved motivation. Furthermore, students demonstrated increased engagement.", "The intervention improved motivation. And stuff like that."],
-  "a": 2,
-  "topic": "Linking Words",
-  "trQ": "أي جملة هي الأنسب في الكتابة الأكاديمية الرسمية؟",
-  "trO": ["التدخل حسن الدافعية. بالإضافة، استمتع الطلاب بذلك.", "التدخل حسن الدافعية. والأكثر من ذلك، استمتع الطلاب بذلك.", "التدخل حسن الدافعية. علاوة على ذلك، أظهر الطلاب تفاعلاً أكبر.", "التدخل حسن الدافعية. وأشياء من هذا القبيل."],
-  "expAr": "Furthermore هي أداة ربط رسمية مناسبة للكتابة الأكاديمية.",
-  "expEn": "Furthermore is formal."
- },
- {
-  "q": "A report discusses two teaching methods: the lecture method first and the discussion method second. The discussion method is more interactive. Which sentence is correct?",
-  "o": ["The former is more interactive.", "The latter is more interactive.", "Both the former and the latter refer only to the lecture method.", "The latter refers to the first method."],
-  "a": 1,
-  "topic": "Linking Words",
-  "trQ": "تقرير يناقش طريقتين للتدريس: طريقة المحاضرة أولاً وطريقة المناقشة ثانياً. طريقة المناقشة أكثر تفاعلية. أي جملة صحيحة؟",
-  "trO": ["الأول أكثر تفاعلية.", "الأخير أكثر تفاعلية.", "كلاهما يشير فقط إلى طريقة المحاضرة.", "الأخير يشير إلى الطريقة الأولى."],
-  "expAr": "The latter تشير إلى العنصر الثاني الذي ذكر من عنصرين.",
-  "expEn": "The latter refers to the discussion method (second)."
- },
+{
+ "q": "Which expression is used to introduce an example?",
+ "o": ["In conclusion", "For example", "However", "Finally"],
+ "a": 1,
+ "topic": "Linking Words",
+ "trQ": "أي تعبير يُستخدم لتقديم مثال؟",
+ "trO": ["في الختام", "على سبيل المثال", "ومع ذلك", "أخيراً"],
+ "expAr": "تُستخدم هذه العبارة لتقديم مثال يوضح الفكرة السابقة.",
+ "expEn": "For example is used to introduce an example."
+},
+{
+ "q": "I enjoy outdoor activities, ____ hiking and cycling.",
+ "o": ["although", "whereas", "such as", "despite"],
+ "a": 2,
+ "topic": "Linking Words",
+ "trQ": "أستمتع بالأنشطة الخارجية، ____ المشي لمسافات طويلة وركوب الدراجات.",
+ "trO": ["على الرغم من أن", "بينما", "مثل", "على الرغم من"],
+ "expAr": "تُستخدم قبل أمثلة، ولا تعني بالضرورة ذكر جميع عناصر المجموعة.",
+ "expEn": "Such as is used before examples."
+},
+{
+ "q": "We visited several museums. We ____ took many photographs.",
+ "o": ["also", "despite", "although", "whereas"],
+ "a": 0,
+ "topic": "Linking Words",
+ "trQ": "قمنا بزيارة العديد من المتاحف. نحن ____ التقطنا العديد من الصور.",
+ "trO": ["أيضاً", "على الرغم من", "على الرغم من أن", "بينما"],
+ "expAr": "تُستخدم لإضافة معلومة، وغالبًا تأتي قبل الفعل الرئيسي أو بعد فعل الكينونة.",
+ "expEn": "Also adds information."
+},
+{
+ "q": "She is very intelligent. She is friendly, ____.",
+ "o": ["however", "too", "namely", "firstly"],
+ "a": 1,
+ "topic": "Linking Words",
+ "trQ": "إنها ذكية جداً. إنها ودودة، ____.",
+ "trO": ["ومع ذلك", "أيضاً", "أي", "أولاً"],
+ "expAr": "تأتي عادةً في نهاية الجملة لإضافة معنى «أيضًا».",
+ "expEn": "Too is used at the end to mean also."
+},
+{
+ "q": "Which expression is commonly used at the end of a sentence to mean 'also'?",
+ "o": ["Moreover", "Firstly", "Too", "Namely"],
+ "a": 2,
+ "topic": "Linking Words",
+ "trQ": "أي تعبير يُستخدم عادةً في نهاية الجملة ليعني 'أيضاً'؟",
+ "trO": ["علاوة على ذلك", "أولاً", "أيضاً", "أي"],
+ "expAr": "تأتي عادةً في نهاية الجملة لإضافة معنى «أيضًا».",
+ "expEn": "Too means also."
+},
+{
+ "q": "He is talented ____ hardworking.",
+ "o": ["as well as", "despite", "although", "unlike"],
+ "a": 0,
+ "topic": "Linking Words",
+ "trQ": "هو موهوب ____ مجتهد.",
+ "trO": ["بالإضافة إلى", "على الرغم من", "على الرغم من أن", "على عكس"],
+ "expAr": "تأتي عادةً في نهاية الجملة بمعنى «كذلك».",
+ "expEn": "As well as means in addition to."
+},
+{
+ "q": "Which expression is used to add another idea in formal writing?",
+ "o": ["For instance", "In addition", "Although", "In short"],
+ "a": 1,
+ "topic": "Linking Words",
+ "trQ": "أي تعبير يُستخدم لإضافة فكرة أخرى في الكتابة الرسمية؟",
+ "trO": ["على سبيل المثال", "بالإضافة إلى ذلك", "على الرغم من أن", "باختصار"],
+ "expAr": "تُستخدم لإضافة معلومة أو فكرة جديدة إلى ما سبق.",
+ "expEn": "In addition adds a new idea."
+},
+{
+ "q": "____, we will discuss the advantages of online learning.",
+ "o": ["Despite", "However", "Firstly", "Unlike"],
+ "a": 2,
+ "topic": "Linking Words",
+ "trQ": "____، سنناقش مزايا التعلم عبر الإنترنت.",
+ "trO": ["على الرغم من", "ومع ذلك", "أولاً", "على عكس"],
+ "expAr": "تُستخدم لتقديم أول نقطة في ترتيب الأفكار.",
+ "expEn": "Firstly introduces the first point."
+},
+{
+ "q": "Which expression signals the final point in a series?",
+ "o": ["Finally", "For example", "Moreover", "Whereas"],
+ "a": 0,
+ "topic": "Linking Words",
+ "trQ": "أي تعبير يشير إلى النقطة الأخيرة في سلسلة؟",
+ "trO": ["أخيراً", "على سبيل المثال", "علاوة على ذلك", "بينما"],
+ "expAr": "تُستخدم لتقديم النقطة الأخيرة في تسلسل أو عرض.",
+ "expEn": "Finally signals the last point."
+},
+{
+ "q": "Which expression introduces a summary?",
+ "o": ["Such as", "In conclusion", "In addition", "Although"],
+ "a": 1,
+ "topic": "Linking Words",
+ "trQ": "أي تعبير يقدم ملخصاً؟",
+ "trO": ["مثل", "في الختام", "بالإضافة إلى ذلك", "على الرغم من أن"],
+ "expAr": "تُستخدم لتقديم الخاتمة أو تلخيص الأفكار الأساسية.",
+ "expEn": "In conclusion introduces a summary."
+},
+{
+ "q": "I wanted to buy the dress, ____ it was too expensive.",
+ "o": ["moreover", "but", "namely", "such as"],
+ "a": 1,
+ "topic": "Linking Words",
+ "trQ": "أردت شراء الفستان، ____ كان مكلفاً للغاية.",
+ "trO": ["علاوة على ذلك", "لكن", "أي", "مثل"],
+ "expAr": "تربط فكرتين متعارضتين داخل الجملة.",
+ "expEn": "But contrasts two ideas."
+},
+{
+ "q": "____ it was raining, the students went to school.",
+ "o": ["Despite", "Although", "Unlike", "Such as"],
+ "a": 1,
+ "topic": "Linking Words",
+ "trQ": "____ كانت تمطر، ذهب الطلاب إلى المدرسة.",
+ "trO": ["على الرغم من", "على الرغم من أن", "على عكس", "مثل"],
+ "expAr": "تتبعها جملة تحتوي على فاعل وفعل، وتظهر التباين دون استخدام 'but' معها في الجملة نفسها.",
+ "expEn": "Although is followed by a clause."
+},
+{
+ "q": "We won the match ____ having fewer players.",
+ "o": ["although", "however", "despite", "whereas"],
+ "a": 2,
+ "topic": "Linking Words",
+ "trQ": "فزنا بالمباراة ____ وجود عدد أقل من اللاعبين.",
+ "trO": ["على الرغم من أن", "ومع ذلك", "على الرغم من", "بينما"],
+ "expAr": "يأتي بعدها اسم أو عبارة اسمية أو مصدر مؤول من الفعل، ولا تتبعها جملة كاملة مباشرة.",
+ "expEn": "Despite is followed by a noun/gerund."
+},
+{
+ "q": "My brother likes football, ____ I prefer tennis.",
+ "o": ["while", "despite", "such as", "in conclusion"],
+ "a": 0,
+ "topic": "Linking Words",
+ "trQ": "أخي يحب كرة القدم، ____ أنا أفضل التنس.",
+ "trO": ["بينما", "على الرغم من", "مثل", "في الختام"],
+ "expAr": "يمكن أن تربط جملتين متقابلتين، ويجب أن تكون كل جملة مكتملة نحوياً.",
+ "expEn": "While contrasts two clauses."
+},
+{
+ "q": "Which word is used to contrast two people or things and is typically followed by a noun phrase?",
+ "o": ["Moreover", "Unlike", "Finally", "Namely"],
+ "a": 1,
+ "topic": "Linking Words",
+ "trQ": "أي كلمة تُستخدم لمقارنة شخصين أو شيئين وعادة ما يتبعها عبارة اسمية؟",
+ "trO": ["علاوة على ذلك", "على عكس", "أخيراً", "أي"],
+ "expAr": "تأتي قبل اسم أو عبارة اسمية للمقارنة وإظهار الاختلاف.",
+ "expEn": "Unlike contrasts nouns."
+},
+{
+ "q": "What is the past simple form of go?",
+ "o": ["Goed", "Gone", "Went", "Going"],
+ "a": 2,
+ "topic": "Irregular Verbs",
+ "trQ": "ما هو الماضي البسيط لفعل go؟",
+ "trO": ["Goed", "Gone", "Went", "Going"],
+ "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
+ "expEn": "Went is the correct past simple."
+},
+{
+ "q": "What is the past participle of eat?",
+ "o": ["Ate", "Eaten", "Eating", "Eated"],
+ "a": 1,
+ "topic": "Irregular Verbs",
+ "trQ": "ما هو التصريف الثالث لفعل eat؟",
+ "trO": ["Ate", "Eaten", "Eating", "Eated"],
+ "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
+ "expEn": "Eaten is the correct past participle."
+},
+{
+ "q": "What is the past simple form of write?",
+ "o": ["Wrote", "Written", "Writed", "Writing"],
+ "a": 0,
+ "topic": "Irregular Verbs",
+ "trQ": "ما هو الماضي البسيط لفعل write؟",
+ "trO": ["Wrote", "Written", "Writed", "Writing"],
+ "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
+ "expEn": "Wrote is the correct past simple."
+},
+{
+ "q": "What is the past participle of see?",
+ "o": ["Saw", "Seeing", "Seen", "Seed"],
+ "a": 2,
+ "topic": "Irregular Verbs",
+ "trQ": "ما هو التصريف الثالث لفعل see؟",
+ "trO": ["Saw", "Seeing", "Seen", "Seed"],
+ "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
+ "expEn": "Seen is the correct past participle."
+},
+{
+ "q": "What is the past simple form of drink?",
+ "o": ["Drunk", "Drinked", "Drank", "Drunken"],
+ "a": 2,
+ "topic": "Irregular Verbs",
+ "trQ": "ما هو الماضي البسيط لفعل drink؟",
+ "trO": ["Drunk", "Drinked", "Drank", "Drunken"],
+ "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
+ "expEn": "Drank is the correct past simple."
+},
+{
+ "q": "Which verb has three identical forms?",
+ "o": ["Go", "Cut", "Write", "Take"],
+ "a": 1,
+ "topic": "Irregular Verbs",
+ "trQ": "أي فعل له ثلاثة أشكال متطابقة؟",
+ "trO": ["Go", "Cut", "Write", "Take"],
+ "expAr": "الفعل cut من الأفعال التي لها نفس الشكل في المصدر والماضي والتصريف الثالث.",
+ "expEn": "Cut - Cut - Cut."
+},
+{
+ "q": "What is the past simple form of buy?",
+ "o": ["Buyed", "Bought", "Brought", "Buying"],
+ "a": 1,
+ "topic": "Irregular Verbs",
+ "trQ": "ما هو الماضي البسيط لفعل buy؟",
+ "trO": ["Buyed", "Bought", "Brought", "Buying"],
+ "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
+ "expEn": "Bought is the correct past simple."
+},
+{
+ "q": "What is the past participle of speak?",
+ "o": ["Spoke", "Speaking", "Speak", "Spoken"],
+ "a": 3,
+ "topic": "Irregular Verbs",
+ "trQ": "ما هو التصريف الثالث لفعل speak؟",
+ "trO": ["Spoke", "Speaking", "Speak", "Spoken"],
+ "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
+ "expEn": "Spoken is the correct past participle."
+},
+{
+ "q": "What is the past simple form of come?",
+ "o": ["Came", "Come", "Comed", "Coming"],
+ "a": 0,
+ "topic": "Irregular Verbs",
+ "trQ": "ما هو الماضي البسيط لفعل come؟",
+ "trO": ["Came", "Come", "Comed", "Coming"],
+ "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
+ "expEn": "Came is the correct past simple."
+},
+{
+ "q": "What is the past participle of break?",
+ "o": ["Broke", "Breaking", "Broken", "Broken"],
+ "a": 2,
+ "topic": "Irregular Verbs",
+ "trQ": "ما هو التصريف الثالث لفعل break؟",
+ "trO": ["Broke", "Breaking", "Broken", "Broken"],
+ "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
+ "expEn": "Broken is the correct past participle."
+},
+{
+ "q": "What is the past simple form of have?",
+ "o": ["Haved", "Had", "Has", "Having"],
+ "a": 1,
+ "topic": "Irregular Verbs",
+ "trQ": "ما هو الماضي البسيط لفعل have؟",
+ "trO": ["Haved", "Had", "Has", "Having"],
+ "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
+ "expEn": "Had is the correct past simple."
+},
+{
+ "q": "What is the past participle of do?",
+ "o": ["Did", "Done", "Does", "Doing"],
+ "a": 1,
+ "topic": "Irregular Verbs",
+ "trQ": "ما هو التصريف الثالث لفعل do؟",
+ "trO": ["Did", "Done", "Does", "Doing"],
+ "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
+ "expEn": "Done is the correct past participle."
+},
+{
+ "q": "What is the past simple form of run?",
+ "o": ["Run", "Runned", "Ran", "Running"],
+ "a": 2,
+ "topic": "Irregular Verbs",
+ "trQ": "ما هو الماضي البسيط لفعل run؟",
+ "trO": ["Run", "Runned", "Ran", "Running"],
+ "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
+ "expEn": "Ran is the correct past simple."
+},
+{
+ "q": "Which verb has the forms keep - kept - kept?",
+ "o": ["Keep", "Sleep", "Meet", "Feel"],
+ "a": 0,
+ "topic": "Irregular Verbs",
+ "trQ": "أي فعل له الأشكال keep - kept - kept؟",
+ "trO": ["Keep", "Sleep", "Meet", "Feel"],
+ "expAr": "الفعل keep يتبع هذا النمط في تصريفاته.",
+ "expEn": "Keep follows this pattern."
+},
+{
+ "q": "What is the past participle of give?",
+ "o": ["Gave", "Given", "Giving", "Gived"],
+ "a": 1,
+ "topic": "Irregular Verbs",
+ "trQ": "ما هو التصريف الثالث لفعل give؟",
+ "trO": ["Gave", "Given", "Giving", "Gived"],
+ "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
+ "expEn": "Given is the correct past participle."
+},
+{
+ "q": "What is the past simple form of teach?",
+ "o": ["Teached", "Taught", "Teach", "Teaching"],
+ "a": 1,
+ "topic": "Irregular Verbs",
+ "trQ": "ما هو الماضي البسيط لفعل teach؟",
+ "trO": ["Teached", "Taught", "Teach", "Teaching"],
+ "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
+ "expEn": "Taught is the correct past simple."
+},
+{
+ "q": "What is the past participle of swim?",
+ "o": ["Swam", "Swimmed", "Swum", "Swimming"],
+ "a": 2,
+ "topic": "Irregular Verbs",
+ "trQ": "ما هو التصريف الثالث لفعل swim؟",
+ "trO": ["Swam", "Swimmed", "Swum", "Swimming"],
+ "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
+ "expEn": "Swum is the correct past participle."
+},
+{
+ "q": "Which verb has the forms put - put - put?",
+ "o": ["Put", "Pat", "Pit", "Pet"],
+ "a": 0,
+ "topic": "Irregular Verbs",
+ "trQ": "أي فعل له الأشكال put - put - put؟",
+ "trO": ["Put", "Pat", "Pit", "Pet"],
+ "expAr": "الفعل put من الأفعال التي لها نفس الشكل في المصدر والماضي والتصريف الثالث.",
+ "expEn": "Put follows this pattern."
+},
+{
+ "q": "What is the past simple form of fly?",
+ "o": ["Flown", "Flew", "Flyed", "Flied"],
+ "a": 1,
+ "topic": "Irregular Verbs",
+ "trQ": "ما هو الماضي البسيط لفعل fly؟",
+ "trO": ["Flown", "Flew", "Flyed", "Flied"],
+ "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
+ "expEn": "Flew is the correct past simple."
+},
+{
+ "q": "What is the past participle of be?",
+ "o": ["Was", "Were", "Been", "Being"],
+ "a": 2,
+ "topic": "Irregular Verbs",
+ "trQ": "ما هو التصريف الثالث لفعل be؟",
+ "trO": ["Was", "Were", "Been", "Being"],
+ "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
+ "expEn": "Been is the correct past participle."
+},
+{
+ "q": "Which expression means 'that is' or 'in other words'?",
+ "o": ["e.g.", "i.e.", "etc.", "vs."],
+ "a": 1,
+ "topic": "Linking Words",
+ "trQ": "أي تعبير يعني 'أي' أو 'بعبارة أخرى'؟",
+ "trO": ["e.g.", "i.e.", "etc.", "vs."],
+ "expAr": "اختصار لاتيني بمعنى «أي» أو «بعبارة أخرى»، ويستخدم للتوضيح وإعادة الصياغة.",
+ "expEn": "i.e. means that is."
+},
+{
+ "q": "Which abbreviation is used to introduce examples?",
+ "o": ["i.e.", "e.g.", "i.d.", "e.a."],
+ "a": 1,
+ "topic": "Linking Words",
+ "trQ": "أي اختصار يُستخدم لتقديم أمثلة؟",
+ "trO": ["i.e.", "e.g.", "i.d.", "e.a."],
+ "expAr": "اختصار لاتيني بمعنى «على سبيل المثال»، ويُستخدم لتقديم أمثلة.",
+ "expEn": "e.g. means for example."
+},
+{
+ "q": "In formal writing, the abbreviations i.e. and e.g. are commonly placed:",
+ "o": ["Inside parentheses", "Only at the end of a paragraph", "In the title", "In quotation marks in every case"],
+ "a": 0,
+ "topic": "Linking Words",
+ "trQ": "في الكتابة الرسمية، الاختصارات i.e. و e.g. توضع عادة:",
+ "trO": ["داخل الأقواس", "فقط في نهاية الفقرة", "في العنوان", "في علامات اقتباس في كل حالة"],
+ "expAr": "الاختيار الصحيح يحقق وظيفة الربط المطلوبة في الجملة، مع مراعاة موضع أداة الربط والتركيب الذي يأتي بعدها.",
+ "expEn": "They are commonly placed inside parentheses."
+},
+{
+ "q": "Which sentence uses namely correctly?",
+ "o": ["I enjoy sports, namely running, for example.", "Three students, namely Ali, Mona, and Sara, won prizes.", "I like fruits, namely such as apples.", "Namely, I went to school yesterday."],
+ "a": 1,
+ "topic": "Linking Words",
+ "trQ": "أي جملة تستخدم namely بشكل صحيح؟",
+ "trO": ["أستمتع بالرياضة، أي الجري، على سبيل المثال.", "ثلاثة طلاب، أي علي ومونا وسارة، فازوا بجوائز.", "أحب الفواكه، أي مثل التفاح.", "أي، ذهبت إلى المدرسة أمس."],
+ "expAr": "namely تستخدم لتحديد العناصر المقصودة تحديداً، وغالباً تقدم قائمة كاملة.",
+ "expEn": "Namely introduces a complete list."
+},
+{
+ "q": "Which expression introduces only some examples, rather than necessarily all the examples?",
+ "o": ["Namely", "In conclusion", "Such as", "The latter"],
+ "a": 2,
+ "topic": "Linking Words",
+ "trQ": "أي تعبير يقدم بعض الأمثلة فقط، وليس بالضرورة كل الأمثلة؟",
+ "trO": ["أي", "في الختام", "مثل", "الأخير"],
+ "expAr": "تُستخدم قبل أمثلة، ولا تعني بالضرورة ذكر جميع عناصر المجموعة.",
+ "expEn": "Such as introduces some examples."
+},
+{
+ "q": "Choose the correct sentence.",
+ "o": ["She also is at the end of the sentence.", "We visited the castle. We also explored the gardens.", "We also, visited the gardens.", "Also we the gardens visited."],
+ "a": 1,
+ "topic": "Linking Words",
+ "trQ": "اختر الجملة الصحيحة.",
+ "trO": ["هي أيضاً في نهاية الجملة.", "زرنا القلعة. استكشفنا الحدائق أيضاً.", "نحن أيضاً، زرنا الحدائق.", "أيضاً نحن الحدائق زرنا."],
+ "expAr": "الاختيار الصحيح يحقق وظيفة الربط المطلوبة في الجملة، مع مراعاة موضع أداة الربط.",
+ "expEn": "Also comes before the main verb."
+},
+{
+ "q": "Choose the correct sentence.",
+ "o": ["He speaks French as well.", "As well he speaks French.", "As well he French speaks.", "He speaks as well French."],
+ "a": 0,
+ "topic": "Linking Words",
+ "trQ": "اختر الجملة الصحيحة.",
+ "trO": ["هو يتحدث الفرنسية كذلك.", "كذلك هو الفرنسية يتحدث.", "هو يتحدث كذلك الفرنسية.", "هو يتحدث الفرنسية كذلك."],
+ "expAr": "as well تأتي عادةً في نهاية الجملة بمعنى «كذلك».",
+ "expEn": "As well comes at the end."
+},
+{
+ "q": "Which expression is normally followed by another word or phrase?",
+ "o": ["Too", "As well", "As well as", "In short"],
+ "a": 2,
+ "topic": "Linking Words",
+ "trQ": "أي تعبير يتبعه عادة كلمة أو عبارة أخرى؟",
+ "trO": ["أيضاً", "كذلك", "بالإضافة إلى", "باختصار"],
+ "expAr": "as well as تحتاج إلى كلمة أو عبارة بعدها لتكتمل الجملة، بخلاف as well التي تأتي في النهاية.",
+ "expEn": "As well as is followed by a noun/verb."
+},
+{
+ "q": "The course develops reading skills. ____, it improves vocabulary.",
+ "o": ["Despite", "Furthermore", "Unlike", "Although"],
+ "a": 1,
+ "topic": "Linking Words",
+ "trQ": "الدورة تنمي مهارات القراءة. ____، إنها تحسن المفردات.",
+ "trO": ["على الرغم من", "علاوة على ذلك", "على عكس", "على الرغم من أن"],
+ "expAr": "أداة ربط رسمية لإضافة نقطة داعمة في الكتابة الأكاديمية.",
+ "expEn": "Furthermore adds a point."
+},
+{
+ "q": "Which expression is generally more appropriate in informal conversation?",
+ "o": ["Furthermore", "Moreover", "Plus", "In conclusion"],
+ "a": 2,
+ "topic": "Linking Words",
+ "trQ": "أي تعبير يكون عادةً أكثر ملاءمة في المحادثة غير الرسمية؟",
+ "trO": ["علاوة على ذلك", "علاوة على ذلك", "بالإضافة", "في الختام"],
+ "expAr": "تعبير غير رسمي لإضافة معلومة أخرى.",
+ "expEn": "Plus is informal."
+},
+{
+ "q": "Which sequence correctly organizes a presentation?",
+ "o": ["Finally, firstly, secondly", "Firstly, secondly, finally", "However, despite, namely", "In conclusion, firstly, for example"],
+ "a": 1,
+ "topic": "Linking Words",
+ "trQ": "أي تسلسل ينظم العرض التقديمي بشكل صحيح؟",
+ "trO": ["أخيراً، أولاً، ثانياً", "أولاً، ثانياً، أخيراً", "ومع ذلك، على الرغم من، أي", "في الختام، أولاً، على سبيل المثال"],
+ "expAr": "هذا التسلسل هو الترتيب الصحيح لعرض الأفكار.",
+ "expEn": "Firstly, secondly, finally is the logical order."
+},
+{
+ "q": "A company has factories in Cairo and Alexandria. Cairo is more productive than Alexandria. Which sentence is correct?",
+ "o": ["The former is Alexandria.", "The former is Cairo.", "The latter is Cairo.", "The former refers to both factories."],
+ "a": 1,
+ "topic": "Linking Words",
+ "trQ": "شركة لديها مصانع في القاهرة والإسكندرية. القاهرة أكثر إنتاجية من الإسكندرية. أي جملة صحيحة؟",
+ "trO": ["الأول هو الإسكندرية.", "الأول هو القاهرة.", "الأخير هو القاهرة.", "الأول يشير إلى كلا المصنعين."],
+ "expAr": "The former تشير إلى العنصر الأول الذي ذكر من عنصرين.",
+ "expEn": "The former refers to the first mentioned (Cairo)."
+},
+{
+ "q": "A company has two offices: one in London and one in Paris. Which office does the latter refer to?",
+ "o": ["London", "Both offices", "Paris", "Neither office"],
+ "a": 2,
+ "topic": "Linking Words",
+ "trQ": "شركة لديها مكتبان: واحد في لندن وواحد في باريس. أي مكتب يشير إليه the latter؟",
+ "trO": ["لندن", "كلا المكتبين", "باريس", "لا هذا ولا ذاك"],
+ "expAr": "The latter تشير إلى العنصر الثاني والأخير المذكور في الجملة.",
+ "expEn": "The latter refers to the second mentioned (Paris)."
+},
+{
+ "q": "Which expression is more informal when summarizing information?",
+ "o": ["In a nutshell", "Furthermore", "In addition", "Namely"],
+ "a": 0,
+ "topic": "Linking Words",
+ "trQ": "أي تعبير هو أقل رسمية عند تلخيص المعلومات؟",
+ "trO": ["باختصار", "علاوة على ذلك", "بالإضافة إلى ذلك", "أي"],
+ "expAr": "تعبير أقل رسمية يُستخدم لتلخيص الفكرة بإيجاز.",
+ "expEn": "In a nutshell is informal."
+},
+{
+ "q": "Choose the sentence that correctly expresses contrast.",
+ "o": ["Although he was tired, he continued working.", "Although he was tired, but he continued working.", "Despite he was tired, he continued working.", "However he was tired, he continued working."],
+ "a": 0,
+ "topic": "Linking Words",
+ "trQ": "اختر الجملة التي تعبر عن التباين بشكل صحيح.",
+ "trO": ["على الرغم من أنه كان متعباً، إلا أنه استمر في العمل.", "على الرغم من أنه كان متعباً، لكنه استمر في العمل.", "على الرغم من أنه كان متعباً، إلا أنه استمر في العمل.", "ومع ذلك كان متعباً، استمر في العمل."],
+ "expAr": "تتبعها جملة تحتوي على فاعل وفعل، ويظهر التباين دون استخدام 'but' معها في الجملة نفسها.",
+ "expEn": "Although + clause. No 'but'."
+},
+{
+ "q": "Which expression is followed by a noun or a gerund?",
+ "o": ["Although", "Even though", "Despite", "Whereas"],
+ "a": 2,
+ "topic": "Linking Words",
+ "trQ": "أي تعبير يتبعه اسم أو مصدر؟",
+ "trO": ["على الرغم من أن", "على الرغم من أن", "على الرغم من", "بينما"],
+ "expAr": "يأتي بعدها اسم أو عبارة اسمية أو مصدر مؤول من الفعل، ولا تتبعها جملة كاملة مباشرة.",
+ "expEn": "Despite + noun/gerund."
+},
+{
+ "q": "Choose the correct sentence.",
+ "o": ["Despite the rain, we went out.", "Despite it was raining, we went out.", "Despite we were tired, we continued.", "Despite he arrived late, he continued."],
+ "a": 0,
+ "topic": "Linking Words",
+ "trQ": "اختر الجملة الصحيحة.",
+ "trO": ["على الرغم من المطر، خرجنا.", "على الرغم من أنها كانت تمطر، خرجنا.", "على الرغم من أننا كنا متعبين، استمرينا.", "على الرغم من أنه وصل متأخراً، استمر."],
+ "expAr": "يأتي بعدها اسم أو عبارة اسمية، ولا تتبعها جملة كاملة مباشرة.",
+ "expEn": "Despite + noun."
+},
+{
+ "q": "Which expression is followed by a subject and a verb?",
+ "o": ["In spite of", "Despite", "Although", "Unlike"],
+ "a": 2,
+ "topic": "Linking Words",
+ "trQ": "أي تعبير يتبعه فاعل وفعل؟",
+ "trO": ["على الرغم من", "على الرغم من", "على الرغم من أن", "على عكس"],
+ "expAr": "تتبعها جملة تحتوي على فاعل وفعل، ويظهر التباين دون استخدام 'but' معها في الجملة نفسها.",
+ "expEn": "Although + subject + verb."
+},
+{
+ "q": "Choose the correct sentence.",
+ "o": ["In spite of he was ill, he attended class.", "In spite of being ill, he attended class.", "In spite he was ill, he attended class.", "In spite of ill, he attended class."],
+ "a": 1,
+ "topic": "Linking Words",
+ "trQ": "اختر الجملة الصحيحة.",
+ "trO": ["على الرغم من أنه كان مريضاً، حضر الفصل.", "على الرغم من كونه مريضاً، حضر الفصل.", "على الرغم من أنه كان مريضاً، حضر الفصل.", "على الرغم من المرض، حضر الفصل."],
+ "expAr": "يأتي بعدها اسم أو مصدر مؤول من الفعل، ويمكن أن تتبعها صفة مع الاسم.",
+ "expEn": "In spite of + gerund/noun."
+},
+{
+ "q": "Which sentence correctly uses despite the fact that?",
+ "o": ["Despite the fact that he was tired, he finished the task.", "Despite the fact that his tiredness, he finished the task.", "Despite the fact that being tired, he finished the task.", "Despite the fact that tired, he finished the task."],
+ "a": 0,
+ "topic": "Linking Words",
+ "trQ": "أي جملة تستخدم despite the fact that بشكل صحيح؟",
+ "trO": ["على الرغم من حقيقة أنه كان متعباً، إلا أنه أنهى المهمة.", "على الرغم من حقيقة تعبه، أنهى المهمة.", "على الرغم من حقيقة كونه متعباً، أنهى المهمة.", "على الرغم من حقيقة متعب، أنهى المهمة."],
+ "expAr": "يتبعها جملة كاملة تحتوي على فاعل وفعل لأنها تعبير وصفي متكامل.",
+ "expEn": "Despite the fact that + clause."
+},
+{
+ "q": "Tom enjoys reading, ____ his sister prefers watching films.",
+ "o": ["despite", "whereas", "such as", "in conclusion"],
+ "a": 1,
+ "topic": "Linking Words",
+ "trQ": "توم يستمتع بالقراءة، ____ أخته تفضل مشاهدة الأفلام.",
+ "trO": ["على الرغم من", "بينما", "مثل", "في الختام"],
+ "expAr": "تربط بين فكرتين متقابلتين لإظهار الاختلاف بينهما.",
+ "expEn": "Whereas contrasts clauses."
+},
+{
+ "q": "Which sentence correctly uses unlike?",
+ "o": ["Unlike my brother, I enjoy swimming.", "Unlike I enjoy swimming, my brother does not.", "Unlike my brother enjoys swimming.", "Unlike of my brother, I enjoy swimming."],
+ "a": 0,
+ "topic": "Linking Words",
+ "trQ": "أي جملة تستخدم unlike بشكل صحيح؟",
+ "trO": ["على عكس أخي، أنا أستمتع بالسباحة.", "على عكسي أنا أستمتع بالسباحة، أخي لا يفعل.", "على عكس أخي يستمتع بالسباحة.", "على عكس من أخي، أستمتع بالسباحة."],
+ "expAr": "تأتي قبل اسم أو عبارة اسمية للمقارنة وإظهار الاختلاف.",
+ "expEn": "Unlike + noun."
+},
+{
+ "q": "Which word is more formal than but in this example: “I studied hard. ____ I did not pass the exam.”",
+ "o": ["Too", "However", "Such as", "Namely"],
+ "a": 1,
+ "topic": "Linking Words",
+ "trQ": "أي كلمة هي أكثر رسمية من but في هذا المثال: 'درست بجد. ____ لم أنجح في الامتحان.'",
+ "trO": ["أيضاً", "ومع ذلك", "مثل", "أي"],
+ "expAr": "تُستخدم لإظهار التباين بين جملتين، وغالبًا تفصلها علامة ترقيم.",
+ "expEn": "However is formal but."
+},
+{
+ "q": "Which sentence correctly introduces a summary?",
+ "o": ["In summary, the project improved students' writing skills.", "In summary the project, improved students' writing skills.", "In summary to improve, students' writing skills.", "In summary, although the project improved students' writing skills."],
+ "a": 0,
+ "topic": "Linking Words",
+ "trQ": "أي جملة تقدم ملخصاً بشكل صحيح؟",
+ "trO": ["باختصار، المشروع حسن مهارات الكتابة لدى الطلاب.", "باختصار المشروع، حسن مهارات الكتابة لدى الطلاب.", "باختصار لتحسين، مهارات الكتابة لدى الطلاب.", "باختصار، على الرغم من أن المشروع حسن مهارات الكتابة لدى الطلاب."],
+ "expAr": "الاختيار الصحيح يقدم خلاصة أو خاتمة للأفكار السابقة.",
+ "expEn": "Correct punctuation and structure."
+},
+{
+ "q": "Which connector is most appropriate for adding a further point in formal academic writing?",
+ "o": ["Besides, at the end of every sentence", "Moreover,", "Unlike,", "Despite,"],
+ "a": 1,
+ "topic": "Linking Words",
+ "trQ": "أي رابط هو الأنسب لإضافة نقطة أخرى في الكتابة الأكاديمية الرسمية؟",
+ "trO": ["بالإضافة إلى، في نهاية كل جملة", "علاوة على ذلك،", "على عكس،", "على الرغم من،"],
+ "expAr": "تُستخدم في الكتابة الرسمية لإضافة نقطة جديدة.",
+ "expEn": "Moreover is formal."
+},
+{
+ "q": "Choose the correct sequence: break - ____ - ____.",
+ "o": ["Breaked - broke", "Broke - broken", "Broke - broke", "Broken - broke"],
+ "a": 1,
+ "topic": "Irregular Verbs",
+ "trQ": "اختر التسلسل الصحيح: break - ____ - ____.",
+ "trO": ["Breaked - broke", "Broke - broken", "Broke - broke", "Broken - broke"],
+ "expAr": "هذا الفعل من الأفعال غير المنتظمة؛ لذلك يجب حفظ تسلسل التصريفات كما هو.",
+ "expEn": "Break - broke - broken."
+},
+{
+ "q": "Choose the correct sequence: drive - ____ - ____.",
+ "o": ["Drove - driven", "Driven - drove", "Drived - driven", "Drove - drove"],
+ "a": 0,
+ "topic": "Irregular Verbs",
+ "trQ": "اختر التسلسل الصحيح: drive - ____ - ____.",
+ "trO": ["Drove - driven", "Driven - drove", "Drived - driven", "Drove - drove"],
+ "expAr": "هذا الفعل من الأفعال غير المنتظمة؛ لذلك يجب حفظ تسلسل التصريفات كما هو.",
+ "expEn": "Drive - drove - driven."
+},
+{
+ "q": "What is the past participle of choose?",
+ "o": ["Chose", "Choosed", "Chosen", "Choosing"],
+ "a": 2,
+ "topic": "Irregular Verbs",
+ "trQ": "ما هو التصريف الثالث لفعل choose؟",
+ "trO": ["Chose", "Choosed", "Chosen", "Choosing"],
+ "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
+ "expEn": "Chosen is the correct past participle."
+},
+{
+ "q": "What is the past simple form of freeze?",
+ "o": ["Frozen", "Froze", "Freezed", "Freezing"],
+ "a": 1,
+ "topic": "Irregular Verbs",
+ "trQ": "ما هو الماضي البسيط لفعل freeze؟",
+ "trO": ["Frozen", "Froze", "Freezed", "Freezing"],
+ "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
+ "expEn": "Froze is the correct past simple."
+},
+{
+ "q": "Which sequence is correct?",
+ "o": ["Know - known - knew", "Know - knew - known", "Know - knowed - known", "Know - knew - knew"],
+ "a": 1,
+ "topic": "Irregular Verbs",
+ "trQ": "أي تسلسل صحيح؟",
+ "trO": ["Know - known - knew", "Know - knew - known", "Know - knowed - known", "Know - knew - knew"],
+ "expAr": "هذا الفعل من الأفعال غير المنتظمة؛ لذلك يجب حفظ تسلسل التصريفات كما هو.",
+ "expEn": "Know - knew - known."
+},
+{
+ "q": "What is the past participle of throw?",
+ "o": ["Threw", "Throwed", "Thrown", "Throwing"],
+ "a": 2,
+ "topic": "Irregular Verbs",
+ "trQ": "ما هو التصريف الثالث لفعل throw؟",
+ "trO": ["Threw", "Throwed", "Thrown", "Throwing"],
+ "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
+ "expEn": "Thrown is the correct past participle."
+},
+{
+ "q": "Which verb follows the pattern sing - sang - sung?",
+ "o": ["Begin - began - begun", "Bring - brought - brought", "Sleep - slept - slept", "Sell - sold - sold"],
+ "a": 0,
+ "topic": "Irregular Verbs",
+ "trQ": "أي فعل يتبع نمط sing - sang - sung؟",
+ "trO": ["Begin - began - begun", "Bring - brought - brought", "Sleep - slept - slept", "Sell - sold - sold"],
+ "expAr": "الفعل begin يتبع نفس النمط الصوتي والتصريفي للفعل sing.",
+ "expEn": "Begin - began - begun follows the i-a-u pattern."
+},
+{
+ "q": "What is the past simple form of catch?",
+ "o": ["Catched", "Caught", "Caught", "Catch"],
+ "a": 1,
+ "topic": "Irregular Verbs",
+ "trQ": "ما هو الماضي البسيط لفعل catch؟",
+ "trO": ["Catched", "Caught", "Caught", "Catch"],
+ "expAr": "الإجابة هي صيغة الماضي البسيط الصحيحة للفعل غير المنتظم، ولا تكون بإضافة الحروف المعتادة إلى نهاية الفعل.",
+ "expEn": "Caught is the correct past simple."
+},
+{
+ "q": "What is the past participle of fall?",
+ "o": ["Fell", "Fallen", "Failed", "Falling"],
+ "a": 1,
+ "topic": "Irregular Verbs",
+ "trQ": "ما هو التصريف الثالث لفعل fall؟",
+ "trO": ["Fell", "Fallen", "Failed", "Falling"],
+ "expAr": "الإجابة هي التصريف الثالث الصحيح للفعل غير المنتظم، ويستخدم بعد الفعلين المساعدين في زمن المضارع التام أو في المبني للمجهول.",
+ "expEn": "Fallen is the correct past participle."
+},
+{
+ "q": "Which group contains verbs with identical past simple and past participle forms?",
+ "o": ["Go, do, see", "Write, take, break", "Buy, teach, bring", "Keep, feel, sell"],
+ "a": 3,
+ "topic": "Irregular Verbs",
+ "trQ": "أي مجموعة تحتوي على أفعال لها نفس الماضي البسيط والتصريف الثالث؟",
+ "trO": ["Go, do, see", "Write, take, break", "Buy, teach, bring", "Keep, feel, sell"],
+ "expAr": "هذه الأفعال لها نفس صيغة الماضي والتصريف الثالث (kept, felt, sold).",
+ "expEn": "Keep (kept-kept), feel (felt-felt), sell (sold-sold)."
+},
+{
+ "q": "The university introduced new online courses. ____, it provided students with digital learning resources.",
+ "o": ["Nevertheless", "In addition", "Despite", "Unlike"],
+ "a": 1,
+ "topic": "Linking Words",
+ "trQ": "الجامعة قدمت دورات إلكترونية جديدة. ____، وفرت للطلاب موارد تعليمية رقمية.",
+ "trO": ["مع ذلك", "بالإضافة إلى ذلك", "على الرغم من", "على عكس"],
+ "expAr": "تُستخدم لإضافة معلومة أو فكرة جديدة إلى ما سبق.",
+ "expEn": "In addition adds information."
+},
+{
+ "q": "The experiment was successful. ____, the researchers identified some limitations.",
+ "o": ["However", "For instance", "Namely", "In addition"],
+ "a": 0,
+ "topic": "Linking Words",
+ "trQ": "كانت التجربة ناجحة. ____، حدد الباحثون بعض القيود.",
+ "trO": ["ومع ذلك", "على سبيل المثال", "أي", "بالإضافة إلى ذلك"],
+ "expAr": "تُستخدم لإظهار التباين بين جملتين، وغالبًا تفصلها علامة ترقيم.",
+ "expEn": "However contrasts."
+},
+{
+ "q": "Which sentence correctly uses i.e.?",
+ "o": ["I enjoy outdoor activities (i.e. hiking and cycling, for example).", "The meeting was postponed (i.e. it was moved to a later date).", "I bought some fruit (i.e. apples and oranges as examples).", "She likes sports (i.e. tennis, football and swimming)."],
+ "a": 1,
+ "topic": "Linking Words",
+ "trQ": "أي جملة تستخدم i.e. بشكل صحيح؟",
+ "trO": ["أستمتع بالأنشطة الخارجية (أي المشي وركوب الدراجات، على سبيل المثال).", "تم تأجيل الاجتماع (أي تم نقله إلى تاريخ لاحق).", "اشتريت بعض الفاكهة (أي التفاح والبرتقال كأمثلة).", "إنها تحب الرياضة (أي التنس وكرة القدم والسباحة)."],
+ "expAr": "i.e. تستخدم للتوضيح وإعادة الصياغة، وليس لتقديم أمثلة.",
+ "expEn": "i.e. restates/clarifies."
+},
+{
+ "q": "Which sentence correctly uses e.g.?",
+ "o": ["The deadline was extended (e.g. it was moved to Friday).", "We need to improve one skill (e.g. that is, reading comprehension).", "Several activities develop speaking skills (e.g. role-playing and interviews).", "The results were disappointing (e.g. in other words they were poor)."],
+ "a": 2,
+ "topic": "Linking Words",
+ "trQ": "أي جملة تستخدم e.g. بشكل صحيح؟",
+ "trO": ["تم تمديد الموعد النهائي (على سبيل المثال تم نقله إلى الجمعة).", "نحتاج إلى تحسين مهارة واحدة (على سبيل المثال، أي فهم القراءة).", "العديد من الأنشطة تنمي مهارات التحدث (على سبيل المثال لعب الأدوار والمقابلات).", "كانت النتائج مخيبة للآمال (على سبيل المثال بعبارة أخرى كانت سيئة)."],
+ "expAr": "e.g. تُستخدم لتقديم أمثلة توضيحية.",
+ "expEn": "e.g. introduces examples."
+},
+{
+ "q": "Which sentence best illustrates the difference between namely and such as?",
+ "o": ["Namely introduces all the items referred to, while such as introduces examples.", "Namely and such as are always interchangeable.", "Namely is used only to summarize paragraphs.", "Such as must introduce every item in a sentence."],
+ "a": 0,
+ "topic": "Linking Words",
+ "trQ": "أي جملة توضح بشكل أفضل الفرق بين namely و such as؟",
+ "trO": ["namely تقدم كل العناصر المشار إليها، بينما such as تقدم أمثلة.", "namely و such as قابلان للتبادل دائماً.", "namely تستخدم فقط لتلخيص الفقرات.", "such as يجب أن تقدم كل عنصر في الجملة."],
+ "expAr": "Namely تستخدم لتحديد العناصر المقصودة تحديداً وغالباً تقدم قائمة كاملة، بينما such as تقدم أمثلة فقط.",
+ "expEn": "Namely introduces a complete list, such as introduces examples."
+},
+{
+ "q": "The school offers three foreign languages, ____ French, German, and Spanish.",
+ "o": ["such as", "namely", "although", "whereas"],
+ "a": 1,
+ "topic": "Linking Words",
+ "trQ": "المدرسة تقدم ثلاث لغات أجنبية، ____ الفرنسية والألمانية والإسبانية.",
+ "trO": ["مثل", "أي", "على الرغم من أن", "بينما"],
+ "expAr": "تُستخدم لتحديد العناصر المقصودة تحديدًا، وغالبًا تقدم قائمة كاملة.",
+ "expEn": "Namely provides the complete list."
+},
+{
+ "q": "Which sentence uses as well as correctly?",
+ "o": ["She is talented as well.", "She is talented as well as hardworking.", "As well she talented hardworking.", "She as well as talented hardworking."],
+ "a": 1,
+ "topic": "Linking Words",
+ "trQ": "أي جملة تستخدم as well as بشكل صحيح؟",
+ "trO": ["إنها موهوبة أيضاً.", "إنها موهوبة بالإضافة إلى كونها مجتهدة.", "كذلك هي موهوبة مجتهدة.", "هي بالإضافة إلى موهوبة مجتهدة."],
+ "expAr": "as well as تربط بين صفتين أو شيئين في نفس الجملة.",
+ "expEn": "As well as + noun/adj."
+},
+{
+ "q": "Which sentence is most appropriate in formal academic writing?",
+ "o": ["The intervention improved motivation. Plus, students enjoyed it.", "The intervention improved motivation. What's more, students enjoyed it.", "The intervention improved motivation. Furthermore, students demonstrated increased engagement.", "The intervention improved motivation. And stuff like that."],
+ "a": 2,
+ "topic": "Linking Words",
+ "trQ": "أي جملة هي الأنسب في الكتابة الأكاديمية الرسمية؟",
+ "trO": ["التدخل حسن الدافعية. بالإضافة، استمتع الطلاب بذلك.", "التدخل حسن الدافعية. والأكثر من ذلك، استمتع الطلاب بذلك.", "التدخل حسن الدافعية. علاوة على ذلك، أظهر الطلاب تفاعلاً أكبر.", "التدخل حسن الدافعية. وأشياء من هذا القبيل."],
+ "expAr": "Furthermore هي أداة ربط رسمية مناسبة للكتابة الأكاديمية.",
+ "expEn": "Furthermore is formal."
+},
+{
+ "q": "A report discusses two teaching methods: the lecture method first and the discussion method second. The discussion method is more interactive. Which sentence is correct?",
+ "o": ["The former is more interactive.", "The latter is more interactive.", "Both the former and the latter refer only to the lecture method.", "The latter refers to the first method."],
+ "a": 1,
+ "topic": "Linking Words",
+ "trQ": "تقرير يناقش طريقتين للتدريس: طريقة المحاضرة أولاً وطريقة المناقشة ثانياً. طريقة المناقشة أكثر تفاعلية. أي جملة صحيحة؟",
+ "trO": ["الأول أكثر تفاعلية.", "الأخير أكثر تفاعلية.", "كلاهما يشير فقط إلى طريقة المحاضرة.", "الأخير يشير إلى الطريقة الأولى."],
+ "expAr": "The latter تشير إلى العنصر الثاني الذي ذكر من عنصرين.",
+ "expEn": "The latter refers to the discussion method (second)."
+   } ,
  {
   "q": "Which sentence contains an error in the use of a contrasting linker?",
   "o": ["Although she was nervous, she gave a good presentation.", "Despite feeling nervous, she gave a good presentation.", "She was nervous. However, she gave a good presentation.", "Despite she felt nervous, she gave a good presentation."],
@@ -4424,6 +1936,7 @@ const originalQuiz = [
   "expEn": "Will for spontaneous decisions."
  }
 ];
+  
 
 let quiz = []; 
 let answers = []; 
@@ -4926,7 +2439,7 @@ function downloadResultCard() {
     dBtn.textContent = "⏳ Generating Image..."; dBtn.disabled = true;
     containerActionButtons.style.display = "none"; 
     
-    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
     const bgColor = currentTheme === 'dark' ? '#0f172a' : '#f1f5f9';
     
     html2canvas(document.querySelector(".container"), {
@@ -4968,3 +2481,220 @@ window.onload = function() {
 </script>
 </body>
 </html>
+function triggerHaptic(type) {
+    if (!vibrationEnabled) return; 
+    if (navigator.vibrate) {
+        if (type === 'correct') navigator.vibrate(70);
+        else if (type === 'wrong') navigator.vibrate([100, 60, 100]);
+        else if (type === 'click') navigator.vibrate(35);
+    }
+}
+
+function toggleSound() {
+    soundEnabled = !soundEnabled;
+    document.getElementById("soundToggle").innerHTML = soundEnabled ? "<span>🔊</span> Sound On" : "<span>🔇</span> Sound Off";
+}
+
+function toggleVibration() {
+    vibrationEnabled = !vibrationEnabled;
+    document.getElementById("vibeToggle").innerHTML = vibrationEnabled ? "<span>📳</span> Vibe On" : "<span>📴</span> Vibe Off";
+    if (vibrationEnabled && navigator.vibrate) { navigator.vibrate(50); }
+}
+
+function setMode(mode) { 
+    currentMode = mode; 
+    showHighScore(); 
+}
+
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', targetTheme);
+  document.querySelector('.theme-toggle').innerHTML = targetTheme === 'dark' ? '<span>☀️</span> Light Mode' : '<span>🌓</span> Dark Mode';
+}
+
+function prepareQuizData(shouldShuffle) {
+    quiz.forEach(q => {
+        q.combinedOptions = q.o.map((enText, idx) => ({
+            en: enText,
+            ar: q.trO && q.trO[idx] ? q.trO[idx] : ""
+        }));
+    });
+    
+    if(shouldShuffle) {
+        for (let currentIdx = quiz.length - 1; currentIdx > 0; currentIdx--) {
+            const randomIdx = Math.floor(Math.random() * (currentIdx + 1));
+            [quiz[currentIdx], quiz[randomIdx]] = [quiz[randomIdx], quiz[currentIdx]];
+        }
+        quiz.forEach(q => {
+            for (let j = q.combinedOptions.length - 1; j > 0; j--) {
+                const r = Math.floor(Math.random() * (j + 1));
+                [q.combinedOptions[j], q.combinedOptions[r]] = [q.combinedOptions[r], q.combinedOptions[j]];
+            }
+        });
+    }
+}
+
+function startTimer() {
+    clearInterval(timerInterval);
+    let totalSeconds = 60 * 60; 
+    const timerDisplay = document.getElementById("timerDisplay");
+    document.getElementById("timerBox").style.display = "block";
+    
+    function refreshTimerView() {
+        let mins = Math.floor(totalSeconds / 60);
+        let secs = totalSeconds % 60;
+        timerDisplay.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+    
+    refreshTimerView();
+    timerInterval = setInterval(() => {
+        totalSeconds--;
+        if(totalSeconds <= 0) {
+            clearInterval(timerInterval);
+            showResult();
+        } else { refreshTimerView(); }
+    }, 1000);
+}
+
+function getFlaggedTexts() {
+    return JSON.parse(localStorage.getItem("theCodingNurseW_english_flagged_questions") || "[]");
+}
+
+function speakQuestion() {
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel(); 
+        
+        let structuredText = `Question number ${i + 1}: ${quiz[i].q}. `;
+        quiz[i].combinedOptions.forEach((opObj, idx) => {
+            structuredText += `Choice number ${idx + 1}: ${opObj.en}. `;
+        });
+
+        const utterance = new SpeechSynthesisUtterance(structuredText);
+        utterance.lang = 'en-US'; 
+        utterance.rate = 0.88; 
+        utterance.pitch = 1.0; 
+        
+        utterance.onstart = () => {
+            const stopBtn = document.getElementById("stopSpeakBtn");
+            stopBtn.style.display = "inline-block";
+            stopBtn.innerHTML = "⏸️"; 
+            stopBtn.title = "إيقاف مؤقت للقرأة";
+        };
+        
+        const resetAudioUI = () => {
+            document.getElementById("stopSpeakBtn").style.display = "none";
+        };
+        
+        utterance.onend = resetAudioUI;
+        utterance.onerror = resetAudioUI;
+
+        window.speechSynthesis.speak(utterance);
+    } else {
+        alert("⚠️ ميزة النطق الصوتي غير مدعومة على متصفحك الحالي.");
+    }
+}
+
+function toggleSpeechPause() {
+    if ('speechSynthesis' in window) {
+        const stopBtn = document.getElementById("stopSpeakBtn");
+        if (window.speechSynthesis.speaking) {
+            if (window.speechSynthesis.paused) {
+                window.speechSynthesis.resume(); 
+                stopBtn.innerHTML = "⏸️";
+                stopBtn.title = "إيقاف مؤقت";
+            } else {
+                window.speechSynthesis.pause(); 
+                stopBtn.innerHTML = "▶️";
+                stopBtn.title = "استئناف النطق الحالي";
+            }
+        }
+    }
+}
+
+function forceStopSpeechEngine() {
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const stopBtn = document.getElementById("stopSpeakBtn");
+        if (stopBtn) stopBtn.style.display = "none";
+    }
+}
+
+function toggleTranslation() {
+    const tBox = document.getElementById("translationBox");
+    tBox.style.display = (tBox.style.display === "block") ? "none" : "block";
+}
+
+function startQuiz() {
+    if (currentMode === 'bookmark') {
+        let flagged = getFlaggedTexts();
+        quiz = JSON.parse(JSON.stringify(originalQuiz)).filter(q => flagged.includes(q.q));
+        if (quiz.length === 0) {
+            alert("❌ لا توجد أسئلة مميزة بـ 🔖 حالياً لمراجعتها!");
+            return;
+        }
+        prepareQuizData(false);
+        localStorage.removeItem("theCodingNurseW_english_quiz_progress");
+    } else if(!isReviewMode) {
+        quiz = JSON.parse(JSON.stringify(originalQuiz));
+        let doShuffle = (currentMode !== 'sequential');
+        prepareQuizData(doShuffle); 
+        localStorage.removeItem("theCodingNurseW_english_quiz_progress"); 
+    }
+    answers = new Array(quiz.length).fill(null);
+    
+    midNav.innerHTML = "";
+    quiz.forEach((_, idx) => {
+      const b = document.createElement("button");
+      b.textContent = idx + 1; b.className = "q-btn";
+      b.onclick = () => { i = idx; load(); };
+      midNav.appendChild(b);
+    });
+
+    startCard.style.display = "none"; quizContainer.style.display = "block";
+    if(currentMode === 'exam') { startTimer(); } else { document.getElementById("timerBox").style.display = "none"; }
+    load();
+}
+
+function updateMidNav(){
+  let flagged = getFlaggedTexts();
+  document.querySelectorAll(".q-btn").forEach((el,idx)=>{
+    el.classList.remove("active","correct","wrong","answered-exam","flagged");
+    if(idx===i) el.classList.add("active");
+    if(quiz[idx] && flagged.includes(quiz[idx].q)) el.classList.add("flagged");
+    
+    if(quiz[idx] && quiz[idx].userPick !== undefined) {
+        if(currentMode === 'study' || currentMode === 'sequential' || currentMode === 'bookmark') {
+            if(answers[idx]===true) el.classList.add("correct");
+            if(answers[idx]===false) el.classList.add("wrong");
+        } else { el.classList.add("answered-exam"); }
+    }
+  });
+}
+
+function toggleFlag() {
+    if(quiz[i]) {
+        let flagged = getFlaggedTexts();
+        const qText = quiz[i].q;
+        if(flagged.includes(qText)) {
+            flagged = flagged.filter(t => t !== qText);
+            quiz[i].isFlagged = false;
+        } else {
+            flagged.push(qText);
+            quiz[i].isFlagged = true;
+        }
+        localStorage.setItem("theCodingNurseW_english_flagged_questions", JSON.stringify(flagged));
+        document.getElementById("flagBtn").classList.toggle("active", quiz[i].isFlagged);
+        updateMidNav();
+        saveProgress();
+    }
+}
+
+function renderExplain(){
+  const box=document.getElementById("explainBox");
+  const cur=quiz[i];
+  const reveal=(currentMode==='study'||currentMode==='sequential'||currentMode==='bookmark');
+  if(cur && cur.userPick!==undefined && reveal && (cur.expAr||cur.expEn)){
+    document.getElementById("exAr").textContent=cur.expAr||"";
+    document.getElementById("exEn").textContent=cur.expEn||"";
+    box.style.display
